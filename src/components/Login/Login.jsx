@@ -15,14 +15,14 @@ const Login = () => {
                 senha_login,
             });
 
-            setDadosUsuario(response.data[0]);
-
-            console.log(dadosUsuario);
+            setDadosUsuario(response.data);
 
             // Lógica adicional após a autenticação bem-sucedida (redirecionamento, etc.)
         } catch (error) {
             console.error('Erro durante a autenticação:', error.response.data.message);
         }
+
+        console.log(dadosUsuario);
     };
 
     return (
