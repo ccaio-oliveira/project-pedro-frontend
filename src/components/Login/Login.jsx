@@ -1,54 +1,74 @@
 // resources/js/Pages/Login.jsx
 import { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import './login.css';
 
 const Login = () => {
     const [usuario_login, setUsuarioLogin] = useState('');
     const [senha_login, setSenhaLogin] = useState('');
 
-    const [dadosUsuario, setDadosUsuario] = useState([]);
+    const [errorLogin, setErrorLogin] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('/api/login', {
+            await axios.post('/api/login', {
                 usuario_login,
                 senha_login,
             });
 
-            setDadosUsuario(response.data);
+            setUsuarioLogin('');
+            setSenhaLogin('');
+            setErrorLogin(false);
+            
+            navigate('/dashboard');
 
             // Lógica adicional após a autenticação bem-sucedida (redirecionamento, etc.)
         } catch (error) {
-            console.error('Erro durante a autenticação:', error.response.data.message);
+            setErrorLogin(true);
         }
-
-        console.log(dadosUsuario);
     };
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form>
-                <div>
-                    <label>Email:</label>
-                    <input
-                        type="text"
-                        value={usuario_login}
-                        onChange={(e) => setUsuarioLogin(e.target.value)}
-                    />
+        <div className="loginElement">
+            <div className="left">
+                <img src="images/medicine2.png" alt="Medicine 2" />
+                <div className="text">
+                    <h1>Se conecte com sua equipe e salve vidas!</h1>
+                    <p>Mande solicitações de relatórios, agende consultas e gerencie o seu tempo.</p>
                 </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                        type="text"
-                        value={senha_login}
-                        onChange={(e) => setSenhaLogin(e.target.value)}
-                    />
-                </div>
-                <button type="button" onClick={handleLogin}>
-                    Login
-                </button>
-            </form>
+            </div>
+            <div className="right">
+                <form>
+                    <h1>Acessar conta</h1>
+                    <div>
+                        <label>Usuário</label>
+                        <input
+                            type="text"
+                            value={usuario_login}
+                            onChange={(e) => setUsuarioLogin(e.target.value)}
+                            placeholder='Usuário'
+                        />
+                    </div>
+                    <div>
+                        <label>Senha</label>
+                        <input
+                            type="text"
+                            value={senha_login}
+                            onChange={(e) => setSenhaLogin(e.target.value)}
+                            placeholder='Senha'
+                        />
+                        {errorLogin && (
+                            <p>Usuário ou senha inválidos</p>
+                        )}
+                    </div>
+                    <Link to="/forgotPassword" className='forgotPassword'>Esqueci minha senha</Link>
+                    <button type="button" onClick={handleLogin}>
+                        Entrar
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };
