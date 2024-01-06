@@ -1,10 +1,12 @@
 // resources/js/Pages/Login.jsx
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import './login.css';
+import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
+    const { sessao, handleSetSessao, handleSetHash, hash } = useAuth();
     const [usuario_login, setUsuarioLogin] = useState('');
     const [senha_login, setSenhaLogin] = useState('');
 
@@ -18,17 +20,22 @@ const Login = () => {
                 senha_login,
             });
 
-            setUsuarioLogin('');
-            setSenhaLogin('');
-            setErrorLogin(false);
+            // setUsuarioLogin('');
+            // setSenhaLogin('');
+            // setErrorLogin(false);
             
-            navigate('/dashboard');
+            // navigate('/dashboard');
 
-            // Lógica adicional após a autenticação bem-sucedida (redirecionamento, etc.)
         } catch (error) {
             setErrorLogin(true);
         }
     };
+
+    const checkUserLogged = async () => {
+
+    }
+
+    useEffect
 
     return (
         <div className="loginElement">

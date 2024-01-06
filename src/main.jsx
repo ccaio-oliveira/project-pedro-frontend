@@ -1,13 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client';
 import './index.css'
-import axios from 'axios';
-import RouteElement from './routes/Routes.jsx';
-
-axios.defaults.baseURL = 'http://localhost:8000/api';
+import App from './App.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouteElement />
+    <App />
   </React.StrictMode>,
 )
