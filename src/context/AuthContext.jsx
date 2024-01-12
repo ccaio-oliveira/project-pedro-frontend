@@ -6,11 +6,13 @@ const AuthContext = createContext({
     sessao: {
         loggedin: false,
         bloqueado: false,
-        id_login: 0,
+        id: 0,
         nome_usuario: '',
         sobrenome_usuario: '',
-        tipo_usuario: 0,
-        usuario_id: 0
+        email: '',
+        cpf: '',
+        perfil_usuario: 0,
+        token: ''
     },
     hash: '',
 
@@ -26,11 +28,12 @@ const AuthProvider = ({ children }) => {
     const [sessao, setSessao] = useState({
         loggedin: false,
         bloqueado: false,
-        id_login: 0,
-        nome_usuario: '',
-        sobrenome_usuario: '',
-        tipo_usuario: 0,
-        usuario_id: 0
+        id: 0,
+        nome: '',
+        sobrenome: '',
+        email: '',
+        cpf: '',
+        perfil_usuario: 0,
     });
 
     const [hash, setHash] = useState('');
@@ -45,38 +48,31 @@ const AuthProvider = ({ children }) => {
         setHash(hash);
     }
 
-    const handleValidaSessao = () => {
+    const handleValidaSessao = async (token) => {
         const instance = axios.create({
             baseURL: import.meta.env.VITE_API_URL,
             headers: {
-                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
-                'X-Hash': hash,
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + token,
             }
-        });
+        })
 
-        if(hash !== '' && !sessao.loggedin && tentativa > 0){
-            const res = instance.get(`auth/verificar/${hash}`)
-            .then(res => {
-                setSessao({
-                    ...res.data,
-                    usuario_id: parseInt(res.data.usuario_id),
-                    id_login: parseInt(res.data.id_login),
-                    tipo_usuario: parseInt(res.data.tipo_usuario)
-                });
+        await instance.get('/api/validaSessao')
+        .then(res => {
 
-                Object.keys(res.data).forEach((key) => {
-                    sessionStorage.setItem(key, res.data[key]);
-                });
-            })
-            .catch(() => {
-                setTentativa(tentativa - 1);
-                if(tentativa === 0){
-                    navigate('/');
-                }
-            });
-            return res;
-        }
+            console.log(res.data)
+            // if(res.data !== 'not authenticated'){
+            //     handleSetSessao({
+            //         loggedin: true,
+            //         bloqueado: false,
+            //         ...res.data
+            //     });
+            // } else {
+            //     console.log(res.data)
+            // }
+        })
+
     }
 
     const context = {

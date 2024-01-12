@@ -6,7 +6,7 @@ import './login.css';
 import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
-    const { sessao, handleSetSessao, handleSetHash, hash } = useAuth();
+    const { sessao, handleSetSessao, handleSetHash, hash, handleValidaSessao } = useAuth();
     const [usuario_login, setUsuarioLogin] = useState('');
     const [senha_login, setSenhaLogin] = useState('');
 
@@ -14,28 +14,40 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleLogin = async () => {
-        try {
-            await axios.post('/api/login', {
-                usuario_login,
-                senha_login,
-            });
+        console.log(sessao)
+        await axios.get('/sanctum/csrf-cookie');
+
+        await axios.post('/api/login', {
+            usuario_login,
+            senha_login,
+        })
+        .then(res => {
+            handleSetSessao({
+                loggedin: true,
+                bloqueado: false,
+                token: res.data.token,
+                ...res.data.data
+            })
 
             // setUsuarioLogin('');
             // setSenhaLogin('');
             // setErrorLogin(false);
             
             // navigate('/dashboard');
-
-        } catch (error) {
+        })
+        .catch(error => {
             setErrorLogin(true);
-        }
+        })
+
     };
 
-    const checkUserLogged = async () => {
+    // useEffect(() => {
+    //     handleValidaSessao('40|GdI3yLazCyuQ7XXaoUaTUUaPVM9BJFWskhepFrCx5e9d0da0');
 
-    }
-
-    useEffect
+    //     if(sessao && sessao.loggedin){
+    //         navigate('/dashboard');
+    //     }
+    // }, [sessao, handleValidaSessao])
 
     return (
         <div className="loginElement">

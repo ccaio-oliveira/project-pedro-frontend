@@ -15,26 +15,19 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        handleSetHash(hash ?? '');
+        handleValidaSessao();
 
-        if(authHash && authHash != ''){
-            handleValidaSessao();
+        if(sessao && sessao.loggedin !== false){
 
-            if(sessao && sessao.loggedin){
-                setTimeout(() => {
-                    setComponente(<Relatorios />);
-                }, 500);
-            }
+            setTimeout(() => {
+                setComponente(<Relatorios />);
+            }, 500);
         } else {
             navigate('/');
         }
     }, [
-        hash,
         sessao,
-        handleValidaSessao,
-        handleSetHash,
         sessao.loggedin,
-        authHash
     ])
 
     return(
