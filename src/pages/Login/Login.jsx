@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import './login.css';
 import { useAuth } from '../../context/AuthContext';
+import Cookies from 'js-cookie';
 
 const Login = () => {
     const { sessao, handleSetSessao, handleSetHash, hash, handleValidaSessao } = useAuth();
@@ -14,7 +15,6 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleLogin = async () => {
-        console.log(sessao)
         await axios.get('/sanctum/csrf-cookie');
 
         await axios.post('/api/login', {
@@ -27,27 +27,19 @@ const Login = () => {
                 bloqueado: false,
                 token: res.data.token,
                 ...res.data.data
-            })
+            });
 
-            // setUsuarioLogin('');
-            // setSenhaLogin('');
-            // setErrorLogin(false);
+            setUsuarioLogin('');
+            setSenhaLogin('');
+            setErrorLogin(false);
             
-            // navigate('/dashboard');
+            navigate('/dashboard');
         })
         .catch(error => {
             setErrorLogin(true);
         })
 
     };
-
-    // useEffect(() => {
-    //     handleValidaSessao('40|GdI3yLazCyuQ7XXaoUaTUUaPVM9BJFWskhepFrCx5e9d0da0');
-
-    //     if(sessao && sessao.loggedin){
-    //         navigate('/dashboard');
-    //     }
-    // }, [sessao, handleValidaSessao])
 
     return (
         <div className="loginElement">

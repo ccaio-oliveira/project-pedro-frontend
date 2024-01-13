@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
 
-    const { handleValidaSessao, handleSetHash, sessao, hash: authHash } = useAuth();
+    const { handleValidaSessao, handleSetHash, sessao } = useAuth();
     const { hash } = useSearchParams();
 
     const [componente, setComponente] = useState(<Carregando />);
@@ -15,7 +15,7 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        handleValidaSessao();
+        handleValidaSessao(sessao.token);
 
         if(sessao && sessao.loggedin !== false){
 

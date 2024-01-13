@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const AuthContext = createContext({
     sessao: {
@@ -34,6 +35,7 @@ const AuthProvider = ({ children }) => {
         email: '',
         cpf: '',
         perfil_usuario: 0,
+        token: ''
     });
 
     const [hash, setHash] = useState('');
@@ -48,30 +50,13 @@ const AuthProvider = ({ children }) => {
         setHash(hash);
     }
 
-    const handleValidaSessao = async (token) => {
-        const instance = axios.create({
-            baseURL: import.meta.env.VITE_API_URL,
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'Bearer ' + token,
-            }
-        })
+    const handleValidaSessao = () => {
+        let sessaoSalva = Cookies.get('sessaoSalva') || '';
+        sessaoSalva = sessaoSalva ? JSON.parse(sessaoSalva) : null;
 
-        await instance.get('/api/validaSessao')
-        .then(res => {
-
-            console.log(res.data)
-            // if(res.data !== 'not authenticated'){
-            //     handleSetSessao({
-            //         loggedin: true,
-            //         bloqueado: false,
-            //         ...res.data
-            //     });
-            // } else {
-            //     console.log(res.data)
-            // }
-        })
+        if(sessaoSalva !== null && !sessao.loggedin){
+            handleSetSessao(sessaoSalva)
+        }
 
     }
 
