@@ -1,5 +1,5 @@
 // resources/js/Pages/Login.jsx
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import './login.css';
@@ -7,7 +7,7 @@ import { useAuth } from '../../context/AuthContext';
 import Cookies from 'js-cookie';
 
 const Login = () => {
-    const { sessao, handleSetSessao, handleSetHash, hash, handleValidaSessao } = useAuth();
+    const { handleSetSessao } = useAuth();
     const [usuario_login, setUsuarioLogin] = useState('');
     const [senha_login, setSenhaLogin] = useState('');
 
@@ -32,10 +32,17 @@ const Login = () => {
             setUsuarioLogin('');
             setSenhaLogin('');
             setErrorLogin(false);
+            Cookies.set('sessaoSalva', JSON.stringify({
+                loggedin: true,
+                bloqueado: false,
+                token: res.data.token,
+                ...res.data.data
+            }), {expires: 7});
             
             navigate('/dashboard');
         })
         .catch(error => {
+            console.log(error)
             setErrorLogin(true);
         })
 

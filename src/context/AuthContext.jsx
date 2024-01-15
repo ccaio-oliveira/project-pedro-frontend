@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from "react"
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const AuthContext = createContext({
@@ -40,8 +39,6 @@ const AuthProvider = ({ children }) => {
 
     const [hash, setHash] = useState('');
 
-    const [tentativa, setTentativa] = useState(3);
-
     const handleSetSessao = (sessao) => {
         setSessao(sessao);
     }
@@ -54,8 +51,10 @@ const AuthProvider = ({ children }) => {
         let sessaoSalva = Cookies.get('sessaoSalva') || '';
         sessaoSalva = sessaoSalva ? JSON.parse(sessaoSalva) : null;
 
-        if(sessaoSalva !== null && !sessao.loggedin){
+        if(sessaoSalva !== null && sessao.loggedin === false){
             handleSetSessao(sessaoSalva)
+        } else if(sessaoSalva === null){
+            navigate('/')
         }
 
     }

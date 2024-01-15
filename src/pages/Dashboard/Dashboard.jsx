@@ -1,34 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from './../../context/AuthContext';
-import { useSearchParams } from 'react-router-dom';
 import Carregando from '../../components/Carregando/Carregando';
 import Relatorios from '../../components/Relatorios/Relatorios';
-import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
 
-    const { handleValidaSessao, handleSetHash, sessao } = useAuth();
-    const { hash } = useSearchParams();
+    const { handleValidaSessao, sessao } = useAuth();
 
     const [componente, setComponente] = useState(<Carregando />);
 
-    const navigate = useNavigate();
-
     useEffect(() => {
-        handleValidaSessao(sessao.token);
+        handleValidaSessao();
 
         if(sessao && sessao.loggedin !== false){
 
             setTimeout(() => {
                 setComponente(<Relatorios />);
             }, 500);
-        } else {
-            navigate('/');
         }
-    }, [
-        sessao,
-        sessao.loggedin,
-    ])
+        
+    }, [sessao])
 
     return(
         <>
@@ -37,4 +28,4 @@ const Dashboard = () => {
     )
 } 
 
-export default React.memo(Dashboard);
+export default Dashboard;

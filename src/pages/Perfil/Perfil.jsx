@@ -1,22 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from 'react-router-dom';
+import Carregando from "../../components/Carregando/Carregando";
+import PerfilUsuario from '../../components/Perfil/Perfil';
 
 const Perfil = () => {
-    const { sessao, handleValidaSessao } = useAuth();
-    const navigate = useNavigate();
+    const { handleValidaSessao, sessao } = useAuth();
+
+    const [componente, setComponente] = useState(<Carregando />);
 
     useEffect(() => {
         handleValidaSessao();
 
-        if(sessao && !sessao.loggedin){
-            navigate('/');
-        } else {
-            navigate('/perfil');
+        if(sessao && sessao.loggedin !== false){
+
+            setTimeout(() => {
+                setComponente(<PerfilUsuario />);
+            }, 500);
         }
-    }, [sessao, handleValidaSessao])
+        
+    }, [sessao])
     return(
-        <h1>Perfil</h1>
+        <>
+            {componente}
+        </>
     )
 }
 
