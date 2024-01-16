@@ -11,8 +11,11 @@ const RouteElement = () => {
             <AuthProvider>
                 <Routes>
                     <Route path="/" Component={Login} />
-                    <Route path="/dashboard" Component={Dashboard} />
+                    <Route path="/relatorio" Component={Dashboard} />
                     <Route path="/perfil" Component={Perfil} />
+                    <Route path="/contato" Component={Perfil} />
+                    <Route path="/agenda" Component={Perfil} />
+                    <Route path="/configuracao" Component={Perfil} />
                 </Routes>
             </AuthProvider>
         </Router>

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useAuth } from './../../context/AuthContext';
 import Carregando from '../../components/Carregando/Carregando';
 import Relatorios from '../../components/Relatorios/Relatorios';
+import Navbar from '../../components/Navbar/Navbar';
+import { ContainerDash } from './Dashboard.styles';
 
 const Dashboard = () => {
 
@@ -22,9 +24,10 @@ const Dashboard = () => {
     }, [sessao])
 
     return(
-        <>
+        <ContainerDash>
+            <Navbar item={'relatorio'}/>
             {componente}
-        </>
+        </ContainerDash>
     )
 } 
 

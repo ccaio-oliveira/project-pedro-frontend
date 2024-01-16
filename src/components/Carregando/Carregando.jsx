@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CarregarContainer, Spinner } from "./Carregando.styles";
+import { CarregarContainer, Spinner } from "./Carregando.styles.jsx";
 
 const Carregando = () => {
     return(

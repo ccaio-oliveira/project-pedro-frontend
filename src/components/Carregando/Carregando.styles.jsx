@@ -5,9 +5,10 @@ export const CarregarContainer = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: auto;
 
     padding: 2rem;
+    width: 70%;
+    height: 100vh;
 `;
 
 export const Spinner = styled.div`

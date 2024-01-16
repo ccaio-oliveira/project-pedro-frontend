@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import Carregando from "../../components/Carregando/Carregando";
 import PerfilUsuario from '../../components/Perfil/Perfil';
+import { Container } from "../../global.styles";
+import Navbar from "../../components/Navbar/Navbar";
 
 const Perfil = () => {
     const { handleValidaSessao, sessao } = useAuth();
@@ -19,10 +21,12 @@ const Perfil = () => {
         }
         
     }, [sessao])
+
     return(
-        <>
+        <Container>
+            <Navbar item={'perfil'} />
             {componente}
-        </>
+        </Container>
     )
 }
 

@@ -39,7 +39,7 @@ const Login = () => {
                 ...res.data.data
             }), {expires: 7});
             
-            navigate('/dashboard');
+            navigate('/relatorio');
         })
         .catch(error => {
             console.log(error)
