@@ -4,6 +4,9 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUser, faRectangleList, faFolderOpen, faClock } from '@fortawesome/free-regular-svg-icons';
 import { faGear, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 library.add([faUser, faRectangleList, faFolderOpen, faClock, faGear, faArrowLeft]);
 
@@ -12,6 +15,8 @@ const Navbar = ({ item }) => {
     const [contatoSelected, setContatoSelected] = useState('');
     const [relatorioSelected, setRelatorioSelected] = useState('');
     const [agendaSelected, setAgendaSelected] = useState('');
+
+    const navigate = useNavigate();
 
     const handleSelectedLink = () => {
         if(item === 'perfil') setPerfilSelected('selected');
@@ -24,7 +29,12 @@ const Navbar = ({ item }) => {
     }
 
     const loggout = async () => {
-        console.log('saiu')
+        await axios.post('/api/loggout')
+        .then(res => {
+            console.log(res)
+            Cookies.remove('sessaoSalva');
+            navigate('/');
+        })
     }
 
     useEffect(() => {
