@@ -8,7 +8,7 @@ import Navbar from "../../components/Navbar/Navbar";
 const Perfil = () => {
     const { handleValidaSessao, sessao } = useAuth();
 
-    const [componente, setComponente] = useState(<Carregando />);
+    const [componente, setComponente] = useState(<Carregando title={'perfil'} />);
 
     useEffect(() => {
         handleValidaSessao();

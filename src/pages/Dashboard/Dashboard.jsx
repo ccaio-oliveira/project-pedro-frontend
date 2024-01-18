@@ -9,7 +9,7 @@ const Dashboard = () => {
 
     const { handleValidaSessao, sessao } = useAuth();
 
-    const [componente, setComponente] = useState(<Carregando />);
+    const [componente, setComponente] = useState(<Carregando title={'relatórios'} />);
 
     useEffect(() => {
         handleValidaSessao();
