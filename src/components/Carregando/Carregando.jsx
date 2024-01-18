@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-import { CarregarContainer, Spinner } from "./Carregando.styles.jsx";
+import { CarregarContainer, Spinner, TextLoading } from "./Carregando.styles.jsx";
 
 const Carregando = ({ title }) => {
 
     return(
         <CarregarContainer>
             <Spinner />
-            <p>Carregando {title}</p>
+            <TextLoading>Carregando {title}...</TextLoading>
         </CarregarContainer>
     )
 }

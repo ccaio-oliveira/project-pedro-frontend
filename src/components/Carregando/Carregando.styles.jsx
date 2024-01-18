@@ -16,6 +16,7 @@ export const Spinner = styled.div`
 
     width: 60px;
     height: 60px;
+    margin-bottom: 10px;
 
     border: 8px solid rgba(0,0,0,0.2);
     border-top-color: #70A7C4;
@@ -30,6 +31,20 @@ export const Spinner = styled.div`
 
         100% {
             transform: rotate(360deg);
+        }
+    }
+`;
+
+export const TextLoading = styled.p`
+    animation: pisca 1s alternate-reverse infinite;
+
+    @keyframes pisca {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
         }
     }
 `;
