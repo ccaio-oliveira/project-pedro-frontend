@@ -1,10 +1,25 @@
-import { ModalContainer } from "./Modal.styles";
+import { ModalBackground, ModalBody, ModalCloseButton, ModalContainer, ModalFooter, ModalHeader, ModalTitle } from "./Modal.styles";
 
-const ModalTemplate = ({ isOpen, onRequestClose, child }) => {
+const ModalTemplate = ({ title, isOpen, onRequestClose, child }) => {
     return (
-        <ModalContainer>
-            {child}
-        </ModalContainer>
+        <ModalBackground>
+            <ModalContainer>
+                <ModalHeader>
+                    <ModalTitle>
+                        {title}
+                    </ModalTitle>
+                    <ModalCloseButton onClick={onRequestClose}>X</ModalCloseButton>
+                </ModalHeader>
+
+                <ModalBody>
+                    {child}
+                </ModalBody>
+
+                <ModalFooter>
+
+                </ModalFooter>
+            </ModalContainer>
+        </ModalBackground>
     )
 }
 

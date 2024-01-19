@@ -19,7 +19,18 @@ export const BotaoAcao = styled.button`
     cursor: pointer;
 `;
 
-export const InputSelect = styled.input`
+export const InputData = styled.input`
+    border: 2px solid #35393B;
+    border-radius: 4px;
+
+    padding: 4px;
+
+    font-family: 'Roboto';
+    font-weight: 500;
+    color: #35393B;
+`;
+
+export const SelectInput = styled.select`
     border: 2px solid #35393B;
     border-radius: 4px;
 
@@ -52,6 +63,7 @@ export const TBody = styled.tbody`
 
 export const TR = styled.tr`
     border-bottom: 3px solid #D9D5D5;
+    text-align: center;
 `;
 
 export const TD = styled.td`

@@ -24,7 +24,7 @@ export const SimbolGrau = styled.div`
     width: 11px;
     height: 11px;
 
-    background: ${(props) => (props.grauTabela === 'prioridade' ? '#DD0E0E' : (props.grauTabela === 'nao_urgente' ? '#336B8A' : '#35393B'))};
+    background: ${(props) => (props.grautabela === 'prioridade' ? '#DD0E0E' : (props.grautabela === 'nao_urgente' ? '#336B8A' : '#35393B'))};
     border-radius: 50%;
 `;
 

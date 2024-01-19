@@ -31,7 +31,6 @@ const Navbar = ({ item }) => {
     const loggout = async () => {
         await axios.post('/api/loggout')
         .then(res => {
-            console.log(res)
             Cookies.remove('sessaoSalva');
             navigate('/');
         })

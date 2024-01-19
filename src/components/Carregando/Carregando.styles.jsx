@@ -7,8 +7,6 @@ export const CarregarContainer = styled.div`
     flex-direction: column;
 
     padding: 2rem;
-    width: 70%;
-    height: 100vh;
 `;
 
 export const Spinner = styled.div`
