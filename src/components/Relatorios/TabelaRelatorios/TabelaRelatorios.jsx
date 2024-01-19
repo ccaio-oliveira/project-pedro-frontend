@@ -13,7 +13,9 @@ const TabelaRelatorios = ({ grau, dadosRelatorios }) => {
     const [dataRelatorios, setDataRelatorios] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Add isLoading state
 
-    const headers = { Authorization: `Bearer ${sessao.token}` };
+    const headers = { 
+        Authorization: `Bearer ${sessao.token}`,
+    };
 
     const handleDataRelatorios = async () => {
         await axios.get(`/api/relatorios/`, { 
@@ -29,7 +31,8 @@ const TabelaRelatorios = ({ grau, dadosRelatorios }) => {
             setDataRelatorios(response.data);
             setIsLoading(false);
         })
-        .catch(() => {
+        .catch((error) => {
+            console.log(error);
             setIsLoading(false);
         })
     }
@@ -73,9 +76,12 @@ const TabelaRelatorios = ({ grau, dadosRelatorios }) => {
                             {dataRelatorios.length !== 0 ? (
                                 dataRelatorios.map((relatorio) => (
                                     <TR key={relatorio.id}>
-                                        <TD>{relatorio.id}</TD>
-                                        <TD>{relatorio.paciente}</TD>
-                                        <TD>{relatorio.status}</TD>
+                                        <TD>{relatorio.assunto}</TD>
+                                        <TD>{relatorio.nome_paciente}</TD>
+                                        <TD>
+                                            <p>{relatorio.data_criacao}</p>
+                                            {relatorio.status}
+                                        </TD>
                                         <TD>{relatorio.arquivo}</TD>
                                         <TD>{relatorio.link}</TD>
                                     </TR>

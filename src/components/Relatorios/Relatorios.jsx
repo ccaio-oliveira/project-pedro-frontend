@@ -15,17 +15,24 @@ const Relatorios = () => {
     const [usuarios, setUsuarios] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const headers = { Authorization: `Bearer ${sessao.token}` };
+    const headers = { 
+        Authorization: `Bearer ${sessao.token}`,
+        'Access-Control-Allow-Origin': '*',
+    };
 
     const handleGrauPrioridade = (grau) => {
         setListaRelatorio(grau);
     }
 
     const handleUsuarios = async () => {
+        setIsLoading(true);
         await axios.get('/api/usuarios', { headers })
         .then((response) => {
             setUsuarios(response.data);
             setIsLoading(false);
+        })
+        .catch((error) => {
+            console.log(error.message);
         })
     }
 

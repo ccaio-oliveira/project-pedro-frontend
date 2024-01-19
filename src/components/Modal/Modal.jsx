@@ -2,7 +2,7 @@ import { ModalBackground, ModalBody, ModalCloseButton, ModalContainer, ModalFoot
 
 const ModalTemplate = ({ title, isOpen, onRequestClose, child }) => {
     return (
-        <ModalBackground>
+        <ModalBackground onClick={onRequestClose}>
             <ModalContainer>
                 <ModalHeader>
                     <ModalTitle>
