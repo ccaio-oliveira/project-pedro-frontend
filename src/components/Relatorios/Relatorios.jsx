@@ -12,28 +12,9 @@ const Relatorios = () => {
     const { sessao } = useAuth();
     const [listaRelatorio, setListaRelatorio] = useState('prioridade');
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [usuarios, setUsuarios] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    const headers = { 
-        Authorization: `Bearer ${sessao.token}`,
-        'Access-Control-Allow-Origin': '*',
-    };
 
     const handleGrauPrioridade = (grau) => {
         setListaRelatorio(grau);
-    }
-
-    const handleUsuarios = async () => {
-        setIsLoading(true);
-        await axios.get('/api/usuarios', { headers })
-        .then((response) => {
-            setUsuarios(response.data);
-            setIsLoading(false);
-        })
-        .catch((error) => {
-            console.log(error.message);
-        })
     }
 
     const openModal = () => {
@@ -43,13 +24,6 @@ const Relatorios = () => {
     const closeModal = () => {
         setModalIsOpen(false);
     }
-
-    // useEffect para disparar a requisição quando o modal for aberto
-    useEffect(() => {
-        if (modalIsOpen) {
-            handleUsuarios();
-        }
-    }, [modalIsOpen]);
 
     return(
         <ContainerRelatorios>
@@ -71,7 +45,7 @@ const Relatorios = () => {
             </ContainerBotaoP>
 
             <ContainerTabelaRelatorios>
-                <TabelaRelatorios grau={listaRelatorio} dadosRelatorios={usuarios} />
+                <TabelaRelatorios grau={listaRelatorio} />
             </ContainerTabelaRelatorios>
 
             <ContainerNovoChamado>
@@ -79,9 +53,7 @@ const Relatorios = () => {
             </ContainerNovoChamado>
 
             {modalIsOpen && (
-                <ModalTemplate title={'Criar achado:'} onRequestClose={closeModal}>
-                    <ModalRelatorio />
-                </ModalTemplate>
+                <ModalRelatorio titulo={'Criar achado:'} closeModal={closeModal}/>
             )}
         </ContainerRelatorios>
     )
