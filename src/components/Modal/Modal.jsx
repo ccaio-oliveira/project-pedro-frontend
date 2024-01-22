@@ -26,7 +26,6 @@ const ModalTemplate = ({ title, onRequestClose, children }) => {
 
 ModalTemplate.propTypes = {
     title: PropTypes.string.isRequired,
-    isOpen: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired
 };

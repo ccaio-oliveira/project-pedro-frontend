@@ -7,7 +7,7 @@ import { ContainerDash } from './Dashboard.styles';
 
 const Dashboard = () => {
 
-    const { handleValidaSessao, sessao } = useAuth();
+    const { handleValidaSessao, sessao, handleSetHeaders } = useAuth();
 
     const [componente, setComponente] = useState(<Carregando title={'relatórios'} />);
 
@@ -15,7 +15,7 @@ const Dashboard = () => {
         handleValidaSessao();
 
         if(sessao && sessao.loggedin !== false){
-
+            handleSetHeaders();
             setTimeout(() => {
                 setComponente(<Relatorios />);
             }, 500);
