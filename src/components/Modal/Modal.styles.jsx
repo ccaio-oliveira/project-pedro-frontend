@@ -17,6 +17,10 @@ export const ModalBackground = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     background: #FFF;
 
     width: 40%;
@@ -31,6 +35,8 @@ export const ModalHeader = styled.div`
     align-items: center;
 
     padding: 30px;
+
+    width: 85%;
 
     border-bottom: 1px solid #E5E5E5;
 `;
@@ -53,7 +59,8 @@ export const ModalCloseButton = styled.button`
 `;
 
 export const ModalBody = styled.div`
-    
+    width: 80%;
+    padding: 20px;
 `;
 
 export const ModalFooter = styled.div`
