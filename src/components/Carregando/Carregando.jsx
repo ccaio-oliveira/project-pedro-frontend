@@ -1,6 +1,7 @@
 import React from "react";
 
 import { CarregarContainer, Spinner, TextLoading } from "./Carregando.styles.jsx";
+import PropTypes from 'prop-types';
 
 const Carregando = ({ title }) => {
 
@@ -11,5 +12,9 @@ const Carregando = ({ title }) => {
         </CarregarContainer>
     )
 }
+
+Carregando.propTypes = {
+    title: PropTypes.string.isRequired
+};
 
 export default React.memo(Carregando);

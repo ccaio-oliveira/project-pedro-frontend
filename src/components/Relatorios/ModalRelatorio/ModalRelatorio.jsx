@@ -5,6 +5,7 @@ import axios from 'axios';
 import ModalTemplate from '../../Modal/Modal';
 import { useAuth } from '../../../context/AuthContext';
 import Carregando from '../../Carregando/Carregando';
+import { PropTypes } from 'prop-types';
 
 const ModalRelatorio = ({titulo, closeModal }) => {
     const { headers, handleSetHeaders } = useAuth();
@@ -56,5 +57,10 @@ const ModalRelatorio = ({titulo, closeModal }) => {
         </>
     )
 }
+
+ModalRelatorio.propTypes = {
+    titulo: PropTypes.string.isRequired,
+    closeModal: PropTypes.func.isRequired
+};
 
 export default React.memo(ModalRelatorio);

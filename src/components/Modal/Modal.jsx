@@ -1,8 +1,9 @@
 import { ModalBackground, ModalBody, ModalCloseButton, ModalContainer, ModalFooter, ModalHeader, ModalTitle } from "./Modal.styles";
+import PropTypes from 'prop-types';
 
-const ModalTemplate = ({ title, isOpen, onRequestClose, child }) => {
+const ModalTemplate = ({ title, onRequestClose, children }) => {
     return (
-        <ModalBackground onClick={onRequestClose}>
+        <ModalBackground>
             <ModalContainer>
                 <ModalHeader>
                     <ModalTitle>
@@ -12,7 +13,7 @@ const ModalTemplate = ({ title, isOpen, onRequestClose, child }) => {
                 </ModalHeader>
 
                 <ModalBody>
-                    {child}
+                    {children}
                 </ModalBody>
 
                 <ModalFooter>
@@ -22,5 +23,12 @@ const ModalTemplate = ({ title, isOpen, onRequestClose, child }) => {
         </ModalBackground>
     )
 }
+
+ModalTemplate.propTypes = {
+    title: PropTypes.string.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    onRequestClose: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired
+};
 
 export default ModalTemplate;

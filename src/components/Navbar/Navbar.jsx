@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { PropTypes } from 'prop-types';
 
 library.add([faUser, faRectangleList, faFolderOpen, faClock, faGear, faArrowLeft]);
 
@@ -30,7 +31,7 @@ const Navbar = ({ item }) => {
 
     const loggout = async () => {
         await axios.post('/api/loggout')
-        .then(res => {
+        .then(() => {
             Cookies.remove('sessaoSalva');
             navigate('/');
         })
@@ -93,5 +94,9 @@ const Navbar = ({ item }) => {
         </ContainerNav>
     )
 }
+
+Navbar.propTypes = {
+    item: PropTypes.string.isRequired
+};
 
 export default Navbar;

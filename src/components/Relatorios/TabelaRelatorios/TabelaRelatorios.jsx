@@ -7,6 +7,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { PropTypes } from 'prop-types';
 
 library.add([faCircleCheck]);
 
@@ -39,9 +40,9 @@ const TabelaRelatorios = ({ grau }) => {
     }
 
     useEffect(() => {
+        handleSetHeaders();
         handleDataRelatorios();
         setIsLoading(true);
-        handleSetHeaders();
     }, [grau, dataInicial, dataFinal]);
 
     return (
@@ -103,5 +104,9 @@ const TabelaRelatorios = ({ grau }) => {
         </>
     )
 }
+
+TabelaRelatorios.propTypes = {
+    grau: PropTypes.string.isRequired
+};
 
 export default React.memo(TabelaRelatorios);

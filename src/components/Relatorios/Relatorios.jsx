@@ -2,14 +2,11 @@ import { useEffect, useState } from "react";
 import { BotaoPrioridade, ContainerBotaoP, ContainerNovoChamado, ContainerRelatorios, ContainerTabelaRelatorios, SecondTextBotaoPrioridade, TextBotaoPrioridade } from "./Relatorios.styles";
 import TabelaRelatorios from "./TabelaRelatorios/TabelaRelatorios";
 import { BotaoAcao } from "../../global.styles";
-import ModalTemplate from "../Modal/Modal";
 import ModalRelatorio from "./ModalRelatorio/ModalRelatorio";
-import axios from 'axios';
 import { useAuth } from "../../context/AuthContext";
-import Carregando from "../Carregando/Carregando";
 
 const Relatorios = () => {
-    const { sessao } = useAuth();
+    const { handleSetHeaders } = useAuth();
     const [listaRelatorio, setListaRelatorio] = useState('prioridade');
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -24,6 +21,10 @@ const Relatorios = () => {
     const closeModal = () => {
         setModalIsOpen(false);
     }
+
+    useEffect(() => {
+        handleSetHeaders();
+    }, [])
 
     return(
         <ContainerRelatorios>
