@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { ContainerDataRel, ContainerTextGrau, InfoTabelaRelatorio, SimbolGrau, TextData, TextGrau } from "./TabelaRelatorios.styles";
+import { ContainerDataRel, ContainerTextGrau, InfoTabelaRelatorio, SimbolGrau, StatusRelatorio, TextData, TextGrau } from "./TabelaRelatorios.styles";
 import { InputData, TBody, TD, TH, THead, Tabela, TR } from "../../../global.styles";
 import Carregando from "../../Carregando/Carregando";
 import axios from 'axios';
 import { useAuth } from "../../../context/AuthContext";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+library.add([faCircleCheck]);
 
 const TabelaRelatorios = ({ grau, dadosRelatorios }) => {
     const { sessao } = useAuth();
@@ -76,11 +81,14 @@ const TabelaRelatorios = ({ grau, dadosRelatorios }) => {
                             {dataRelatorios.length !== 0 ? (
                                 dataRelatorios.map((relatorio) => (
                                     <TR key={relatorio.id}>
-                                        <TD>{relatorio.assunto}</TD>
+                                        <TD>
+                                            <p><b>{relatorio.aberto_por}</b> para <b>{relatorio.atrelado_a}</b></p>
+                                            {relatorio.assunto}
+                                        </TD>
                                         <TD>{relatorio.nome_paciente}</TD>
                                         <TD>
                                             <p>{relatorio.data_criacao}</p>
-                                            {relatorio.status}
+                                            <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
                                         </TD>
                                         <TD>{relatorio.arquivo}</TD>
                                         <TD>{relatorio.link}</TD>

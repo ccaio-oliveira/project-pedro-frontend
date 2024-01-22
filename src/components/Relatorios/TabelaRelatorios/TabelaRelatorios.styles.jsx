@@ -36,3 +36,8 @@ export const ContainerDataRel = styled.div`
 export const TextData = styled.p`
     margin: 0px 10px;
 `;
+
+export const StatusRelatorio = styled.p`
+    color: ${(props) => (props.status === 'Pendente' ? '#04293D' : (props.status === 'Novo' ? '#B80000' : '#289C00'))};
+    font-weight: 600;
+`;
