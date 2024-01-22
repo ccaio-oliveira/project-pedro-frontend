@@ -15,10 +15,12 @@ const AuthContext = createContext({
         token: ''
     },
     hash: '',
+    headers: {},
 
     handleSetSessao: () => {},
     handleSetHash: () => {},
-    handleValidaSessao: () => {}
+    handleValidaSessao: () => {},
+    handleSetHeaders: () => {}
 });
 
 const AuthProvider = ({ children }) => {
@@ -37,6 +39,8 @@ const AuthProvider = ({ children }) => {
         token: ''
     });
 
+    const [headers, setHeaders] = useState({});
+
     const [hash, setHash] = useState('');
 
     const handleSetSessao = (sessao) => {
@@ -45,6 +49,13 @@ const AuthProvider = ({ children }) => {
 
     const handleSetHash = (hash) => {
         setHash(hash);
+    }
+
+    const handleSetHeaders = () => {
+        setHeaders({
+            Authorization: `Bearer ${sessao.token}`,
+            'Access-Control-Allow-Origin': '*',
+        });
     }
 
     const handleValidaSessao = () => {
@@ -62,9 +73,11 @@ const AuthProvider = ({ children }) => {
     const context = {
         sessao,
         hash,
+        headers,
         handleSetSessao,
         handleSetHash,
-        handleValidaSessao
+        handleValidaSessao,
+        handleSetHeaders
     };
 
     return (

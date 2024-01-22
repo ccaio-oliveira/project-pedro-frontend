@@ -10,17 +10,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 library.add([faCircleCheck]);
 
-const TabelaRelatorios = ({ grau, dadosRelatorios }) => {
-    const { sessao } = useAuth();
+const TabelaRelatorios = ({ grau }) => {
+    const { sessao, handleSetHeaders, headers } = useAuth();
     const [dataInicial, setDataInicial] = useState('');
     const [dataFinal, setDataFinal] = useState('');
 
     const [dataRelatorios, setDataRelatorios] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Add isLoading state
-
-    const headers = { 
-        Authorization: `Bearer ${sessao.token}`,
-    };
 
     const handleDataRelatorios = async () => {
         await axios.get(`/api/relatorios/`, { 
@@ -45,7 +41,8 @@ const TabelaRelatorios = ({ grau, dadosRelatorios }) => {
     useEffect(() => {
         handleDataRelatorios();
         setIsLoading(true);
-    }, [dadosRelatorios, grau, dataInicial, dataFinal]);
+        handleSetHeaders();
+    }, [grau, dataInicial, dataFinal]);
 
     return (
         <>
