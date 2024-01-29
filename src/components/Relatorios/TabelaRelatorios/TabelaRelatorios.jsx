@@ -48,7 +48,7 @@ const TabelaRelatorios = ({ grau }) => {
     return (
         <>
             {isLoading ? (
-                <Carregando title={'relatórios'} /> // Render the Carregando component while loading
+                <Carregando title={'Carregando relatórios'} /> // Render the Carregando component while loading
             ) : (
                 <>
                     <InfoTabelaRelatorio>

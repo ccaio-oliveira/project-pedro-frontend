@@ -8,7 +8,7 @@ const Carregando = ({ title }) => {
     return(
         <CarregarContainer>
             <Spinner />
-            <TextLoading>Carregando {title}...</TextLoading>
+            <TextLoading>{title}...</TextLoading>
         </CarregarContainer>
     )
 }

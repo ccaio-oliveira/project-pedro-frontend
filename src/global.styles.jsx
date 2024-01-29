@@ -19,7 +19,19 @@ export const BotaoAcao = styled.button`
     cursor: pointer;
 `;
 
+export const FormGroup = styled.div`
+    width: 100%;
+`;
+
+export const FormLabel = styled.label`
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    margin-bottom: 5px;
+`;
+
 export const InputData = styled.input`
+    width: 96%;
     border: 2px solid #35393B;
     border-radius: 4px;
 

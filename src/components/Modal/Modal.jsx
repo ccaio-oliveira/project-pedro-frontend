@@ -1,7 +1,8 @@
+import { BotaoAcao } from "../../global.styles";
 import { ModalBackground, ModalBody, ModalCloseButton, ModalContainer, ModalFooter, ModalHeader, ModalTitle } from "./Modal.styles";
 import PropTypes from 'prop-types';
 
-const ModalTemplate = ({ title, onRequestClose, children }) => {
+const ModalTemplate = ({ title, onRequestClose, children, funcSubmit }) => {
     return (
         <ModalBackground>
             <ModalContainer>
@@ -17,7 +18,8 @@ const ModalTemplate = ({ title, onRequestClose, children }) => {
                 </ModalBody>
 
                 <ModalFooter>
-
+                    <BotaoAcao onClick={e => funcSubmit(e)}>Salvar</BotaoAcao>
+                    <BotaoAcao onClick={onRequestClose}>Cancelar</BotaoAcao>
                 </ModalFooter>
             </ModalContainer>
         </ModalBackground>
@@ -27,7 +29,8 @@ const ModalTemplate = ({ title, onRequestClose, children }) => {
 ModalTemplate.propTypes = {
     title: PropTypes.string.isRequired,
     onRequestClose: PropTypes.func.isRequired,
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    funcSubmit: PropTypes.func.isRequired
 };
 
 export default ModalTemplate;

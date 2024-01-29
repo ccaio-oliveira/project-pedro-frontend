@@ -23,8 +23,7 @@ export const ModalContainer = styled.div`
 
     background: #FFF;
 
-    width: 40%;
-    height: 50%;
+    width: 50%;
 
     border-radius: 17px;
 `;
@@ -59,10 +58,17 @@ export const ModalCloseButton = styled.button`
 `;
 
 export const ModalBody = styled.div`
-    width: 80%;
-    padding: 20px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
 `;
 
 export const ModalFooter = styled.div`
-    
+    width: 80%;
+
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
 `;
