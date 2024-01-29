@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ModalForm } from './ModalRelatorio.styles';
-import { BotaoAcao, FormGroup, FormLabel, InputData, OptionSelect, SelectInput } from '../../../global.styles';
+import { FormGroup, FormLabel, InputData, OptionSelect, SelectInput } from '../../../global.styles';
 import axios from 'axios';
 import ModalTemplate from '../../Modal/Modal';
 import { useAuth } from '../../../context/AuthContext';
 import Carregando from '../../Carregando/Carregando';
 import { PropTypes } from 'prop-types';
-import { Form } from 'react-router-dom';
 
 const ModalRelatorio = ({titulo, closeModal }) => {
     // variávies de carregamento de informações
