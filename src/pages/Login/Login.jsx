@@ -29,17 +29,22 @@ const Login = () => {
                 ...res.data.data
             });
 
-            setUsuarioLogin('');
-            setSenhaLogin('');
-            setErrorLogin(false);
-            Cookies.set('sessaoSalva', JSON.stringify({
-                loggedin: true,
-                bloqueado: false,
-                token: res.data.token,
-                ...res.data.data
-            }), {expires: 7});
-            
-            navigate('/relatorio');
+            if(res.data.status === 403){
+                setErrorLogin(true);
+                return;
+            } else {
+                setUsuarioLogin('');
+                setSenhaLogin('');
+                setErrorLogin(false);
+                Cookies.set('sessaoSalva', JSON.stringify({
+                    loggedin: true,
+                    bloqueado: false,
+                    token: res.data.token,
+                    ...res.data.data
+                }), {expires: 7});
+                
+                navigate('/relatorio');
+            }
         })
         .catch(error => {
             console.log(error)
