@@ -9,7 +9,7 @@ import { PropTypes } from 'prop-types';
 
 const ModalRelatorio = ({titulo, closeModal }) => {
     // variávies de carregamento de informações
-    const { headers, handleSetHeaders } = useAuth();
+    const { sessao, headers, handleSetHeaders } = useAuth();
     const [usuarios, setUsuarios] = useState([]);
 
     // variáveis de carregamento
@@ -46,10 +46,11 @@ const ModalRelatorio = ({titulo, closeModal }) => {
         setIsLoading(true);
         setLoadingTitle('Enviando relatório');
         axios.post('/api/relatorios', {
-            usuarioSelecionado,
-            nomePaciente,
-            grauRelatorio,
-            assuntoRelatorio,
+            aberto_por: sessao.id,
+            atrelado_a: usuarioSelecionado,
+            nome_paciente: nomePaciente,
+            grau: grauRelatorio,
+            assunto: assuntoRelatorio,
             arquivo
         }, { 
             headers: {

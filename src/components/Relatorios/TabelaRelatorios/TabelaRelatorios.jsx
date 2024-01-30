@@ -30,6 +30,7 @@ const TabelaRelatorios = ({ grau }) => {
             headers 
         })
         .then((response) => {
+            console.log(response.data)
             setDataRelatorios(response.data);
             setIsLoading(false);
         })
