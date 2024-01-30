@@ -40,6 +40,23 @@ const TabelaRelatorios = ({ grau }) => {
         })
     }
 
+    const handleDownloadArquivo = async (id_arquivo, nomeArquivo) => {
+        await axios.get(`/api/relatorios/download/${id_arquivo}`, { headers, responseType: 'blob'})
+        .then((res) => {
+            const url = window.URL.createObjectURL(new Blob([res.data]));
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', nomeArquivo);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
     useEffect(() => {
         handleSetHeaders();
         handleDataRelatorios();
@@ -89,7 +106,9 @@ const TabelaRelatorios = ({ grau }) => {
                                             <p>{relatorio.data_criacao}</p>
                                             <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
                                         </TD>
-                                        <TD>{relatorio.arquivo}</TD>
+                                        <TD onClick={() => handleDownloadArquivo(relatorio.arquivo_id, relatorio.arquivo)}>
+                                            {relatorio.arquivo}
+                                        </TD>
                                         <TD>{relatorio.link}</TD>
                                     </TR>
                                 ))

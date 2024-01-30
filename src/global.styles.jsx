@@ -77,14 +77,17 @@ export const TH = styled.th`
 `;
 
 export const TBody = styled.tbody`
-    
+    width: 100%;
 `;
 
 export const TR = styled.tr`
-    border-bottom: 3px solid #D9D5D5;
     text-align: center;
 `;
 
 export const TD = styled.td`
-    
+    padding: 10px;
+
+    cursor: pointer;
+
+    border-bottom: 3px solid #D9D5D5;
 `;
