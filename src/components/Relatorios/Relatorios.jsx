@@ -4,14 +4,17 @@ import TabelaRelatorios from "./TabelaRelatorios/TabelaRelatorios";
 import { BotaoAcao } from "../../global.styles";
 import ModalRelatorio from "./ModalRelatorio/ModalRelatorio";
 import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Relatorios = () => {
     const { handleSetHeaders } = useAuth();
     const [listaRelatorio, setListaRelatorio] = useState('prioridade');
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const navigate = useNavigate();
 
     const handleGrauPrioridade = (grau) => {
         setListaRelatorio(grau);
+        navigate(`/relatorio?grau=${grau}`);
     }
 
     const openModal = () => {

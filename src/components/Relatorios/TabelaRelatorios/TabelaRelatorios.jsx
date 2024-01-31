@@ -8,25 +8,48 @@ import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PropTypes } from 'prop-types';
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 library.add([faCircleCheck]);
 
-const TabelaRelatorios = ({ grau }) => {
+const TabelaRelatorios = () => {
     const { sessao, handleSetHeaders, headers } = useAuth();
-    const [dataInicial, setDataInicial] = useState('');
+    const [dataRelatorios, setDataRelatorios] = useState([]);
+    const [dataInicial, setDataInicial] = useState('');	
     const [dataFinal, setDataFinal] = useState('');
 
-    const [dataRelatorios, setDataRelatorios] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Add isLoading state
 
+    const location = useLocation();
+    const parametros = new URLSearchParams(location.search);
+    const grau = parametros.get('grau');
+
+    const navigate = useNavigate();
+
+    const filterDataInicial = (data) => {
+        setDataInicial(data);
+        navigate(`/relatorio?grau=${grau}&dataInicial=${data}&dataFinal=${dataFinal}`);
+    }
+    
+    const filterDataFinal = (data) => {
+        setDataFinal(data);
+        navigate(`/relatorio?grau=${grau}&dataInicial=${dataInicial}&dataFinal=${data}`);
+    }
+
     const handleDataRelatorios = async () => {
+        // variáveis para filtros
+        const dataInicial = parametros.get('dataInicial');
+        const dataFinal = parametros.get('dataFinal');
+
+        const params = { id_usuario: sessao.id };''
+
+        if (grau) params.grau = grau;
+        if (dataInicial) params.dataInicial = dataInicial;
+        if (dataFinal) params.dataFinal = dataFinal;
+
         await axios.get(`/api/relatorios/`, { 
-            params: { 
-                grau, 
-                dataInicial, 
-                dataFinal,
-                id_usuario: sessao.id
-            }, 
+            params, 
             headers 
         })
         .then((response) => {
@@ -77,10 +100,10 @@ const TabelaRelatorios = ({ grau }) => {
 
                         <ContainerDataRel>
                             <TextData>Data inicial</TextData>
-                            <InputData type="date" name="data_inicio" value={dataInicial} onChange={e => setDataInicial(e.target.value)} />
+                            <InputData type="date" name="data_inicio" value={dataInicial} onChange={e => filterDataInicial(e.target.value)} />
 
                             <TextData>Data final</TextData>
-                            <InputData type="date" name="data_fim" value={dataFinal} onChange={e => setDataFinal(e.target.value)}/>
+                            <InputData type="date" name="data_fim" value={dataFinal} onChange={e => filterDataFinal(e.target.value)}/>
                         </ContainerDataRel>
                     </InfoTabelaRelatorio>
                     <Tabela>
