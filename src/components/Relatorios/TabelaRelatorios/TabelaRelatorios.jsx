@@ -16,14 +16,15 @@ library.add([faCircleCheck]);
 const TabelaRelatorios = () => {
     const { sessao, handleSetHeaders, headers } = useAuth();
     const [dataRelatorios, setDataRelatorios] = useState([]);
-    const [dataInicial, setDataInicial] = useState('');	
-    const [dataFinal, setDataFinal] = useState('');
 
     const [isLoading, setIsLoading] = useState(true); // Add isLoading state
 
     const location = useLocation();
     const parametros = new URLSearchParams(location.search);
     const grau = parametros.get('grau');
+
+    const [dataInicial, setDataInicial] = useState(parametros.get('dataInicial'));	
+    const [dataFinal, setDataFinal] = useState(parametros.get('dataFinal'));
 
     const navigate = useNavigate();
 
