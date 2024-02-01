@@ -3,9 +3,21 @@ import { BtnLogin, BtnNext, ErrorP, FormElement, FormGroupLogin, FormLabelLogin,
 import IsLogin from "../Login/Login";
 import { PropTypes } from 'prop-types';
 import axios from 'axios';
+import AlertTemplate from "../AlertComponents/AlertTemplate";
+import SuccessAlert from "../AlertComponents/SuccessAlert/SuccessAlert";
+import ErrorAlert from "../AlertComponents/ErrorAlert/ErrorAlert";
+import Carregando from "../Carregando/Carregando";
 
 const ForgotPassword = ({ setView }) => {
     const [email, setEmailLogin] = useState('');
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingTitle, setIsLoadingTitle] = useState('');
+
+    const [alertIsOpen, setAlertIsOpen] = useState(false);
+    const [alertTitle, setAlertTitle] = useState('');
+    const [alertMessage, setAlertMessage] = useState('');
+    const [alertType, setAlertType] = useState('');
 
     const [errorEmail, setErrorEmail] = useState(false);
     const [errorEmailText, setErrorEmailText] = useState('');
@@ -23,45 +35,74 @@ const ForgotPassword = ({ setView }) => {
             return;
         }
 
+        setIsLoading(true);
+        setIsLoadingTitle('Enviando e-mail de recuperação...');
+
         await axios.post('/api/forgotPassword', {
             email
         })
         .then(res => {
             if(res.data.status === 200){
-                setView(<IsLogin changeComponent={setView} />);
+                setAlertIsOpen(true);
+                setAlertTitle('Sucesso');
+                setAlertMessage(res.data.message);
+                setAlertType('success');
+
+                setErrorEmail(false);
+                setIsLoading(false);
             } else {
-                setErrorEmailText(res.data.message);
-                setErrorEmail(true);
+                setAlertIsOpen(true);
+                setAlertTitle('Erro');
+                setAlertMessage(res.data.message);
+                setAlertType('error');
+
+                setIsLoading(false);
             }
         })
     }
 
 
     return (
-        <FormElement>
-            <TextH1>Esqueci minha senha</TextH1>
-            <FormGroupLogin>
-                <FormLabelLogin htmlFor="email">E-mail</FormLabelLogin>
-                <InputFormLogin
-                    type="text"
-                    value={email}
-                    onChange={(e) => setEmailLogin(e.target.value)}
-                    placeholder='E-mail'
-                />
-                {errorEmail && (
-                    <ErrorP>{errorEmailText}</ErrorP>
-                )}
-            </FormGroupLogin>
-            <InfoForgotContainer>
-                <p>Enviaremos um código de verificação a este e-mail se corresponder a uma conta de usuário.</p>
-            </InfoForgotContainer>
-            <BtnNext type="button" onClick={handleForgotPassword}>
-                Avançar
-            </BtnNext>
-            <BtnLogin type="button" onClick={() => setView(<IsLogin changeComponent={setView} />)}>
-                Voltar
-            </BtnLogin>
-        </FormElement>
+        <>
+            <FormElement>
+                <TextH1>Esqueci minha senha</TextH1>
+                <FormGroupLogin>
+                    <FormLabelLogin htmlFor="email">E-mail</FormLabelLogin>
+                    <InputFormLogin
+                        type="text"
+                        value={email}
+                        onChange={(e) => setEmailLogin(e.target.value)}
+                        placeholder='E-mail'
+                    />
+                    {errorEmail && (
+                        <ErrorP>{errorEmailText}</ErrorP>
+                    )}
+                </FormGroupLogin>
+                <InfoForgotContainer>
+                    <p>Enviaremos um código de verificação a este e-mail se corresponder a uma conta de usuário.</p>
+                </InfoForgotContainer>
+                <BtnNext type="button" onClick={handleForgotPassword}>
+                    Avançar
+                </BtnNext>
+                <BtnLogin type="button" onClick={() => setView(<IsLogin changeComponent={setView} />)}>
+                    Voltar
+                </BtnLogin>
+            </FormElement>
+
+            {isLoading ? (
+                <Carregando title={isLoadingTitle} />
+            ) : (alertIsOpen && (
+                    <AlertTemplate title={alertTitle}>
+                        {alertType === 'success' 
+                            ? (
+                                <SuccessAlert message={alertMessage} close={() => setAlertIsOpen(false)} />
+                            ) : (
+                                <ErrorAlert message={alertMessage} close={() => setAlertIsOpen(false)} />
+                            )}
+                    </AlertTemplate>
+                ))
+            }
+        </>
     )
 }
 
