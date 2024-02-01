@@ -59,6 +59,14 @@ const ForgotPassword = ({ setView }) => {
                 setIsLoading(false);
             }
         })
+        .catch(() => {
+            setAlertIsOpen(true);
+            setAlertTitle('Erro');
+            setAlertMessage('Erro ao enviar e-mail de recuperação');
+            setAlertType('error');
+
+            setIsLoading(false);
+        });
     }
 
 
