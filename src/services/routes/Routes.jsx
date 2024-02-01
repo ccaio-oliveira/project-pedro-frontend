@@ -4,6 +4,7 @@ import Login from './../../pages/Login/Login';
 import Dashboard from './../../pages/Dashboard/Dashboard';
 import { AuthProvider } from './../../context/AuthContext';
 import Perfil from "../../pages/Perfil/Perfil";
+import ResetPassword from "../../pages/ResetPassword/ResetPassword";
 
 const RouteElement = () => {
     return(
@@ -16,6 +17,7 @@ const RouteElement = () => {
                     <Route path="/contato" Component={Perfil} />
                     <Route path="/agenda" Component={Perfil} />
                     <Route path="/configuracao" Component={Perfil} />
+                    <Route path="/resetPassword" Component={ResetPassword} />
                 </Routes>
             </AuthProvider>
         </Router>
