@@ -8,12 +8,10 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { PropTypes } from 'prop-types';
-import { useAuth } from "../../context/AuthContext";
 
 library.add([faUser, faRectangleList, faFolderOpen, faClock, faGear, faArrowLeft]);
 
 const Navbar = ({ item }) => {
-    const { headers } = useAuth();
     const [perfilSelected, setPerfilSelected] = useState('');
     const [contatoSelected, setContatoSelected] = useState('');
     const [relatorioSelected, setRelatorioSelected] = useState('');

@@ -1,13 +1,14 @@
 // resources/js/Pages/Login.jsx
 import { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import Cookies from 'js-cookie';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { PropTypes } from 'prop-types';
+import ForgotPassword from '../ForgotPassword/ForgotPassword';
+import { BtnLogin, ErrorP, ForgotPasswordP, FormElement, FormGroupLogin, FormLabelLogin, IconEye, InputFormLogin, TextH1 } from '../../pages/Login/Login.styles';
 
 library.add(faEye, faEyeSlash);
 
@@ -83,57 +84,42 @@ const IsLogin = ({ changeComponent }) => {
     }
 
     return (
-        <div className="loginElement">
-            <div className="left">
-                <img src="images/medicine2.png" alt="Medicine 2" />
-                <div className="text">
-                    <h1>Se conecte com sua equipe e salve vidas!</h1>
-                    <p>Mande solicitações de relatórios, agende consultas e gerencie o seu tempo.</p>
-                </div>
-            </div>
-            <div className="right">
-                <form>
-                    <h1>Acessar conta</h1>
-                    <div>
-                        <label>E-mail</label>
-                        <input
-                            type="text"
-                            value={email}
-                            onChange={(e) => setEmailLogin(e.target.value)}
-                            placeholder='E-mail'
-                        />
-                        {errorEmail && (
-                            <p>Email inválido</p>
-                        )}
-                    </div>
-                    <div>
-                        <label>Senha</label>
-                        <input
-                            type={inputPasswordType}
-                            value={senha_login}
-                            onChange={(e) => setSenhaLogin(e.target.value)}
-                            placeholder='Senha'
-                        />
-                        <FontAwesomeIcon className='iconEye' icon={inputPasswordIcon} onClick={handleInputPasswordType} />
-                        {errorLogin && (
-                            <p>Usuário ou senha inválidos</p>
-                        )}
-                    </div>
-                    <Link className='forgotPassword' onClick={() => changeComponent('forgot')}>Esqueci minha senha</Link>
-                    <button type="button" onClick={handleLogin}>
-                        Entrar
-                    </button>
-                </form>
-
-                <div className="direitos">
-                    <small>NOME © Todos os direitos reservados.</small>
-                </div>
-            </div>
-        </div>
+        <FormElement>
+            <TextH1>Acessar conta</TextH1>
+            <FormGroupLogin>
+                <FormLabelLogin>E-mail</FormLabelLogin>
+                <InputFormLogin
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmailLogin(e.target.value)}
+                    placeholder='E-mail'
+                />
+                {errorEmail && (
+                    <ErrorP>Email inválido</ErrorP>
+                )}
+            </FormGroupLogin>
+            <FormGroupLogin>
+                <FormLabelLogin>Senha</FormLabelLogin>
+                <InputFormLogin
+                    type={inputPasswordType}
+                    value={senha_login}
+                    onChange={(e) => setSenhaLogin(e.target.value)}
+                    placeholder='Senha'
+                />
+                <IconEye icon={inputPasswordIcon} onClick={handleInputPasswordType} />
+                {errorLogin && (
+                    <ErrorP>Usuário ou senha inválidos</ErrorP>
+                )}
+            </FormGroupLogin>
+            <ForgotPasswordP className='forgotPassword' onClick={() => changeComponent(<ForgotPassword setView={changeComponent} />)}>Esqueci minha senha</ForgotPasswordP>
+            <BtnLogin type="button" onClick={handleLogin}>
+                Entrar
+            </BtnLogin>
+        </FormElement>
     );
 };
 
-IsLogin.prototype = {
+IsLogin.propTypes = {
     changeComponent: PropTypes.func.isRequired
 }
 
