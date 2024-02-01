@@ -41,7 +41,7 @@ export const IconAlert = styled(FontAwesomeIcon)`
     color: ${(props) => (props.success ? '#00FF00' : '#FF0000')};
 
     padding: 3px;
-    border: 3px solid ${(props) => (props.success ? '#00FF00' : '#FF0000')};;
+    border: 3px solid ${(props) => (props.success ? '#00FF00' : '#FF0000')};
     border-radius: 50%;
 `;
 
