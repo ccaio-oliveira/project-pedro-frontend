@@ -11,10 +11,11 @@ import { PropTypes } from 'prop-types';
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-library.add([faCircleCheck]);
-
-const TabelaRelatorios = () => {
+library.add([faCircleCheck]);const TabelaRelatorios = () => {
+    // variáveis de sessao e headers
     const { sessao, handleSetHeaders, headers } = useAuth();
+
+    // variável para armazenar dados dos relatórios
     const [dataRelatorios, setDataRelatorios] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true); // Add isLoading state
@@ -23,21 +24,25 @@ const TabelaRelatorios = () => {
     const parametros = new URLSearchParams(location.search);
     const grau = parametros.get('grau');
 
+    // variáveis para filtrar por data 
     const [dataInicial, setDataInicial] = useState(parametros.get('dataInicial'));	
     const [dataFinal, setDataFinal] = useState(parametros.get('dataFinal'));
 
     const navigate = useNavigate();
 
+    // faz o filtro por data inicial
     const filterDataInicial = (data) => {
         setDataInicial(data);
         navigate(`/relatorio?grau=${grau}&dataInicial=${data}&dataFinal=${dataFinal}`);
     }
     
+    // faz o filtro por data final
     const filterDataFinal = (data) => {
         setDataFinal(data);
         navigate(`/relatorio?grau=${grau}&dataInicial=${dataInicial}&dataFinal=${data}`);
     }
 
+    // função para buscar os relatórios
     const handleDataRelatorios = async () => {
         // variáveis para filtros
         const dataInicial = parametros.get('dataInicial');
@@ -45,10 +50,12 @@ const TabelaRelatorios = () => {
 
         const params = { id_usuario: sessao.id, perfil_usuario: sessao.perfil_usuario };
 
+        // verifica se os filtros estão preenchidos na url 
         if (grau) params.grau = grau;
         if (dataInicial) params.dataInicial = dataInicial;
         if (dataFinal) params.dataFinal = dataFinal;
 
+        // faz a requisição para buscar os relatórios
         await axios.get(`/api/relatorios/`, { 
             params, 
             headers 
