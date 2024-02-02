@@ -66,6 +66,8 @@ export const Tabela = styled.table`
     border-top: 3px solid #D9D5D5;
     margin: 20px 0px;
     padding-top: 20px;
+
+    overflow-x: auto;
 `;
 
 export const THead = styled.thead`
@@ -81,10 +83,11 @@ export const TBody = styled.tbody`
 `;
 
 export const TR = styled.tr`
-    text-align: center;
+    width: 100%;
 `;
 
 export const TD = styled.td`
+    min-width: 10rem;
     padding: 10px;
 
     cursor: pointer;

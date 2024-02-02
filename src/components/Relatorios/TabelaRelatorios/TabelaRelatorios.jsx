@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ContainerDataRel, ContainerTextGrau, InfoTabelaRelatorio, SimbolGrau, StatusRelatorio, TextData, TextGrau } from "./TabelaRelatorios.styles";
+import { ContainerDataRel, ContainerTextGrau, InfoTabelaRelatorio, SimbolGrau, StatusRelatorio, TDChamado, TDData, TDStatus, TextData, TextGrau } from "./TabelaRelatorios.styles";
 import { InputData, TBody, TD, TH, THead, Tabela, TR } from "../../../global.styles";
 import Carregando from "../../Carregando/Carregando";
 import axios from 'axios';
@@ -43,7 +43,7 @@ const TabelaRelatorios = () => {
         const dataInicial = parametros.get('dataInicial');
         const dataFinal = parametros.get('dataFinal');
 
-        const params = { id_usuario: sessao.id };''
+        const params = { id_usuario: sessao.id, perfil_usuario: sessao.perfil_usuario };
 
         if (grau) params.grau = grau;
         if (dataInicial) params.dataInicial = dataInicial;
@@ -54,7 +54,6 @@ const TabelaRelatorios = () => {
             headers 
         })
         .then((response) => {
-            console.log(response.data)
             setDataRelatorios(response.data);
             setIsLoading(false);
         })
@@ -111,33 +110,25 @@ const TabelaRelatorios = () => {
                         <THead>
                             <TR>
                                 <TH>Chamado</TH>
-                                <TH>Paciente</TH>
+                                <TH>Data</TH>
                                 <TH>Status</TH>
-                                <TH>Arquivo</TH>
-                                <TH>Link</TH>
                             </TR>
                         </THead>
                         <TBody>
                             {dataRelatorios.length !== 0 ? (
                                 dataRelatorios.map((relatorio) => (
                                     <TR key={relatorio.id}>
-                                        <TD>
-                                            <p><b>{relatorio.aberto_por}</b> para <b>{relatorio.atrelado_a}</b></p>
-                                            {relatorio.assunto}
-                                        </TD>
-                                        <TD>{relatorio.nome_paciente}</TD>
-                                        <TD>
-                                            <p>{relatorio.data_criacao}</p>
+                                        <TDChamado>
+                                            <p>Veja o achado do(a) paciente <b>{relatorio.nome_paciente}</b> comunicado por <b>{relatorio.aberto_por}</b></p>
+                                        </TDChamado>
+                                        <TDData>{relatorio.data_criacao}</TDData>
+                                        <TDStatus>
                                             <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
-                                        </TD>
-                                        <TD onClick={() => handleDownloadArquivo(relatorio.arquivo_id, relatorio.arquivo)}>
-                                            {relatorio.arquivo}
-                                        </TD>
-                                        <TD>{relatorio.link}</TD>
+                                        </TDStatus>
                                     </TR>
                                 ))
                             ) : (
-                                <TR>
+                                <TR style={{ textAlign: "center" }}>
                                     <TD colSpan="5">Nenhum relatório encontrado</TD>
                                 </TR>
                             )}

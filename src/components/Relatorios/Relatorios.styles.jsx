@@ -4,6 +4,8 @@ export const ContainerRelatorios = styled.div`
     width: 100%;
     height: 90vh;
     padding: 20px;
+
+    max-width: 1200px;
 `;
 
 export const ContainerBotaoP = styled.div`

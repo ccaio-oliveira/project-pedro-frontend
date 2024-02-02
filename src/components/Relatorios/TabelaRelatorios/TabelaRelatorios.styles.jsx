@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { TD } from '../../../global.styles';
 
 export const InfoTabelaRelatorio = styled.div`
     width: 100%;
@@ -40,4 +41,24 @@ export const TextData = styled.p`
 export const StatusRelatorio = styled.p`
     color: ${(props) => (props.status === 'Pendente' ? '#04293D' : (props.status === 'Novo' ? '#B80000' : '#289C00'))};
     font-weight: 600;
+
+    & > svg {
+        margin-right: 8px;
+    }
+`;
+
+export const TDChamado = styled(TD)`
+    width: 50rem;
+`;
+
+export const TDData = styled(TD)`
+    width: 25rem;
+
+    text-align: center;
+`;
+
+export const TDStatus = styled(TD)`
+    width: 30rem;
+
+    text-align: center;
 `;
