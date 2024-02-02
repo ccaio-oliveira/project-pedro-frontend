@@ -74,7 +74,7 @@ const ModalRelatorio = ({titulo, closeModal }) => {
             {isLoading ? (
                 <Carregando title={loadingTitle} />
             ) : (
-                <ModalTemplate title={titulo} onRequestClose={closeModal} funcSubmit={enviarRelatorio}>
+                <ModalTemplate title={titulo} onRequestClose={closeModal} funcSubmit={enviarRelatorio} modalFooter={true}>
                     <ModalForm>
                         <FormGroup>
                             <FormLabel>Nome/CRM</FormLabel>

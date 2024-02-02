@@ -60,6 +60,8 @@ export const ModalCloseButton = styled.button`
 export const ModalBody = styled.div`
     width: 100%;
 
+    padding: 20px;
+    
     display: flex;
     justify-content: center;
 `;

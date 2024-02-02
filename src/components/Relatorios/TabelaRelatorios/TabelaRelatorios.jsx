@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PropTypes } from 'prop-types';
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import ModalTemplate from './../../Modal/Modal';
+import ModalDetAchado from "../ModalDetAchado/ModalDetAchado";
 
 library.add([faCircleCheck]);const TabelaRelatorios = () => {
     // variáveis de sessao e headers
@@ -18,8 +20,14 @@ library.add([faCircleCheck]);const TabelaRelatorios = () => {
     // variável para armazenar dados dos relatórios
     const [dataRelatorios, setDataRelatorios] = useState([]);
 
+    // variáveis de loading 
     const [isLoading, setIsLoading] = useState(true); // Add isLoading state
 
+    // variáveis do modal de detalhes do achado 
+    const [modalDetIsOpen, setModalDetIsOpen] = useState(false);
+    const [achado, setAchado] = useState({});
+
+    // variável para pegar os parâmetros da url
     const location = useLocation();
     const parametros = new URLSearchParams(location.search);
     const grau = parametros.get('grau');
@@ -68,6 +76,15 @@ library.add([faCircleCheck]);const TabelaRelatorios = () => {
             console.log(error);
             setIsLoading(false);
         })
+    }
+
+    const openModalDetAchado = (achado) => {
+        setAchado({...achado});
+        setModalDetIsOpen(true);
+    }
+
+    const closeModalDetAchado = () => {
+        setModalDetIsOpen(false);
     }
 
     const handleDownloadArquivo = async (id_arquivo, nomeArquivo) => {
@@ -124,7 +141,7 @@ library.add([faCircleCheck]);const TabelaRelatorios = () => {
                         <TBody>
                             {dataRelatorios.length !== 0 ? (
                                 dataRelatorios.map((relatorio) => (
-                                    <TR key={relatorio.id}>
+                                    <TR key={relatorio.id} onClick={() => openModalDetAchado(relatorio)}>
                                         <TDChamado>
                                             <p>Veja o achado do(a) paciente <b>{relatorio.nome_paciente}</b> comunicado por <b>{relatorio.aberto_por}</b></p>
                                         </TDChamado>
@@ -142,6 +159,10 @@ library.add([faCircleCheck]);const TabelaRelatorios = () => {
                         </TBody>
                     </Tabela>
                 </>
+            )}
+
+            {modalDetIsOpen && (
+                <ModalDetAchado achado={achado} onClose={closeModalDetAchado} />
             )}
         </>
     )
