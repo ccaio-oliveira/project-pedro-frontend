@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
-import { useUser } from '../../context/UserContext';
 import Cookies from 'js-cookie';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -15,7 +14,6 @@ library.add(faEye, faEyeSlash);
 
 const IsLogin = ({ changeComponent }) => {
     const { handleSetSessao } = useAuth();
-    const { usuario, handleSetUsuario } = useUser();
     const [email, setEmailLogin] = useState('');
     const [senha_login, setSenhaLogin] = useState('');
     const [inputPasswordType, setInputPasswordType] = useState('password');
@@ -44,23 +42,17 @@ const IsLogin = ({ changeComponent }) => {
             senha_login,
         })
         .then(res => {
-            console.log(res.data)
+            handleSetSessao({
+                loggedin: true,
+                bloqueado: false,
+                token: res.data.token,
+                ...res.data.data
+            });
 
             if(res.data.status === 403){
                 setErrorLogin(true);
                 return;
             } else {
-                handleSetSessao({
-                    loggedin: true,
-                    bloqueado: false,
-                    token: res.data.token,
-                    ...res.data.data
-                });
-
-                handleSetUsuario({
-                    ...res.data.data
-                });
-
                 setEmailLogin('');
                 setSenhaLogin('');
                 setErrorLogin(false);
@@ -78,8 +70,6 @@ const IsLogin = ({ changeComponent }) => {
             console.log(error)
             setErrorLogin(true);
         })
-
-        console.log(usuario)
 
     };
 
