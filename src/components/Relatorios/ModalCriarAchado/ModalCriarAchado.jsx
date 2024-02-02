@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ModalForm } from './ModalRelatorio.styles';
+import { ModalForm } from './ModalCriarAchado.styles';
 import { FormGroup, FormLabel, InputData, OptionSelect, SelectInput } from '../../../global.styles';
 import axios from 'axios';
 import ModalTemplate from '../../Modal/Modal';

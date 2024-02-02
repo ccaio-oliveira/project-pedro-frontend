@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BotaoPrioridade, ContainerBotaoP, ContainerNovoChamado, ContainerRelatorios, ContainerTabelaRelatorios, SecondTextBotaoPrioridade, TextBotaoPrioridade } from "./Relatorios.styles";
 import TabelaRelatorios from "./TabelaRelatorios/TabelaRelatorios";
 import { BotaoAcao } from "../../global.styles";
-import ModalRelatorio from "./ModalRelatorio/ModalRelatorio";
+import ModalRelatorio from "./ModalCriarAchado/ModalCriarAchado";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
