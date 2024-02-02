@@ -40,6 +40,15 @@ export const IconElement = styled.i`
     margin-right: 10px;
 `;
 
+export const IconElementInfo = styled(IconElement)`
+    font-size: 0.7rem;
+
+    padding: 2px 7px;
+
+    border: 2px solid #FFF;
+    border-radius: 50%;
+`;
+
 export const TextIcon = styled(Link)`
     color: ${(props) => (props.itemselected ? '#70A7C4' : '#FFF')};
     text-decoration: none;

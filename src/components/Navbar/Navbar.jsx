@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react";
-import { ButtonLogout, ContainerNav, ContentOptions, IconElement, NavLinkContainer, SpecImg, TextContainer, TextIcon } from "./Navbar.styles"
+import { ButtonLogout, ContainerNav, ContentOptions, IconElement, IconElementInfo, NavLinkContainer, SpecImg, TextContainer, TextIcon } from "./Navbar.styles"
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUser, faRectangleList, faFolderOpen, faClock } from '@fortawesome/free-regular-svg-icons';
-import { faGear, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faRectangleList, faFolderOpen, faCommentDots } from '@fortawesome/free-regular-svg-icons';
+import { faGear, faArrowLeft, faInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { PropTypes } from 'prop-types';
+import { useAuth } from "../../context/AuthContext";
 
-library.add([faUser, faRectangleList, faFolderOpen, faClock, faGear, faArrowLeft]);
+library.add([faUser, faRectangleList, faFolderOpen, faInfo, faGear, faArrowLeft, faCommentDots]);
 
 const Navbar = ({ item }) => {
+    const { sessao, handleValidaSessao } = useAuth();
     const [perfilSelected, setPerfilSelected] = useState('');
     const [contatoSelected, setContatoSelected] = useState('');
     const [relatorioSelected, setRelatorioSelected] = useState('');
-    const [agendaSelected, setAgendaSelected] = useState('');
+    const [configSelected, setConfigSelected] = useState('');
+    const [feedBackSelected, setFeedBackSelected] = useState('');
+    const [ajudaSelected, setAjudaSelected] = useState('');
 
     const navigate = useNavigate();
 
@@ -26,7 +30,11 @@ const Navbar = ({ item }) => {
 
         if(item === 'contato') setContatoSelected('selected');
 
-        if(item === 'agenda') setAgendaSelected('selected');
+        if(item === 'configuracao') setConfigSelected('selected');
+
+        if(item === 'feedBack') setFeedBackSelected('selected');
+
+        if(item === 'ajuda') setAjudaSelected('selected');
     }
 
     const loggout = async () => {
@@ -38,8 +46,9 @@ const Navbar = ({ item }) => {
     }
 
     useEffect(() => {
+        handleValidaSessao();
         handleSelectedLink();
-    }, [])
+    }, [sessao])
 
     return(
         <ContainerNav>
@@ -63,22 +72,29 @@ const Navbar = ({ item }) => {
                 <NavLinkContainer>
                     <TextIcon to={'/relatorio'} itemselected={relatorioSelected}>
                         <IconElement><FontAwesomeIcon icon={["far", "folder-open"]} /></IconElement>
-                        Relatório
-                    </TextIcon>
-                </NavLinkContainer>
-
-                <NavLinkContainer>
-                    <TextIcon to={'/agenda'} itemselected={agendaSelected}>
-                        <IconElement><FontAwesomeIcon icon={["far", "clock"]} /></IconElement>
-                        Agenda
+                        {sessao.perfil_usuario == 1 || sessao.perfil_usuario == 3 ? 'Histórico' : 'Relatório'}
                     </TextIcon>
                 </NavLinkContainer>
 
                 <ContentOptions>
                     <NavLinkContainer>
-                        <TextIcon to={'/configuracao'} itemselected={agendaSelected}>
+                        <TextIcon to={'/configuracao'} itemselected={configSelected}>
                             <IconElement><FontAwesomeIcon icon={["fas", "gear"]} /></IconElement>
                             Configuração
+                        </TextIcon>
+                    </NavLinkContainer>
+
+                    <NavLinkContainer>
+                        <TextIcon to={'/feedback'} itemselected={feedBackSelected}>
+                            <IconElementInfo><FontAwesomeIcon icon={["fas", "info"]} /></IconElementInfo>
+                            Feedback
+                        </TextIcon>
+                    </NavLinkContainer>
+
+                    <NavLinkContainer>
+                        <TextIcon to={'/ajuda'} itemselected={ajudaSelected}>
+                            <IconElement><FontAwesomeIcon icon={["far", "comment-dots"]} /></IconElement>
+                            Ajuda
                         </TextIcon>
                     </NavLinkContainer>
 
