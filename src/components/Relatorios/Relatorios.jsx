@@ -27,7 +27,7 @@ const Relatorios = () => {
 
     useEffect(() => {
         handleSetHeaders();
-    }, [])
+    }, [modalIsOpen])
 
     return(
         <ContainerRelatorios>

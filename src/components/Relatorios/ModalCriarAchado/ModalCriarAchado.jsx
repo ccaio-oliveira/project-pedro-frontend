@@ -6,6 +6,9 @@ import ModalTemplate from '../../Modal/Modal';
 import { useAuth } from '../../../context/AuthContext';
 import Carregando from '../../Carregando/Carregando';
 import { PropTypes } from 'prop-types';
+import AlertTemplate from '../../AlertComponents/AlertTemplate';
+import SuccessAlert from '../../AlertComponents/SuccessAlert/SuccessAlert';
+import ErrorAlert from '../../AlertComponents/ErrorAlert/ErrorAlert';
 
 const ModalRelatorio = ({titulo, closeModal }) => {
     // variávies de carregamento de informações
@@ -16,9 +19,15 @@ const ModalRelatorio = ({titulo, closeModal }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [loadingTitle, setLoadingTitle] = useState('');
 
+    const [alertIsOpen, setAlertIsOpen] = useState(false);
+    const [alertTitle, setAlertTitle] = useState('');
+    const [alertMessage, setAlertMessage] = useState('');
+    const [alertType, setAlertType] = useState('');
+
     // variáveis do formulário de relatório
     const [usuarioSelecionado, setUsuarioSelecionado] = useState(0);
     const [nomePaciente, setNomePaciente] = useState('');
+    const [dataNascimento, setDataNascimento] = useState('');
     const [grauRelatorio, setGrauRelatorio] = useState(0);
     const [assuntoRelatorio, setAssuntoRelatorio] = useState('');
     const [arquivo, setArquivo] = useState(null);
@@ -49,6 +58,7 @@ const ModalRelatorio = ({titulo, closeModal }) => {
             aberto_por: sessao.id,
             atrelado_a: usuarioSelecionado,
             nome_paciente: nomePaciente,
+            data_nascimento: dataNascimento,
             grau: grauRelatorio,
             assunto: assuntoRelatorio,
             arquivo
@@ -58,9 +68,24 @@ const ModalRelatorio = ({titulo, closeModal }) => {
                 'Content-Type': 'multipart/form-data'
             }
         })
-        .then(() => {
+        .then((res) => {
             setIsLoading(false);
-            closeModal();
+            // closeModal();
+
+            if(res.data == true){
+                setAlertIsOpen(true);
+                setAlertTitle('Sucesso');
+                setAlertMessage('Relatório enviado com sucesso');
+                setAlertType('success');
+            }
+        })
+        .catch(() => {
+            setIsLoading(false);
+
+            setAlertIsOpen(true);
+            setAlertTitle('Erro');
+            setAlertMessage('Erro ao enviar relatório');
+            setAlertType('error');
         })
     }
 
@@ -92,8 +117,14 @@ const ModalRelatorio = ({titulo, closeModal }) => {
                         </FormGroup>
 
                         <FormGroup>
+                            <FormLabel>Data de nascimento</FormLabel>
+                            <InputData type='date' name='dataNascimento' onChange={e => setDataNascimento(e.target.value)} />
+                        </FormGroup>
+
+                        <FormGroup>
                             <FormLabel>Grau do relatório</FormLabel>
                             <SelectInput name="grauRelatorio" onChange={e => setGrauRelatorio(e.target.value)}>
+                                <OptionSelect value="0">Grau do relatório</OptionSelect>
                                 <OptionSelect value="1">Prioridade</OptionSelect>
                                 <OptionSelect value="2">Não Urgente</OptionSelect>
                                 <OptionSelect value="3">Rotina</OptionSelect>
@@ -111,6 +142,17 @@ const ModalRelatorio = ({titulo, closeModal }) => {
                         </FormGroup>
                     </ModalForm>
                 </ModalTemplate>
+            )}
+
+            {alertIsOpen && (
+                <AlertTemplate title={alertTitle}>
+                    {alertType === 'success' 
+                        ? (
+                            <SuccessAlert message={alertMessage} close={() => setAlertIsOpen(false)} />
+                        ) : (
+                            <ErrorAlert message={alertMessage} close={() => setAlertIsOpen(false)} />
+                        )}
+                </AlertTemplate>
             )}
         </>
     )

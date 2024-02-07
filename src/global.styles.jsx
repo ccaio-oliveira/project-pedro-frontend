@@ -21,6 +21,7 @@ export const BotaoAcao = styled.button`
 
 export const FormGroup = styled.div`
     width: 100%;
+    margin-bottom: 10px;
 `;
 
 export const FormLabel = styled.label`
