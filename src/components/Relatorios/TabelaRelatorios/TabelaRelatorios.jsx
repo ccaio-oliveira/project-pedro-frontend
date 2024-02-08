@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PropTypes } from 'prop-types';
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import ModalTemplate from './../../Modal/Modal';
 import ModalDetAchado from "../ModalDetAchado/ModalDetAchado";
 
 library.add([faCircleCheck, faSearch]);
@@ -90,23 +89,6 @@ const TabelaRelatorios = () => {
 
     const closeModalDetAchado = () => {
         setModalDetIsOpen(false);
-    }
-
-    const handleDownloadArquivo = async (id_arquivo, nomeArquivo) => {
-        await axios.get(`/api/relatorios/download/${id_arquivo}`, { headers, responseType: 'blob'})
-        .then((res) => {
-            const url = window.URL.createObjectURL(new Blob([res.data]));
-
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', nomeArquivo);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
     }
 
     const handleSearchRelatorio = (e) => {
