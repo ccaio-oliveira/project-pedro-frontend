@@ -34,9 +34,9 @@ export const FormLabel = styled.label`
 export const InputData = styled.input`
     width: 96%;
     border: 2px solid #35393B;
-    border-radius: 4px;
+    border-radius: 17px;
 
-    padding: 4px;
+    padding: 10px 10px;
 
     font-family: 'Roboto';
     font-weight: 500;

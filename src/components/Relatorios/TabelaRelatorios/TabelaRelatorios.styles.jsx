@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
-import { TD } from '../../../global.styles';
+import { InputData, TD } from '../../../global.styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const InfoTabelaRelatorio = styled.div`
     width: 100%;
@@ -27,6 +28,24 @@ export const SimbolGrau = styled.div`
 
     background: ${(props) => (props.grautabela === 'prioridade' ? '#DD0E0E' : (props.grautabela === 'nao_urgente' ? '#336B8A' : '#35393B'))};
     border-radius: 50%;
+`;
+
+export const ContainerSearch = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+export const InputSearch = styled(InputData)`
+    width: 10rem;
+
+    padding: 10px 10px;
+
+    border-radius: 20px;
+`;
+
+export const IconSearch = styled(FontAwesomeIcon)`
+    position: relative;
+    left: -2rem;
 `;
 
 export const ContainerDataRel = styled.div`

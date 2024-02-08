@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { ContainerDataRel, ContainerTextGrau, InfoTabelaRelatorio, SimbolGrau, StatusRelatorio, TDChamado, TDData, TDStatus, TextData, TextGrau } from "./TabelaRelatorios.styles";
+import { ContainerDataRel, ContainerSearch, ContainerTextGrau, IconSearch, InfoTabelaRelatorio, InputSearch, SimbolGrau, StatusRelatorio, TDChamado, TDData, TDStatus, TextData, TextGrau } from "./TabelaRelatorios.styles";
 import { InputData, TBody, TD, TH, THead, Tabela, TR } from "../../../global.styles";
 import Carregando from "../../Carregando/Carregando";
 import axios from 'axios';
 import { useAuth } from "../../../context/AuthContext";
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PropTypes } from 'prop-types';
@@ -13,9 +13,14 @@ import { useNavigate } from "react-router-dom";
 import ModalTemplate from './../../Modal/Modal';
 import ModalDetAchado from "../ModalDetAchado/ModalDetAchado";
 
-library.add([faCircleCheck]);const TabelaRelatorios = () => {
+library.add([faCircleCheck, faSearch]);
+
+const TabelaRelatorios = () => {
     // variáveis de sessao e headers
     const { sessao, handleSetHeaders, headers } = useAuth();
+
+    const [searchRelatorio, setSearchRelatorio] = useState(''); // Add searchRelatorio state
+    const [filteredRelatorios, setFilteredRelatorios] = useState([]); // Add filteredRelatorios state
 
     // variável para armazenar dados dos relatórios
     const [dataRelatorios, setDataRelatorios] = useState([]);
@@ -104,6 +109,18 @@ library.add([faCircleCheck]);const TabelaRelatorios = () => {
         })
     }
 
+    const handleSearchRelatorio = (e) => {
+        setSearchRelatorio(e);
+        
+        setFilteredRelatorios(dataRelatorios.filter((relatorio) => {
+            if (relatorio.nome_paciente.toLowerCase().includes(e.toLowerCase())) {
+                return relatorio;
+            } else if (relatorio.aberto_por.toLowerCase().includes(e.toLowerCase())) {
+                return relatorio;
+            }
+        }));
+    }
+
     useEffect(() => {
         handleSetHeaders();
         handleDataRelatorios();
@@ -123,6 +140,11 @@ library.add([faCircleCheck]);const TabelaRelatorios = () => {
                         </ContainerTextGrau>
 
                         <ContainerDataRel>
+                            <ContainerSearch>
+                                <InputSearch type="text" name="searchRelatorio" value={searchRelatorio} onChange={e => handleSearchRelatorio(e.target.value)} placeholder="Pesquisar relatório" />
+                                <IconSearch icon={['fas', 'search']} />
+                            </ContainerSearch>
+
                             <TextData>Data inicial</TextData>
                             <InputData type="date" name="data_inicio" value={dataInicial} onChange={e => filterDataInicial(e.target.value)} />
 
@@ -140,17 +162,37 @@ library.add([faCircleCheck]);const TabelaRelatorios = () => {
                         </THead>
                         <TBody>
                             {dataRelatorios.length !== 0 ? (
-                                dataRelatorios.map((relatorio) => (
-                                    <TR key={relatorio.id} onClick={() => openModalDetAchado(relatorio)}>
-                                        <TDChamado>
-                                            <p>Veja o achado do(a) paciente <b>{relatorio.nome_paciente}</b> comunicado por <b>{relatorio.aberto_por}</b></p>
-                                        </TDChamado>
-                                        <TDData>{relatorio.data_criacao}</TDData>
-                                        <TDStatus>
-                                            <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
-                                        </TDStatus>
-                                    </TR>
-                                ))
+                                searchRelatorio === '' ? (
+                                    dataRelatorios.map((relatorio) => (
+                                        <TR key={relatorio.id} onClick={() => openModalDetAchado(relatorio)}>
+                                            <TDChamado>
+                                                <p>Veja o achado do(a) paciente <b>{relatorio.nome_paciente}</b> comunicado por <b>{relatorio.aberto_por}</b></p>
+                                            </TDChamado>
+                                            <TDData>{relatorio.data_criacao}</TDData>
+                                            <TDStatus>
+                                                <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
+                                            </TDStatus>
+                                        </TR>
+                                    ))
+                                ) : (
+                                    filteredRelatorios.length !== 0 ? (
+                                        filteredRelatorios.map((relatorio) => (
+                                            <TR key={relatorio.id} onClick={() => openModalDetAchado(relatorio)}>
+                                                <TDChamado>
+                                                    <p>Veja o achado do(a) paciente <b>{relatorio.nome_paciente}</b> comunicado por <b>{relatorio.aberto_por}</b></p>
+                                                </TDChamado>
+                                                <TDData>{relatorio.data_criacao}</TDData>
+                                                <TDStatus>
+                                                    <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
+                                                </TDStatus>
+                                            </TR>
+                                        ))
+                                    ) : (
+                                        <TR style={{ textAlign: "center" }}>
+                                            <TD colSpan="5">Nenhum relatório encontrado</TD>
+                                        </TR>
+                                    )
+                                )
                             ) : (
                                 <TR style={{ textAlign: "center" }}>
                                     <TD colSpan="5">Nenhum relatório encontrado</TD>
