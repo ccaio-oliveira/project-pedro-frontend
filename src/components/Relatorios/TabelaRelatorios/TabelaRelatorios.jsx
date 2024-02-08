@@ -44,14 +44,16 @@ const TabelaRelatorios = () => {
 
     // faz o filtro por data inicial
     const filterDataInicial = (data) => {
-        setDataInicial(data);
-        navigate(`/relatorio?grau=${grau}&dataInicial=${data}&dataFinal=${dataFinal}`);
+        const newDataInicial = data ?? dataInicial;
+        setDataInicial(newDataInicial);
+        navigate(`/relatorio?grau=${grau}&dataInicial=${newDataInicial}&dataFinal=${dataFinal}`);
     }
-    
+
     // faz o filtro por data final
     const filterDataFinal = (data) => {
-        setDataFinal(data);
-        navigate(`/relatorio?grau=${grau}&dataInicial=${dataInicial}&dataFinal=${data}`);
+        const newDataFinal = data ?? dataFinal;
+        setDataFinal(newDataFinal);
+        navigate(`/relatorio?grau=${grau}&dataInicial=${dataInicial}&dataFinal=${newDataFinal}`);
     }
 
     // função para buscar os relatórios
