@@ -46,9 +46,9 @@ export const InputData = styled.input`
 export const SelectInput = styled.select`
     width: 100%;
     border: 2px solid #35393B;
-    border-radius: 4px;
+    border-radius: 17px;
 
-    padding: 5px;
+    padding: 10px;
 
     font-family: 'Roboto';
     font-weight: 500;

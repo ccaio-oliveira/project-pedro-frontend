@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
-import { BotaoPrioridade, ContainerBotaoP, ContainerNovoChamado, ContainerRelatorios, ContainerTabelaRelatorios, SecondTextBotaoPrioridade, TextBotaoPrioridade } from "./Relatorios.styles";
+import { BotaoExpRelatorios, BotaoPrioridade, ContainerBotaoP, ContainerNovoChamado, ContainerRelatorios, ContainerTabelaRelatorios, SecondTextBotaoPrioridade, TextBotaoPrioridade } from "./Relatorios.styles";
 import TabelaRelatorios from "./TabelaRelatorios/TabelaRelatorios";
 import { BotaoAcao } from "../../global.styles";
 import ModalRelatorio from "./ModalCriarAchado/ModalCriarAchado";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import ModalExpRelatorios from "./ModalExpRelatorios/ModalExpRelatorios";
 
 const Relatorios = () => {
-    const { handleSetHeaders } = useAuth();
+    const { handleSetHeaders, sessao } = useAuth();
     const [listaRelatorio, setListaRelatorio] = useState('prioridade');
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    // variáveis de abertura de modal 
+    const [modalCriarIsOpen, setModalCriarIsOpen] = useState(false);
+    const [modalExportarIsOpen, setModalExportarIsOpen] = useState(false);
+
+    // variável de navegação
     const navigate = useNavigate();
 
     const handleGrauPrioridade = (grau) => {
@@ -17,12 +23,22 @@ const Relatorios = () => {
         navigate(`/relatorio?grau=${grau}`);
     }
 
-    const openModal = () => {
-        setModalIsOpen(true);
+    // funções para abrir e fechar o modal de criação de achado
+    const openModalCriar = () => {
+        setModalCriarIsOpen(true);
     }
 
-    const closeModal = () => {
-        setModalIsOpen(false);
+    const closeModalCriar = () => {
+        setModalCriarIsOpen(false);
+    }
+
+    // funções para abrir e fechar modal de exportação de relatórios
+    const openModalExportar = () => {
+        setModalExportarIsOpen(true);
+    }
+
+    const closeModalExportar = () => {
+        setModalExportarIsOpen(false);
     }
 
     useEffect(() => {
@@ -53,11 +69,16 @@ const Relatorios = () => {
             </ContainerTabelaRelatorios>
 
             <ContainerNovoChamado>
-                <BotaoAcao onClick={openModal}>Criar achado</BotaoAcao>
+                {sessao.perfil_usuario === 1 && <BotaoExpRelatorios onClick={openModalExportar}>Exportar dados</BotaoExpRelatorios>}
+                <BotaoAcao onClick={openModalCriar}>Criar achado</BotaoAcao>
             </ContainerNovoChamado>
 
-            {modalIsOpen && (
-                <ModalRelatorio titulo={'Criar achado:'} closeModal={closeModal}/>
+            {modalCriarIsOpen && (
+                <ModalRelatorio titulo={'Criar achado:'} closeModal={closeModalCriar}/>
+            )}
+
+            {modalExportarIsOpen && (
+                <ModalExpRelatorios titulo={'Exportar relatórios:'} onClose={closeModalExportar}/>
             )}
         </ContainerRelatorios>
     )

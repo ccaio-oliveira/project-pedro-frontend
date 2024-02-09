@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { BotaoAcao } from '../../global.styles';
 
 export const ContainerRelatorios = styled.div`
     width: 100%;
@@ -48,4 +49,8 @@ export const ContainerNovoChamado = styled.div`
 
     display: flex;
     justify-content: end;
+`;
+
+export const BotaoExpRelatorios = styled(BotaoAcao)`
+    margin-right: 10px;
 `;
