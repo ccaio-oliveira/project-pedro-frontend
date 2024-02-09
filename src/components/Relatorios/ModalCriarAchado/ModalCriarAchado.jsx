@@ -9,6 +9,7 @@ import { PropTypes } from 'prop-types';
 import AlertTemplate from '../../AlertComponents/AlertTemplate';
 import SuccessAlert from '../../AlertComponents/SuccessAlert/SuccessAlert';
 import ErrorAlert from '../../AlertComponents/ErrorAlert/ErrorAlert';
+import { ErrorRelatorio } from '../Relatorios.styles';
 
 const ModalRelatorio = ({titulo, closeModal }) => {
     // variávies de carregamento de informações
@@ -32,6 +33,14 @@ const ModalRelatorio = ({titulo, closeModal }) => {
     const [assuntoRelatorio, setAssuntoRelatorio] = useState('');
     const [arquivo, setArquivo] = useState(null);
 
+    // variáveis de erro no formulário
+    const [erroGeral, setErroGeral] = useState(false);
+    const [erroUsuario, setErroUsuario] = useState(false);
+    const [erroNomePaciente, setErroNomePaciente] = useState(false);
+    const [erroDataNascimento, setErroDataNascimento] = useState(false);
+    const [erroGrauRelatorio, setErroGrauRelatorio] = useState(false);
+    const [erroAssuntoRelatorio, setErroAssuntoRelatorio] = useState(false);
+
     const handleUsuarios = async () => {
         setIsLoading(true);
         setLoadingTitle('Carregando usuários');
@@ -50,6 +59,36 @@ const ModalRelatorio = ({titulo, closeModal }) => {
     }
 
     const enviarRelatorio = (e) => {
+
+        if(usuarioSelecionado === 0) {
+            setErroUsuario(true);
+            setErroGeral(true);
+        }
+
+        if(nomePaciente === '') {
+            setErroNomePaciente(true);
+            setErroGeral(true);
+        }
+
+        if(dataNascimento === '') {
+            setErroDataNascimento(true);
+            setErroGeral(true);
+        }
+
+        if(grauRelatorio === 0) {
+            setErroGrauRelatorio(true);
+            setErroGeral(true);
+        }
+
+        if(assuntoRelatorio === '') {
+            setErroAssuntoRelatorio(true);
+            setErroGeral(true);
+        }
+
+        if(erroGeral){
+            return;
+        }
+
         e.preventDefault();
 
         setIsLoading(true);
@@ -109,16 +148,19 @@ const ModalRelatorio = ({titulo, closeModal }) => {
                                     <OptionSelect key={usuario.id} value={usuario.id}>{usuario.nome} {usuario.sobrenome}</OptionSelect>
                                 ))}
                             </SelectInput>
+                            {erroUsuario && <ErrorRelatorio>Selecione um usuário</ErrorRelatorio>}
                         </FormGroup>
 
                         <FormGroup>
                             <FormLabel>Nome do paciente</FormLabel>
                             <InputData type='text' name='nomePaciente' placeholder='Nome do paciente' onChange={e => setNomePaciente(e.target.value)} />
+                            {erroNomePaciente && <ErrorRelatorio>Insira o nome do paciente</ErrorRelatorio>}
                         </FormGroup>
 
                         <FormGroup>
                             <FormLabel>Data de nascimento</FormLabel>
                             <InputData type='date' name='dataNascimento' onChange={e => setDataNascimento(e.target.value)} />
+                            {erroDataNascimento && <ErrorRelatorio>Insira a data de nascimento</ErrorRelatorio>}
                         </FormGroup>
 
                         <FormGroup>
@@ -129,11 +171,13 @@ const ModalRelatorio = ({titulo, closeModal }) => {
                                 <OptionSelect value="2">Não Urgente</OptionSelect>
                                 <OptionSelect value="3">Rotina</OptionSelect>
                             </SelectInput>
+                            {erroGrauRelatorio && <ErrorRelatorio>Selecione o grau do relatório</ErrorRelatorio>}
                         </FormGroup>
 
                         <FormGroup>
                             <FormLabel>Assunto</FormLabel>
                             <InputData type='text' name='assuntoRelatorio' placeholder='Assunto Relatório' onChange={e => setAssuntoRelatorio(e.target.value)} />
+                            {erroAssuntoRelatorio && <ErrorRelatorio>Insira o assunto do relatório</ErrorRelatorio>}
                         </FormGroup>
 
                         <FormGroup>

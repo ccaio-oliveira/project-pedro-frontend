@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { BotaoAcao } from '../../global.styles';
+import { ErrorP } from '../../pages/Login/Login.styles';
 
 export const ContainerRelatorios = styled.div`
     width: 100%;
@@ -53,4 +54,10 @@ export const ContainerNovoChamado = styled.div`
 
 export const BotaoExpRelatorios = styled(BotaoAcao)`
     margin-right: 10px;
+`;
+
+export const ErrorRelatorio = styled(ErrorP)`
+    margin: 0;
+
+    margin-top: 5px;
 `;
