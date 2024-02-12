@@ -53,9 +53,6 @@ const ModalDetAchado = ({ achado, onClose }) => {
         }, 2000);
     }
 
-    console.log(achado);
-    console.log(sessao);
-
     useEffect(() => {
         if(achado.atrelado_a == sessao.nome_completo){
             handleVisualizacao();
