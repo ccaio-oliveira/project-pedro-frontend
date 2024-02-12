@@ -46,7 +46,7 @@ const ModalExpRelatorios = ({ titulo, onClose }) => {
 
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', 'relatorios.pdf');
+            link.setAttribute('download', 'relatorios.xlsx');
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
