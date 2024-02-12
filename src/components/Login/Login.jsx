@@ -28,6 +28,11 @@ const IsLogin = ({ changeComponent }) => {
         return emailRegex.test(email);
     };
 
+    const handleEmailChange = (e) => {
+        setEmailLogin(e.target.value);
+        setErrorEmail(false);
+    };
+
     const handleLogin = async () => {
 
         if (!isEmailValid(email)) {
@@ -91,7 +96,7 @@ const IsLogin = ({ changeComponent }) => {
                 <InputFormLogin
                     type="text"
                     value={email}
-                    onChange={(e) => setEmailLogin(e.target.value)}
+                    onChange={(e) => handleEmailChange(e)}
                     placeholder='E-mail'
                 />
                 {errorEmail && (

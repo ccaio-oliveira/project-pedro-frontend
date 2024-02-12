@@ -58,7 +58,33 @@ const ModalRelatorio = ({titulo, closeModal }) => {
         setArquivo(event.target.files[0]);
     }
 
-    const enviarRelatorio = (e) => {
+    const handleUsuarioSelecionado = (e) => {
+        setUsuarioSelecionado(e);
+        setErroUsuario(false);
+    }
+
+    const handleNomePaciente = (e) => {
+        setNomePaciente(e);
+        setErroNomePaciente(false);
+    }
+
+    const handleDataNascimento = (e) => {
+        setDataNascimento(e);
+        setErroDataNascimento(false);
+    }
+
+    const handleGrauRelatorio = (e) => {
+        setGrauRelatorio(e);
+        setErroGrauRelatorio(false);
+    }
+
+    const handleAssuntoRelatorio = (e) => {
+        setAssuntoRelatorio(e);
+        setErroAssuntoRelatorio(false);
+    }
+
+    const enviarRelatorio = async (e) => {
+        setErroGeral(false);
 
         if(usuarioSelecionado === 0) {
             setErroUsuario(true);
@@ -93,7 +119,7 @@ const ModalRelatorio = ({titulo, closeModal }) => {
 
         setIsLoading(true);
         setLoadingTitle('Enviando relatório');
-        axios.post('/api/relatorios', {
+        await axios.post('/api/relatorios', {
             aberto_por: sessao.id,
             atrelado_a: usuarioSelecionado,
             nome_paciente: nomePaciente,
@@ -107,16 +133,14 @@ const ModalRelatorio = ({titulo, closeModal }) => {
                 'Content-Type': 'multipart/form-data'
             }
         })
-        .then((res) => {
+        .then(() => {
             setIsLoading(false);
-            // closeModal();
+            closeModal();
 
-            if(res.data == true){
-                setAlertIsOpen(true);
-                setAlertTitle('Sucesso');
-                setAlertMessage('Relatório enviado com sucesso');
-                setAlertType('success');
-            }
+            setAlertIsOpen(true);
+            setAlertTitle('Sucesso');
+            setAlertMessage('Relatório enviado com sucesso');
+            setAlertType('success');
         })
         .catch(() => {
             setIsLoading(false);
@@ -142,7 +166,7 @@ const ModalRelatorio = ({titulo, closeModal }) => {
                     <ModalForm>
                         <FormGroup>
                             <FormLabel>Nome/CRM</FormLabel>
-                            <SelectInput name='selUsuario' onChange={e => setUsuarioSelecionado(e.target.value)}>
+                            <SelectInput name='selUsuario' onChange={e => handleUsuarioSelecionado(e.target.value)}>
                                 <OptionSelect value="0">Nome ou CRM</OptionSelect>
                                 {usuarios.map((usuario) => (
                                     <OptionSelect key={usuario.id} value={usuario.id}>{usuario.nome} {usuario.sobrenome}</OptionSelect>
@@ -153,19 +177,19 @@ const ModalRelatorio = ({titulo, closeModal }) => {
 
                         <FormGroup>
                             <FormLabel>Nome do paciente</FormLabel>
-                            <InputData type='text' name='nomePaciente' placeholder='Nome do paciente' onChange={e => setNomePaciente(e.target.value)} />
+                            <InputData type='text' name='nomePaciente' placeholder='Nome do paciente' onChange={e => handleNomePaciente(e.target.value)} />
                             {erroNomePaciente && <ErrorRelatorio>Insira o nome do paciente</ErrorRelatorio>}
                         </FormGroup>
 
                         <FormGroup>
                             <FormLabel>Data de nascimento</FormLabel>
-                            <InputData type='date' name='dataNascimento' onChange={e => setDataNascimento(e.target.value)} />
+                            <InputData type='date' name='dataNascimento' onChange={e => handleDataNascimento(e.target.value)} />
                             {erroDataNascimento && <ErrorRelatorio>Insira a data de nascimento</ErrorRelatorio>}
                         </FormGroup>
 
                         <FormGroup>
                             <FormLabel>Grau do relatório</FormLabel>
-                            <SelectInput name="grauRelatorio" onChange={e => setGrauRelatorio(e.target.value)}>
+                            <SelectInput name="grauRelatorio" onChange={e => handleGrauRelatorio(e.target.value)}>
                                 <OptionSelect value="0">Grau do relatório</OptionSelect>
                                 <OptionSelect value="1">Prioridade</OptionSelect>
                                 <OptionSelect value="2">Não Urgente</OptionSelect>
@@ -176,7 +200,7 @@ const ModalRelatorio = ({titulo, closeModal }) => {
 
                         <FormGroup>
                             <FormLabel>Assunto</FormLabel>
-                            <InputData type='text' name='assuntoRelatorio' placeholder='Assunto Relatório' onChange={e => setAssuntoRelatorio(e.target.value)} />
+                            <InputData type='text' name='assuntoRelatorio' placeholder='Assunto Relatório' onChange={e => handleAssuntoRelatorio(e.target.value)} />
                             {erroAssuntoRelatorio && <ErrorRelatorio>Insira o assunto do relatório</ErrorRelatorio>}
                         </FormGroup>
 
