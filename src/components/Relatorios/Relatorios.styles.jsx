@@ -3,9 +3,9 @@ import { BotaoAcao } from '../../global.styles';
 import { ErrorP } from '../../pages/Login/Login.styles';
 
 export const ContainerRelatorios = styled.div`
-    width: 100%;
+    width: 80%;
     height: 90vh;
-    padding: 20px;
+    padding: 20px 0px 20px 20px;
 `;
 
 export const ContainerBotaoP = styled.div`
