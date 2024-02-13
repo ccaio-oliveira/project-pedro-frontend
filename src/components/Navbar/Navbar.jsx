@@ -63,14 +63,14 @@ const Navbar = ({ item }) => {
                 </NavLinkContainer>
 
                 <NavLinkContainer>
-                    <TextIcon to={'/contato'} itemselected={contatoSelected}>
+                    <TextIcon to={'/contato?perfil=2'} itemselected={contatoSelected}>
                         <IconElement><FontAwesomeIcon icon={["far", "rectangle-list"]} /></IconElement>
                         Contato
                     </TextIcon>
                 </NavLinkContainer>
 
                 <NavLinkContainer>
-                    <TextIcon to={'/relatorio'} itemselected={relatorioSelected}>
+                    <TextIcon to={'/relatorio?grau=prioridade'} itemselected={relatorioSelected}>
                         <IconElement><FontAwesomeIcon icon={["far", "folder-open"]} /></IconElement>
                         {sessao.perfil_usuario == 1 || sessao.perfil_usuario == 3 ? 'Histórico' : 'Relatório'}
                     </TextIcon>

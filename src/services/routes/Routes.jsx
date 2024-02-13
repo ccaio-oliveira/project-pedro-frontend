@@ -5,6 +5,7 @@ import Dashboard from './../../pages/Dashboard/Dashboard';
 import { AuthProvider } from './../../context/AuthContext';
 import Perfil from "../../pages/Perfil/Perfil";
 import ResetPassword from "../../pages/ResetPassword/ResetPassword";
+import Contato from "../../pages/Contato/Contato";
 
 const RouteElement = () => {
     return(
@@ -14,7 +15,7 @@ const RouteElement = () => {
                     <Route path="/" Component={Login} />
                     <Route path="/relatorio" Component={Dashboard} />
                     <Route path="/perfil" Component={Perfil} />
-                    <Route path="/contato" Component={Perfil} />
+                    <Route path="/contato" Component={Contato} />
                     <Route path="/agenda" Component={Perfil} />
                     <Route path="/configuracao" Component={Perfil} />
                     <Route path="/resetPassword" Component={ResetPassword} />
