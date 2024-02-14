@@ -40,41 +40,41 @@ const IsLogin = ({ changeComponent }) => {
             return;
         }
 
-        await axios.get('/sanctum/csrf-cookie');
-
-        await axios.post('/api/login', {
-            email,
-            senha_login,
-        })
-        .then(res => {
-            handleSetSessao({
-                loggedin: true,
-                bloqueado: false,
-                token: res.data.token,
-                ...res.data.data
-            });
-
-            if(res.data.status === 403){
-                setErrorLogin(true);
-                return;
-            } else {
-                setEmailLogin('');
-                setSenhaLogin('');
-                setErrorLogin(false);
-                Cookies.set('sessaoSalva', JSON.stringify({
+        await axios.get('/sanctum/csrf-cookie').then(() => {
+            axios.post('/api/login', {
+                email,
+                senha_login,
+            })
+            .then(res => {
+                handleSetSessao({
                     loggedin: true,
                     bloqueado: false,
                     token: res.data.token,
                     ...res.data.data
-                }), {expires: 7});
-                
-                navigate('/relatorio?grau=prioridade');
-            }
-        })
-        .catch(error => {
-            console.log(error)
-            setErrorLogin(true);
-        })
+                });
+    
+                if(res.data.status === 403){
+                    setErrorLogin(true);
+                    return;
+                } else {
+                    setEmailLogin('');
+                    setSenhaLogin('');
+                    setErrorLogin(false);
+                    Cookies.set('sessaoSalva', JSON.stringify({
+                        loggedin: true,
+                        bloqueado: false,
+                        token: res.data.token,
+                        ...res.data.data
+                    }), {expires: 7});
+                    
+                    navigate('/relatorio?grau=prioridade');
+                }
+            })
+            .catch(error => {
+                console.log(error)
+                setErrorLogin(true);
+            })
+        });
 
     };
 
