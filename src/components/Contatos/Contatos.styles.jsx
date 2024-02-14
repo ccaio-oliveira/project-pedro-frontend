@@ -12,7 +12,7 @@ export const ContainerBotaoC = styled(ContainerBotaoP)`
 `;
 
 export const BotaoUsuario = styled(BotaoPrioridade)`
-    background: ${props => props.medicos ? '#04293D' : '#164863'};
+    background: ${props => props.admin ? '#04293D' : (props.medicos ? '#164863' : '#336B8A')};
 `;
 
 export const TextBotaoContato = styled(TextBotaoPrioridade)`

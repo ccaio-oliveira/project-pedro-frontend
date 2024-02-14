@@ -81,7 +81,7 @@ const TabelaContatos = () => {
                     <InfoTabelaContatos>
                         <ContainerTextTipo>
                             <SimbolTipo tipo={tipoUsuario} />
-                            <TextTipo tipo={tipoUsuario}>{tipoUsuario == 2 ? 'Médico' : 'Secretária'}</TextTipo>
+                            <TextTipo tipo={tipoUsuario}>{tipoUsuario == 1 ? 'Administrador' : (tipoUsuario == 2 ? 'Médico' : 'Secretária')}</TextTipo>
                         </ContainerTextTipo>
 
                         <ContainerDataCont>
@@ -96,7 +96,7 @@ const TabelaContatos = () => {
                         <THead>
                             <TR>
                                 <TH>Nome</TH>
-                                <TH>CRM</TH>
+                                {tipoUsuario == 2 && <TH>CRM</TH>}
                                 <TH>Função</TH>
                                 <TH>Conectar</TH>
                             </TR>
@@ -107,8 +107,8 @@ const TabelaContatos = () => {
                                     dataContatos.map((contato) => (
                                         <TR key={contato.id}>
                                             <TDContato>{contato.nome_completo}</TDContato>
-                                            <TDContato>{tipoUsuario == 2 ? contato.medico_crm : 'Outra coisa'}</TDContato>
-                                            <TDContato>{tipoUsuario == 2 ? contato.funcao : 'Secretária'}</TDContato>
+                                            {tipoUsuario == 2 && <TDContato>{tipoUsuario == 2 ? contato.medico_crm : 'Outra coisa'}</TDContato>}
+                                            <TDContato>{tipoUsuario == 1 ? 'Administrador' : (tipoUsuario == 2 ? contato.funcao : 'Secretária')}</TDContato>
                                             <TDContato>{contato.telefone_whats}</TDContato>
                                         </TR>
                                     ))
@@ -117,8 +117,8 @@ const TabelaContatos = () => {
                                         filteredContatos.map(contato => (
                                             <TR key={contato.id}>
                                                 <TDContato>{contato.nome_completo}</TDContato>
-                                                <TDContato>{tipoUsuario == 2 ? contato.medico_crm : 'Outra coisa'}</TDContato>
-                                                <TDContato>{tipoUsuario == 2 ? contato.funcao : 'Secretária'}</TDContato>
+                                                {tipoUsuario == 2 && <TDContato>{tipoUsuario == 2 ? contato.medico_crm : 'Outra coisa'}</TDContato>}
+                                                <TDContato>{tipoUsuario == 1 ? 'Administrador' : (tipoUsuario == 2 ? contato.funcao : 'Secretária')}</TDContato>
                                                 <TDContato>{contato.telefone_whats}</TDContato>
                                             </TR>
                                         ))
