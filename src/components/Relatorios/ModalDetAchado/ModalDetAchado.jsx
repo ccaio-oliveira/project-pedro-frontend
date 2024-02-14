@@ -130,7 +130,7 @@ const ModalDetAchado = ({ achado, onClose }) => {
                     <ItemContainer>
                         <ItemTitle>Contato do médico:</ItemTitle>
                         <ItemDescription>
-                            <IconWhats href={`https://wa.me/5574998059407?text=${encodeURIComponent(textoCopy)}`} target="_blank" rel="noopener noreferrer">
+                            <IconWhats href={`https://wa.me/${achado.telefone_whats.telefone}?text=${encodeURIComponent(textoCopy)}`} target="_blank" rel="noopener noreferrer">
                                 <FontAwesomeIcon icon={['fab', 'whatsapp']} />
                             </IconWhats>
                         </ItemDescription>
