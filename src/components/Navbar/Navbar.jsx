@@ -63,7 +63,7 @@ const Navbar = ({ item }) => {
                 </NavLinkContainer>
 
                 <NavLinkContainer>
-                    <TextIcon to={'/contato?perfil=2'} itemselected={contatoSelected}>
+                    <TextIcon to={'/contato?tipoUsuario=2'} itemselected={contatoSelected}>
                         <IconElement><FontAwesomeIcon icon={["far", "rectangle-list"]} /></IconElement>
                         Contato
                     </TextIcon>

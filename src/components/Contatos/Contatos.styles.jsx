@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BotaoPrioridade, ContainerBotaoP, TextBotaoPrioridade } from '../Relatorios/Relatorios.styles';
+import { BotaoPrioridade, ContainerBotaoP, ContainerTabelaRelatorios, TextBotaoPrioridade } from '../Relatorios/Relatorios.styles';
 import { SecondTextBotaoPrioridade } from './../Relatorios/Relatorios.styles';
 
 export const ContainerContatos = styled.div`
@@ -19,4 +19,7 @@ export const TextBotaoContato = styled(TextBotaoPrioridade)`
 `;
 
 export const SecondTextBotaoContato = styled(SecondTextBotaoPrioridade)`
+`;
+
+export const ContainerTabelaContato = styled(ContainerTabelaRelatorios)`
 `;
