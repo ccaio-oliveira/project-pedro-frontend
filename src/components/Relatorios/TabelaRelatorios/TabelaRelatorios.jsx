@@ -14,7 +14,7 @@ import ModalDetAchado from "../ModalDetAchado/ModalDetAchado";
 
 library.add([faCircleCheck, faSearch]);
 
-const TabelaRelatorios = () => {
+const TabelaRelatorios = ({ page }) => {
     // variáveis de sessao e headers
     const { sessao, handleSetHeaders, headers } = useAuth();
 
@@ -46,14 +46,24 @@ const TabelaRelatorios = () => {
     const filterDataInicial = (data) => {
         const newDataInicial = data ?? dataInicial;
         setDataInicial(newDataInicial);
-        navigate(`/relatorio?grau=${grau}&dataInicial=${newDataInicial}&dataFinal=${dataFinal}`);
+
+        if(page == 'perfil'){
+            navigate(`/perfil?dataInicial=${newDataInicial}&dataFinal=${dataFinal}`);
+        } else {
+            navigate(`/relatorio?grau=${grau}&dataInicial=${newDataInicial}&dataFinal=${dataFinal}`);
+        }
     }
 
     // faz o filtro por data final
     const filterDataFinal = (data) => {
         const newDataFinal = data ?? dataFinal;
         setDataFinal(newDataFinal);
-        navigate(`/relatorio?grau=${grau}&dataInicial=${dataInicial}&dataFinal=${newDataFinal}`);
+
+        if(page == 'perfil'){
+            navigate(`/perfil?dataInicial=${dataInicial}&dataFinal=${newDataFinal}`);
+        } else {
+            navigate(`/relatorio?grau=${grau}&dataInicial=${dataInicial}&dataFinal=${newDataFinal}`);
+        }
     }
 
     // função para buscar os relatórios
@@ -62,7 +72,7 @@ const TabelaRelatorios = () => {
         const dataInicial = parametros.get('dataInicial');
         const dataFinal = parametros.get('dataFinal');
 
-        const params = { id_usuario: sessao.id, perfil_usuario: sessao.perfil_usuario };
+        const params = { page: page, id_usuario: sessao.id, perfil_usuario: sessao.perfil_usuario };
 
         // verifica se os filtros estão preenchidos na url 
         if (grau) params.grau = grau;
@@ -109,7 +119,7 @@ const TabelaRelatorios = () => {
         handleSetHeaders();
         handleDataRelatorios();
         setIsLoading(true);
-    }, [grau, dataInicial, dataFinal]);
+    }, [page, grau, dataInicial, dataFinal]);
 
     return (
         <>
@@ -118,10 +128,12 @@ const TabelaRelatorios = () => {
             ) : (
                 <>
                     <InfoTabelaRelatorio>
-                        <ContainerTextGrau>
-                            <SimbolGrau grautabela={grau} />
-                            <TextGrau grautabela={grau}>{grau === 'prioridade' ? 'Prioridade' : (grau === 'nao_urgente' ? 'Não Urgente' : 'Rotina')}</TextGrau>
-                        </ContainerTextGrau>
+                        {page != 'perfil' && (
+                            <ContainerTextGrau>
+                                <SimbolGrau grautabela={grau} />
+                                <TextGrau grautabela={grau}>{grau === 'prioridade' ? 'Prioridade' : (grau === 'nao_urgente' ? 'Não Urgente' : 'Rotina')}</TextGrau>
+                            </ContainerTextGrau>
+                        )}
 
                         <ContainerDataRel>
                             <ContainerSearch>
@@ -140,7 +152,7 @@ const TabelaRelatorios = () => {
                         <THead>
                             <TR>
                                 <TH>Chamado</TH>
-                                <TH>Data</TH>
+                                {page != 'perfil' ? <TH>Data</TH> : ''}
                                 <TH>Status</TH>
                             </TR>
                         </THead>
@@ -152,7 +164,7 @@ const TabelaRelatorios = () => {
                                             <TDChamado>
                                                 <p>Veja o achado do(a) paciente <b>{relatorio.nome_paciente}</b> comunicado por <b>{relatorio.aberto_por}</b></p>
                                             </TDChamado>
-                                            <TDData>{relatorio.data_criacao}</TDData>
+                                            {page != 'perfil' ? <TDData>{relatorio.data_criacao}</TDData> : ''}
                                             <TDStatus>
                                                 <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
                                             </TDStatus>
@@ -165,7 +177,7 @@ const TabelaRelatorios = () => {
                                                 <TDChamado>
                                                     <p>Veja o achado do(a) paciente <b>{relatorio.nome_paciente}</b> comunicado por <b>{relatorio.aberto_por}</b></p>
                                                 </TDChamado>
-                                                <TDData>{relatorio.data_criacao}</TDData>
+                                                {page != 'perfil' ? <TDData>{relatorio.data_criacao}</TDData> : ''}
                                                 <TDStatus>
                                                     <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
                                                 </TDStatus>
@@ -195,7 +207,7 @@ const TabelaRelatorios = () => {
 }
 
 TabelaRelatorios.propTypes = {
-    grau: PropTypes.string.isRequired
+    page: PropTypes.string.isRequired
 };
 
 export default React.memo(TabelaRelatorios);

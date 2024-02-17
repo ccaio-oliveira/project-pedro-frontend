@@ -9,7 +9,6 @@ import ModalExpRelatorios from "./ModalExpRelatorios/ModalExpRelatorios";
 
 const Relatorios = () => {
     const { handleSetHeaders, sessao } = useAuth();
-    const [listaRelatorio, setListaRelatorio] = useState('prioridade');
 
     // variáveis de abertura de modal 
     const [modalCriarIsOpen, setModalCriarIsOpen] = useState(false);
@@ -19,7 +18,6 @@ const Relatorios = () => {
     const navigate = useNavigate();
 
     const handleGrauPrioridade = (grau) => {
-        setListaRelatorio(grau);
         navigate(`/relatorio?grau=${grau}`);
     }
 
@@ -65,7 +63,7 @@ const Relatorios = () => {
             </ContainerBotaoP>
 
             <ContainerTabelaRelatorios>
-                <TabelaRelatorios grau={listaRelatorio} />
+                <TabelaRelatorios page="relatorios" />
             </ContainerTabelaRelatorios>
 
             <ContainerNovoChamado>
