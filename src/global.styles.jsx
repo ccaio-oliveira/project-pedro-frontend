@@ -5,6 +5,11 @@ export const Container = styled.div`
     width: 100%;
 `;
 
+export const ContainerComponent = styled.div`
+    width: 100%;
+    margin-left: 17.4rem;
+`;
+
 export const BotaoAcao = styled.button`
     color: #FFF;
 

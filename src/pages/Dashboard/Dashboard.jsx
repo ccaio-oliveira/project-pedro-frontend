@@ -4,6 +4,7 @@ import Carregando from '../../components/Carregando/Carregando';
 import Relatorios from '../../components/Relatorios/Relatorios';
 import Navbar from '../../components/Navbar/Navbar';
 import { ContainerDash } from './Dashboard.styles';
+import { ContainerComponent } from '../../global.styles';
 
 const Dashboard = () => {
 
@@ -26,7 +27,9 @@ const Dashboard = () => {
     return(
         <ContainerDash>
             <Navbar item={'relatorio'}/>
-            {componente}
+            <ContainerComponent>
+                {componente}
+            </ContainerComponent>
         </ContainerDash>
     )
 } 

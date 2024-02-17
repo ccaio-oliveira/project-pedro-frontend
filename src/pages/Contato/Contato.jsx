@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useAuth } from "../../context/AuthContext";
 import { ContainerContato } from "./Contato.styles";
 import Carregando from "../../components/Carregando/Carregando";
+import { ContainerComponent } from "../../global.styles";
 
 const Contato = () => {
 
@@ -25,7 +26,9 @@ const Contato = () => {
     return(
         <ContainerContato>
             <Navbar item={'contato'} />
-            {component}
+            <ContainerComponent>
+                {component}
+            </ContainerComponent>
         </ContainerContato>
     )
 }

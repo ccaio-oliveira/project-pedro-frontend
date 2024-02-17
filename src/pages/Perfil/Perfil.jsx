@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import Carregando from "../../components/Carregando/Carregando";
 import PerfilUsuario from '../../components/Perfil/Perfil';
-import { Container } from "../../global.styles";
+import { Container, ContainerComponent } from "../../global.styles";
 import Navbar from "../../components/Navbar/Navbar";
 
 const Perfil = () => {
@@ -25,7 +25,9 @@ const Perfil = () => {
     return(
         <Container>
             <Navbar item={'perfil'} />
-            {componente}
+            <ContainerComponent>
+                {componente}
+            </ContainerComponent>
         </Container>
     )
 }
