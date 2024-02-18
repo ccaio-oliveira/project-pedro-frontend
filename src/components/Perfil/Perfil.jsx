@@ -42,6 +42,8 @@ const Perfil = () => {
         setDataRelatorios(relatorios)
     }
 
+    console.log(dataUsuario);
+
     useEffect(() => {
         handleUsuario();
     }, [])
@@ -54,7 +56,7 @@ const Perfil = () => {
                 <ContainerPerfil>
                     <ContainerPerfilHeader>
                         <ContainerInfoPerfil>
-                            <PerfilImg src={dataUsuario.foto_id == 0 ? 'https://www.w3schools.com/howto/img_avatar.png' : `data:image/png;base64,${dataUsuario.foto.foto}`} alt="Perfil" />
+                            <PerfilImg src={dataUsuario.foto_id != 0 ? `data:image/png;base64,${dataUsuario.foto_id}` : 'https://www.w3schools.com/howto/img_avatar.png'} alt="Perfil" />
                             <NomeUsuario>{dataUsuario.apelido == null ? '' : dataUsuario.apelido} {dataUsuario.nome_completo}</NomeUsuario>
                             <InfoUsuario>
                                 {
