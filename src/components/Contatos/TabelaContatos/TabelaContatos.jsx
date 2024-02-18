@@ -32,11 +32,9 @@ const TabelaContatos = () => {
             params,
             headers
         }).then(response => {
-            console.log(response.data);
             setDataContatos(response.data);
             setIsLoading(false);
         }).catch(error => {
-            console.log(error);
             setDataContatos([]);
             setErrorMessage(error.response.data.message);
             setIsLoading(false);
@@ -63,8 +61,6 @@ const TabelaContatos = () => {
 
         }));
     }
-
-    console.log(dataContatos);
 
     useEffect(() => {
         handleSetHeaders(); // Call the handleSetHeaders function

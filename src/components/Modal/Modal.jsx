@@ -34,7 +34,7 @@ ModalTemplate.propTypes = {
     children: PropTypes.node.isRequired,
     funcSubmit: PropTypes.func,
     modalFooter: PropTypes.bool,
-    submitTitle: PropTypes.string.isRequired
+    submitTitle: PropTypes.string
 };
 
 export default ModalTemplate;

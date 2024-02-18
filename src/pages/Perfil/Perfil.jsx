@@ -6,7 +6,7 @@ import { Container, ContainerComponent } from "../../global.styles";
 import Navbar from "../../components/Navbar/Navbar";
 
 const Perfil = () => {
-    const { handleValidaSessao, sessao } = useAuth();
+    const { handleValidaSessao, sessao, handleSetHeaders } = useAuth();
 
     const [componente, setComponente] = useState(<Carregando title={'Carregando perfil'} />);
 
@@ -14,7 +14,7 @@ const Perfil = () => {
         handleValidaSessao();
 
         if(sessao && sessao.loggedin !== false){
-
+            handleSetHeaders();
             setTimeout(() => {
                 setComponente(<PerfilUsuario />);
             }, 500);

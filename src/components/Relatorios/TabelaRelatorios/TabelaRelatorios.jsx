@@ -14,7 +14,7 @@ import ModalDetAchado from "../ModalDetAchado/ModalDetAchado";
 
 library.add([faCircleCheck, faSearch]);
 
-const TabelaRelatorios = ({ page }) => {
+const TabelaRelatorios = ({ page, relatorios }) => {
     // variáveis de sessao e headers
     const { sessao, handleSetHeaders, headers } = useAuth();
 
@@ -48,9 +48,9 @@ const TabelaRelatorios = ({ page }) => {
         setDataInicial(newDataInicial);
 
         if(page == 'perfil'){
-            navigate(`/perfil?dataInicial=${newDataInicial}&dataFinal=${dataFinal}`);
+            navigate(`/perfil?dataInicial=${newDataInicial}${dataFinal != null ? `&dataFinal=${dataFinal}` : ''}`);
         } else {
-            navigate(`/relatorio?grau=${grau}&dataInicial=${newDataInicial}&dataFinal=${dataFinal}`);
+            navigate(`/relatorio?grau=${grau}&dataInicial=${newDataInicial}${dataFinal != null ? `&dataFinal=${dataFinal}` : ''}`);
         }
     }
 
@@ -60,9 +60,9 @@ const TabelaRelatorios = ({ page }) => {
         setDataFinal(newDataFinal);
 
         if(page == 'perfil'){
-            navigate(`/perfil?dataInicial=${dataInicial}&dataFinal=${newDataFinal}`);
+            navigate(`/perfil?${dataInicial != null ? `dataInicial=${dataInicial}` : ''}dataFinal=${newDataFinal}`);
         } else {
-            navigate(`/relatorio?grau=${grau}&dataInicial=${dataInicial}&dataFinal=${newDataFinal}`);
+            navigate(`/relatorio?grau=${grau}${dataInicial != null ? `&dataInicial=${dataInicial}` : ''}&dataFinal=${newDataFinal}`);
         }
     }
 
@@ -80,18 +80,28 @@ const TabelaRelatorios = ({ page }) => {
         if (dataFinal) params.dataFinal = dataFinal;
 
         // faz a requisição para buscar os relatórios
-        await axios.get(`/api/relatorios/`, { 
-            params, 
-            headers 
-        })
-        .then((response) => {
-            setDataRelatorios(response.data);
-            setIsLoading(false);
-        })
-        .catch((error) => {
-            console.log(error);
-            setIsLoading(false);
-        })
+        if(page == 'perfil'){
+            await axios.get(`/api/relatorios/usuario`, {
+                params,
+                headers
+            }).then(response => {
+                setDataRelatorios(response.data);
+                relatorios(response.data);
+                setIsLoading(false);
+            })
+        } else {
+            await axios.get(`/api/relatorios/`, { 
+                params, 
+                headers 
+            })
+            .then((response) => {
+                setDataRelatorios(response.data);
+                setIsLoading(false);
+            })
+            .catch(() => {
+                setIsLoading(false);
+            })
+        }
     }
 
     const openModalDetAchado = (achado) => {
@@ -100,6 +110,7 @@ const TabelaRelatorios = ({ page }) => {
     }
 
     const closeModalDetAchado = () => {
+        setAchado({})
         setModalDetIsOpen(false);
     }
 
@@ -207,7 +218,8 @@ const TabelaRelatorios = ({ page }) => {
 }
 
 TabelaRelatorios.propTypes = {
-    page: PropTypes.string.isRequired
+    page: PropTypes.string.isRequired,
+    relatorios: PropTypes.func
 };
 
 export default React.memo(TabelaRelatorios);
