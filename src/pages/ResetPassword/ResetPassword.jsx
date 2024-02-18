@@ -131,6 +131,7 @@ const ResetPassword = () => {
     }
 
     useEffect(() => {
+        document.title = "Redefinir senha";
         checkToken();
     }, [])
 

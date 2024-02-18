@@ -9,6 +9,7 @@ const Login = () => {
     }
 
     const [component, setComponent] = useState(<IsLogin changeComponent={handleComponent} />);
+    document.title = "Login";
 
     return (
         <>

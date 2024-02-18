@@ -17,6 +17,13 @@ const Dashboard = () => {
 
         if(sessao && sessao.loggedin !== false){
             handleSetHeaders();
+
+            if(sessao.perfil_usuario == 1 || sessao.perfil_usuario == 3){
+                document.title = "Histórico";
+            } else {
+                document.title = "Relatórios";
+            }
+            
             setTimeout(() => {
                 setComponente(<Relatorios />);
             }, 500);

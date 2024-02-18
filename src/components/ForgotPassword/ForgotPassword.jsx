@@ -69,6 +69,7 @@ const ForgotPassword = ({ setView }) => {
         });
     }
 
+    document.title = "Esqueceu a senha";
 
     return (
         <>

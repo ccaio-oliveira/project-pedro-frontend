@@ -17,6 +17,7 @@ const Contato = () => {
 
         if(sessao && sessao.loggedin !== false){
             handleSetHeaders();
+            document.title = "Contato";
             setTimeout(() => {
                 setComponent(<Contatos />);
             }, 500);

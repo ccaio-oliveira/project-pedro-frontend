@@ -15,6 +15,7 @@ const Perfil = () => {
 
         if(sessao && sessao.loggedin !== false){
             handleSetHeaders();
+            document.title = 'Perfil';
             setTimeout(() => {
                 setComponente(<PerfilUsuario />);
             }, 500);
