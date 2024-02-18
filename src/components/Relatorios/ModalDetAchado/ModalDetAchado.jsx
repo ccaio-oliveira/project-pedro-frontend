@@ -32,10 +32,7 @@ const ModalDetAchado = ({ achado, onClose }) => {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+        });
     }
 
     const montarTexto = () => {

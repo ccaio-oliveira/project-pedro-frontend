@@ -70,8 +70,7 @@ const IsLogin = ({ changeComponent }) => {
                     navigate('/relatorio?grau=prioridade');
                 }
             })
-            .catch(error => {
-                console.log(error)
+            .catch(() => {
                 setErrorLogin(true);
             })
         });

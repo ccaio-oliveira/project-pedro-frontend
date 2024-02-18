@@ -53,7 +53,6 @@ const ResetPassword = () => {
             } else {
                 setIsLoadingTitle('Token inválido');
             }
-            console.log(response.data);
         })
     }
 

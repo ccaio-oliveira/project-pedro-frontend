@@ -48,10 +48,7 @@ const ModalRelatorio = ({titulo, closeModal }) => {
         .then((response) => {
             setUsuarios(response.data);
             setIsLoading(false);
-        })
-        .catch((error) => {
-            console.log(error.message);
-        })
+        });
     }
 
     const handleFileChange = (event) => {
