@@ -3,10 +3,15 @@ import Carregando from '../../Carregando/Carregando';
 import { useAuth } from '../../../context/AuthContext';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { ContainerDataCont, ContainerTextTipo, InfoTabelaContatos, SimbolTipo, TDContato, TextTipo } from './TabelaContatos.styles';
+import { ContainerDataCont, ContainerTextTipo, IconWhatsapp, InfoTabelaContatos, SimbolTipo, TDContato, TextTipo } from './TabelaContatos.styles';
 import { ContainerSearch, IconSearch, InputSearch } from '../../Relatorios/TabelaRelatorios/TabelaRelatorios.styles';
 import { TBody, TH, TR, Tabela } from '../../../global.styles';
 import { THead } from './../../../global.styles';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+
+library.add(faWhatsapp);
 
 const TabelaContatos = () => {
     const { sessao, headers, handleSetHeaders } = useAuth(); // Get the sessao object from useAuth context
@@ -105,7 +110,11 @@ const TabelaContatos = () => {
                                             <TDContato>{contato.nome_completo}</TDContato>
                                             {tipoUsuario == 2 && <TDContato>{tipoUsuario == 2 ? contato.medico_crm : 'Outra coisa'}</TDContato>}
                                             <TDContato>{tipoUsuario == 1 ? 'Administrador' : (tipoUsuario == 2 ? contato.funcao : 'Secretária')}</TDContato>
-                                            <TDContato>{contato.telefone_whats}</TDContato>
+                                            <TDContato>
+                                                <IconWhatsapp href={`https://wa.me/${contato.telefone_whats}`}>
+                                                    <FontAwesomeIcon icon={['fab', 'whatsapp']} />
+                                                </IconWhatsapp>
+                                            </TDContato>
                                         </TR>
                                     ))
                                 ) : (

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ContainerDataRel, ContainerTextGrau, InfoTabelaRelatorio, SimbolGrau, TDChamado, TextGrau } from '../../Relatorios/TabelaRelatorios/TabelaRelatorios.styles';
+import { IconWhats } from '../../Relatorios/ModalDetAchado/ModalDetAchado.styles';
 
 export const InfoTabelaContatos = styled(InfoTabelaRelatorio)`
 
@@ -22,5 +23,9 @@ export const ContainerDataCont = styled(ContainerDataRel)`
 `;
 
 export const TDContato = styled(TDChamado)`
+    text-align: center;
+`;
 
+export const IconWhatsapp = styled(IconWhats)`
+    
 `;
