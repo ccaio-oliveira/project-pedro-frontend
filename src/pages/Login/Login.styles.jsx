@@ -124,6 +124,7 @@ export const FormElement = styled.form`
 
     margin-top: 20px;
     width: 80%;
+    max-width: 500px
 `;
 
 export const FormGroupLogin = styled.div`
@@ -224,7 +225,7 @@ export const BtnNext = styled(BtnLogin)`
 `;
 
 export const InfoForgotContainer = styled.div`
-    /* width: 100%; */
+    
 `;
 
 export const InfoForgotP = styled(ForgotPasswordP)`
