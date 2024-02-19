@@ -107,7 +107,7 @@ export const RightElement = styled.div`
 
 export const Direitos = styled.div`
     position: relative;
-    top: 80px;
+    top: 7%;
 
     text-align: center;
     color: #D9D5D5;
@@ -123,14 +123,7 @@ export const FormElement = styled.form`
     flex-direction: column;
 
     margin-top: 20px;
-
-    @media (max-width: 686px){
-        margin-top: 16px;
-    }
-
-    @media (max-width: 440px){
-        width: 90%;
-    }
+    width: 80%;
 `;
 
 export const FormGroupLogin = styled.div`
@@ -138,10 +131,7 @@ export const FormGroupLogin = styled.div`
     flex-direction: column;
 
     margin-top: 20px;
-
-    @media (max-width: 686px){
-        margin-top: 10px;
-    }
+    width: 100%;
 `;
 
 export const FormLabelLogin = styled.label`
@@ -157,7 +147,6 @@ export const FormLabelLogin = styled.label`
 `;
 
 export const InputFormLogin = styled.input`
-    width: 20rem;
     margin-top: 5px;
 
     padding: 15px 30px 15px 10px;
@@ -171,14 +160,6 @@ export const InputFormLogin = styled.input`
     & ::placeholder {
         color: #FFF;
         font-size: 0.9rem;
-    }
-
-    @media (max-width: 910px){
-        width: 18rem;
-    }
-
-    @media (max-width: 440px){
-        width: 90%;
     }
 `;
 
@@ -211,7 +192,6 @@ export const ForgotPasswordP = styled.p`
 `;
 
 export const BtnLogin = styled.button`
-    width: 100%;
     font-size: 1.0rem;
 
     padding: 15px;
@@ -228,31 +208,25 @@ export const BtnLogin = styled.button`
     }
 `;
 
+export const IconEye = styled(FontAwesomeIcon)`
+    width: 22px;
+
+    position: relative;
+    left: 90%;
+    bottom: 32px;
+    cursor: pointer;
+`;
+
 export const BtnNext = styled(BtnLogin)`
     background: #70A7C4;
 
     margin: 15px 0px;
 `;
 
-export const IconEye = styled(FontAwesomeIcon)`
-    width: 22px;
-
-    position: relative;
-    left: 325px;
-    bottom: 32px;
-    cursor: pointer;
-
-    @media (max-width: 910px){
-        left: 290px;
-    }
-
-    @media (max-width: 440px){
-        left: 350px;
-    }
+export const InfoForgotContainer = styled.div`
+    /* width: 100%; */
 `;
 
-export const InfoForgotContainer = styled(ForgotPasswordP)`
-    width: 23rem;
-
+export const InfoForgotP = styled(ForgotPasswordP)`
     font-size: 0.8rem;
 `;

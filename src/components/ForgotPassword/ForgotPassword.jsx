@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BtnLogin, BtnNext, ErrorP, FormElement, FormGroupLogin, FormLabelLogin, InfoForgotContainer, InputFormLogin, TextH1 } from "../../pages/Login/Login.styles";
+import { BtnLogin, BtnNext, ErrorP, FormElement, FormGroupLogin, FormLabelLogin, InfoForgotContainer, InfoForgotP, InputFormLogin, TextH1 } from "../../pages/Login/Login.styles";
 import IsLogin from "../Login/Login";
 import { PropTypes } from 'prop-types';
 import axios from 'axios';
@@ -88,7 +88,7 @@ const ForgotPassword = ({ setView }) => {
                     )}
                 </FormGroupLogin>
                 <InfoForgotContainer>
-                    <p>Enviaremos um código de verificação a este e-mail se corresponder a uma conta de usuário.</p>
+                    <InfoForgotP>Enviaremos um código de verificação a este e-mail se corresponder a uma conta de usuário.</InfoForgotP>
                 </InfoForgotContainer>
                 <BtnNext type="button" onClick={handleForgotPassword}>
                     Avançar
