@@ -8,6 +8,11 @@ export const Container = styled.div`
 export const ContainerComponent = styled.div`
     width: 82%;
     margin-left: 18%;
+
+    @media (max-width: 914px){
+        width: 100%;
+        margin-left: 0;
+    }
 `;
 
 export const BotaoAcao = styled.button`

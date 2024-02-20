@@ -13,6 +13,10 @@ export const ContainerNav = styled.div`
     top: 0;
     left: 0;
     z-index: 1;
+
+    @media (max-width: 914px){
+        display: none;
+    }
 `;
 
 export const SpecImg = styled.img`
@@ -27,6 +31,10 @@ export const TextContainer = styled.div`
 
     height: 30%;
     width: 80%;
+
+    @media (max-width: 1245px){
+        width: 100%;
+    }
 `;
 
 export const NavLinkContainer = styled.div`
@@ -36,6 +44,10 @@ export const NavLinkContainer = styled.div`
     font-size: 1.3rem;
 
     margin-top: 30px;
+
+    @media (max-width: 996px){
+        font-size: 1.1rem;
+    }
 `;
 
 export const IconElement = styled.i`
