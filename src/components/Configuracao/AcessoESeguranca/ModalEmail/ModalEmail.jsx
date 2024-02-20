@@ -10,7 +10,7 @@ import ErrorAlert from '../../../AlertComponents/ErrorAlert/ErrorAlert';
 import { PropTypes } from 'prop-types';
 
 const ModalEmail = ({ handleClose, email }) => {
-    const { headers } = useAuth();
+    const { headers, sessao, handleSetSessao } = useAuth();
     const [valueEmail, setValueEmail] = useState(email);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +31,10 @@ const ModalEmail = ({ handleClose, email }) => {
         }).then((res) => {
 
             if(res.data.status === 200){
+                handleSetSessao({
+                    ...sessao,
+                    email: valueEmail
+                });
                 setAlertIsOpen(true);
                 setAlertTitle('Sucesso');
                 setAlertMessage(res.data.message);
