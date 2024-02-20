@@ -23,6 +23,11 @@ export const BotaoPrioridade = styled.div`
 
     border-radius: 17px;
     cursor: pointer;
+
+    @media (max-width: 776px){
+        width: 100%;
+        margin-bottom: 10px;
+    }
 `;
 
 export const TextBotaoPrioridade = styled.p`
