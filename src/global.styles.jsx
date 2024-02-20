@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const ContainerComponent = styled.div`
     width: 82%;
-    margin-left: 17.5rem;
+    margin-left: 18%;
 `;
 
 export const BotaoAcao = styled.button`

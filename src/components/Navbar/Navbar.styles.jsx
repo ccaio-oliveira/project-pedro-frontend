@@ -2,9 +2,8 @@ import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 export const ContainerNav = styled.div`
-    width: 15%;
+    width: 15.5%;
     height: 100vh;
-    min-width: 15rem;
     padding: 50px 20px;
 
     background: #164863;
