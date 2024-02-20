@@ -46,6 +46,10 @@ const AuthProvider = ({ children }) => {
 
     const handleSetSessao = (sessao) => {
         setSessao(sessao);
+
+        Cookies.set('sessaoSalva', JSON.stringify({
+            ...sessao
+        }), {expires: 7});
     }
 
     const handleSetHash = (hash) => {

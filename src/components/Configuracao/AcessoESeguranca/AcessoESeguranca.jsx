@@ -7,6 +7,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ModalEmail from "./ModalEmail/ModalEmail";
 import ModalTelefone from "./ModalTelefone/ModalTelefone";
+import ModalUsuario from "./ModalUsuario/ModalUsuario";
 
 library.add(faArrowRightLong);
 
@@ -49,6 +50,10 @@ const AcessoESeguranca = () => {
             setModalContent(<ModalTelefone handleClose={closeModal} telefone={dataUser.telefone_cel} tipo="celular" />);
         }
 
+        if(content === 'usuario'){
+            setModalContent(<ModalUsuario handleClose={closeModal} usuario={dataUser.nome_completo} />);
+        }
+
         setModalIsOpen(true);
     }
 
@@ -84,8 +89,8 @@ const AcessoESeguranca = () => {
                         <ConfigElementsIcon icon={['fas', 'arrow-right-long']} />
                     </ConfigElementsGroup>
 
-                    <ConfigElementsGroup>
-                        <ConfigElementsText onClick={() => openModal('celular')}>
+                    <ConfigElementsGroup onClick={() => openModal('celular')}>
+                        <ConfigElementsText>
                             <ConfigElementsP>Número de telefone</ConfigElementsP>
                             <ConfigElementsSpan>{formatNumberPhone(dataUser.telefone_cel ? dataUser.telefone_cel : '')}</ConfigElementsSpan>
                         </ConfigElementsText>
@@ -93,7 +98,7 @@ const AcessoESeguranca = () => {
                         <ConfigElementsIcon icon={['fas', 'arrow-right-long']} />
                     </ConfigElementsGroup>
 
-                    <ConfigElementsGroup>
+                    <ConfigElementsGroup onClick={() => openModal('usuario')}>
                         <ConfigElementsText>
                             <ConfigElementsP>Nome disponibilizado</ConfigElementsP>
                             <ConfigElementsSpan>{dataUser.nome_completo}</ConfigElementsSpan>
