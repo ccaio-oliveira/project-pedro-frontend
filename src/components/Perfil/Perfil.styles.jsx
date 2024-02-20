@@ -35,7 +35,8 @@ export const InfoUsuario = styled.p`
 `;
 
 export const ContainerPerfilBody = styled.div`
-    width: 100%;
+    width: 98%;
+    padding-left: 20px;
 
     display: flex;
     align-items: flex-start;
@@ -43,6 +44,8 @@ export const ContainerPerfilBody = styled.div`
 
 export const ContainerTable = styled.div`
     width: 50%;
+
+    height: 435px;
 `;
 
 export const ContainerAgenda = styled.div`

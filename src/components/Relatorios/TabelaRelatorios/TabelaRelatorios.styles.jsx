@@ -67,17 +67,17 @@ export const StatusRelatorio = styled.p`
 `;
 
 export const TDChamado = styled(TD)`
-    width: 50rem;
+    width: 30%;
 `;
 
 export const TDData = styled(TD)`
-    width: 25rem;
+    width: 30%;
 
     text-align: center;
 `;
 
 export const TDStatus = styled(TD)`
-    width: 30rem;
+    width: 30%;
 
     text-align: center;
 `;

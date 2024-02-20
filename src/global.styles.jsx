@@ -66,12 +66,13 @@ export const OptionSelect = styled.option`
 
 export const Tabela = styled.table`
     width: 100%;
+    height: 435px;
 
     border-top: 3px solid #D9D5D5;
     margin: 20px 0px;
     padding-top: 20px;
 
-    overflow-x: auto;
+    overflow: auto;
 `;
 
 export const THead = styled.thead`
@@ -84,14 +85,17 @@ export const TH = styled.th`
 
 export const TBody = styled.tbody`
     width: 100%;
+
+    height: 200px;
+    border: 1px solid red !important;
 `;
 
 export const TR = styled.tr`
     width: 100%;
+    height: 50px;
 `;
 
 export const TD = styled.td`
-    min-width: 10rem;
     padding: 10px;
 
     cursor: pointer;

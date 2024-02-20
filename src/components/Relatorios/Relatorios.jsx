@@ -66,7 +66,7 @@ const Relatorios = () => {
                 <TabelaRelatorios page="relatorios" />
             </ContainerTabelaRelatorios>
 
-            <ContainerNovoChamado>
+            <ContainerNovoChamado chamado>
                 {sessao.perfil_usuario === 1 && <BotaoExpRelatorios onClick={openModalExportar}>Exportar dados</BotaoExpRelatorios>}
                 <BotaoAcao onClick={openModalCriar}>Criar achado</BotaoAcao>
             </ContainerNovoChamado>
