@@ -42,8 +42,6 @@ const Perfil = () => {
         setDataRelatorios(relatorios)
     }
 
-    console.log(dataUsuario);
-
     useEffect(() => {
         handleUsuario();
     }, [])

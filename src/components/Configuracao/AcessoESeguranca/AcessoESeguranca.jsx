@@ -29,7 +29,6 @@ const AcessoESeguranca = () => {
         }).then((res) => {
             setDataUser(res.data);
             setIsLoading(false);
-            console.log(res.data);
         })
     }
 
