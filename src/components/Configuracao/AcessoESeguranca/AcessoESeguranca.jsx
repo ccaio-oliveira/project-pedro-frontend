@@ -6,6 +6,7 @@ import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ModalEmail from "./ModalEmail/ModalEmail";
+import ModalTelefone from "./ModalTelefone/ModalTelefone";
 
 library.add(faArrowRightLong);
 
@@ -41,6 +42,14 @@ const AcessoESeguranca = () => {
             setModalContent(<ModalEmail handleClose={closeModal} email={dataUser.email} />);
         }
 
+        if(content === 'whatsapp'){
+            setModalContent(<ModalTelefone handleClose={closeModal} telefone={dataUser.telefone_whats} tipo="whatsapp" />);
+        }
+
+        if(content === 'celular'){
+            setModalContent(<ModalTelefone handleClose={closeModal} telefone={dataUser.telefone_cel} tipo="celular" />);
+        }
+
         setModalIsOpen(true);
     }
 
@@ -67,7 +76,7 @@ const AcessoESeguranca = () => {
                         <ConfigElementsIcon icon={['fas', 'arrow-right-long']} />
                     </ConfigElementsGroup>
 
-                    <ConfigElementsGroup>
+                    <ConfigElementsGroup onClick={() => openModal('whatsapp')}>
                         <ConfigElementsText>
                             <ConfigElementsP>WhatsApp</ConfigElementsP>
                             <ConfigElementsSpan>{formatNumberPhone(dataUser.telefone_whats ? dataUser.telefone_whats : '')}</ConfigElementsSpan>
@@ -77,7 +86,7 @@ const AcessoESeguranca = () => {
                     </ConfigElementsGroup>
 
                     <ConfigElementsGroup>
-                        <ConfigElementsText>
+                        <ConfigElementsText onClick={() => openModal('celular')}>
                             <ConfigElementsP>Número de telefone</ConfigElementsP>
                             <ConfigElementsSpan>{formatNumberPhone(dataUser.telefone_cel ? dataUser.telefone_cel : '')}</ConfigElementsSpan>
                         </ConfigElementsText>
