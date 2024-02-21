@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import ModalEmail from "./ModalEmail/ModalEmail";
 import ModalTelefone from "./ModalTelefone/ModalTelefone";
 import ModalUsuario from "./ModalUsuario/ModalUsuario";
+import ModalSenha from "./ModalSenha/ModalSenha";
 
 library.add(faArrowRightLong);
 
@@ -52,6 +53,10 @@ const AcessoESeguranca = () => {
 
         if(content === 'usuario'){
             setModalContent(<ModalUsuario handleClose={closeModal} usuario={dataUser.nome_completo} />);
+        }
+
+        if(content == 'senha'){
+            setModalContent(<ModalSenha handleClose={closeModal} />);
         }
 
         setModalIsOpen(true);
@@ -107,7 +112,7 @@ const AcessoESeguranca = () => {
                         <ConfigElementsIcon icon={['fas', 'arrow-right-long']} />
                     </ConfigElementsGroup>
 
-                    <ConfigElementsGroup>
+                    <ConfigElementsGroup onClick={() => openModal('senha')}>
                         <ConfigElementsText>
                             <ConfigElementsP>Alterar senha</ConfigElementsP>
                             <ConfigElementsSpan>********</ConfigElementsSpan>
