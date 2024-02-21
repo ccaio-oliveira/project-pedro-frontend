@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ContainerDataRel, ContainerSearch, ContainerTextGrau, IconSearch, InfoTabelaRelatorio, InputSearch, SimbolGrau, StatusRelatorio, TDChamado, TDData, TDStatus, TextData, TextGrau } from "./TabelaRelatorios.styles";
+import { ContainerData, ContainerDataRel, ContainerSearch, ContainerTextGrau, IconSearch, InfoTabelaRelatorio, InputSearch, SimbolGrau, StatusRelatorio, TDChamado, TDData, TDStatus, TextData, TextGrau } from "./TabelaRelatorios.styles";
 import { InputData, TBody, TD, TH, THead, Tabela, TR } from "../../../global.styles";
 import Carregando from "../../Carregando/Carregando";
 import axios from 'axios';
@@ -152,11 +152,15 @@ const TabelaRelatorios = ({ page, relatorios }) => {
                                 <IconSearch icon={['fas', 'search']} />
                             </ContainerSearch>
 
-                            <TextData>Data inicial</TextData>
-                            <InputData type="date" name="data_inicio" value={dataInicial} onChange={e => filterDataInicial(e.target.value)} />
+                            <ContainerData>
+                                <TextData>Data inicial</TextData>
+                                <InputData type="date" name="data_inicio" value={dataInicial} onChange={e => filterDataInicial(e.target.value)} />
+                            </ContainerData>
 
-                            <TextData>Data final</TextData>
-                            <InputData type="date" name="data_fim" value={dataFinal} onChange={e => filterDataFinal(e.target.value)}/>
+                            <ContainerData>
+                                <TextData>Data final</TextData>
+                                <InputData type="date" name="data_fim" value={dataFinal} onChange={e => filterDataFinal(e.target.value)}/>
+                            </ContainerData>
                         </ContainerDataRel>
                     </InfoTabelaRelatorio>
                     <Tabela>

@@ -3,7 +3,7 @@ import { BotaoAcao } from '../../global.styles';
 import { ErrorP } from '../../pages/Login/Login.styles';
 
 export const ContainerRelatorios = styled.div`
-    padding: 20px 0px 20px 20px;
+    padding: 20px;
 `;
 
 export const ContainerBotaoP = styled.div`
@@ -23,6 +23,10 @@ export const BotaoPrioridade = styled.div`
 
     border-radius: 17px;
     cursor: pointer;
+
+    @media (max-width: 936px){
+        width: 25%;
+    }
 
     @media (max-width: 776px){
         width: 100%;
