@@ -3,6 +3,7 @@ import { BtnConfigTop, ConfigComponent, ConfigContainer, ConfigContainerTitle, C
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import AcessoESeguranca from "./AcessoESeguranca/AcessoESeguranca";
+import PerfilUsuario from "./UserProfile/UserProfile";
 
 library.add(faChevronRight, faChevronDown);
 
@@ -80,11 +81,13 @@ const Configuracao = () => {
                 setBtnPerfilSelected(0);
                 setIconBtnPerfil(['fas', 'chevron-right']);
                 setSubTitle('Selecione a configuração que deseja realizar');
+                setComponent('');
             } else {
                 // Se não, seleciona
                 setBtnPerfilSelected(1);
                 setIconBtnPerfil(['fas', 'chevron-down']);
                 setSubTitle('Perfil de usuário');
+                setComponent(<PerfilUsuario />)
 
                 // Remove a seleção dos outros botões e muda os ícones
                 setBtnAcessoSelected(0);
