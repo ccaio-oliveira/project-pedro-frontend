@@ -77,10 +77,15 @@ export const Tabela = styled.table`
     margin: 20px 0px;
     padding-top: 20px;
 
-    overflow: auto;
+    overflow-x: auto;
+
+    @media (max-width: 560px){
+
+    }
 `;
 
 export const THead = styled.thead`
+    width: 100%;
     border-bottom: 3px solid #D9D5D5;
 `;
 
@@ -90,9 +95,9 @@ export const TH = styled.th`
 
 export const TBody = styled.tbody`
     width: 100%;
-
     height: 200px;
-    border: 1px solid red !important;
+
+    overflow-x: auto;
 `;
 
 export const TR = styled.tr`
@@ -101,6 +106,8 @@ export const TR = styled.tr`
 `;
 
 export const TD = styled.td`
+    width: 100%;
+    min-width: 147px;
     padding: 10px;
 
     cursor: pointer;
