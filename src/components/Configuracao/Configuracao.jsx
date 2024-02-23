@@ -4,6 +4,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import AcessoESeguranca from "./AcessoESeguranca/AcessoESeguranca";
 import PerfilUsuario from "./UserProfile/UserProfile";
+import RegisterUser from "./RegisterUser/RegisterUser";
 
 library.add(faChevronRight, faChevronDown);
 
@@ -57,6 +58,7 @@ const Configuracao = () => {
                 setBtnAdminSelected(0);
                 setIconBtnAdmin(['fas', 'chevron-right']);
                 setSubTitle('Selecione a configuração que deseja realizar');
+                setComponent('');
             } else {
                 // Se não, seleciona
                 setBtnAdminSelected(1);
@@ -107,11 +109,13 @@ const Configuracao = () => {
                 setBtnCadastrarSelected(0);
                 setIconBtnCadastrar(['fas', 'chevron-right']);
                 setSubTitle('Selecione a configuração que deseja realizar');
+                setComponent('');
             } else {
                 // Se não, seleciona
                 setBtnCadastrarSelected(1);
                 setIconBtnCadastrar(['fas', 'chevron-down']);
                 setSubTitle('Cadastrar usuário');
+                setComponent(<RegisterUser />)
 
                 // Remove a seleção dos outros botões e muda os ícones
                 setBtnAcessoSelected(0);
