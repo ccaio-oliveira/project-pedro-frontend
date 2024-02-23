@@ -4,6 +4,7 @@ import { ConfigElements, ConfigElementsGroup, ConfigElementsIcon, ConfigElements
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import PhotoModal from "./PhotoModal/PhotoModal";
+import NicknameModal from "./NicknameModal/NicknameModal";
 
 library.add(faArrowRightLong);
 
@@ -17,6 +18,10 @@ const UserProfile = () => {
     const openModal = (content) => {
         if(content === 'photo'){
             setContent(<PhotoModal handleClose={closeModal} />);
+        }
+
+        if(content === 'nickname'){
+            setContent(<NicknameModal handleClose={closeModal} />);
         }
 
         setModalIsOpen(true);
@@ -38,7 +43,7 @@ const UserProfile = () => {
                     <ConfigElementsIcon icon={['fas', 'arrow-right-long']} />
                 </ConfigElementsGroup>
 
-                <ConfigElementsGroup>
+                <ConfigElementsGroup onClick={() => openModal('nickname')}>
                     <ConfigElementsText>
                         <ConfigElementsP>Nomenclatura</ConfigElementsP>
                         <ConfigElementsSpan>Como gostaria de ser chamado: {sessao.apelido}</ConfigElementsSpan>
