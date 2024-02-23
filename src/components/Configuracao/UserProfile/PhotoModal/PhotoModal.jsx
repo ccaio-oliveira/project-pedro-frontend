@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import ModalTemplate from '../../../Modal/Modal';
 import { useState } from 'react';
-import { BtnPhoto, DropContainer } from './PhotoModal.styles';
+import { BtnPhoto } from './PhotoModal.styles';
 import { useAuth } from '../../../../context/AuthContext';
 import axios from 'axios';
 import { InputData } from '../../../../global.styles';
