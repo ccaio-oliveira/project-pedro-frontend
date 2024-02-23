@@ -3,28 +3,19 @@ import ModalTemplate from '../../../Modal/Modal';
 import { useState } from 'react';
 import { BtnPhoto, DropContainer } from './PhotoModal.styles';
 import { useAuth } from '../../../../context/AuthContext';
-import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
+import { InputData } from '../../../../global.styles';
 
 const PhotoModal = ({ handleClose }) => {
     const { sessao, headers } = useAuth();
     const [btnSelected, setBtnSelected] = useState('');
     const [modalFooter, setModalFooter] = useState(false);
 
-    const {
-        acceptedFiles,
-        getRootProps,
-        getInputProps,
-        isFocused,
-        isDragAccept,
-        isDragReject
-    } = useDropzone({ accept: 'image/*' });
+    const [selectedFile, setSelectedFile] = useState();
 
-    const files = acceptedFiles.map((file, index) => (
-        <li key={index}>
-            <img width="100" src={URL.createObjectURL(file)} alt={`Preview ${index}`} />
-        </li>
-    ));
+    const onFileChange = event => {
+        setSelectedFile(event.target.files[0]);
+    }
 
     const handleBtnSelected = (btn) => {
         if(btn === 'upload'){
@@ -38,12 +29,12 @@ const PhotoModal = ({ handleClose }) => {
     }
 
     const handleSave = async () => {
-        if(acceptedFiles.length > 0){
+        if(selectedFile){
             const data = new FormData();
-            data.append('file', acceptedFiles[0]);
+            data.append('file', selectedFile);
 
             await axios.post('/api/users/uploadProfile', {
-                file: acceptedFiles[0],
+                file: selectedFile,
                 user_id: sessao.id,
                 profile_id: sessao.foto_id
             }, {
@@ -54,8 +45,6 @@ const PhotoModal = ({ handleClose }) => {
             })
         }
     }
-
-    console.log(headers);
 
     return (
         <>
@@ -75,14 +64,10 @@ const PhotoModal = ({ handleClose }) => {
 
                 {btnSelected === 'upload' && (
                     <>
-                        <DropContainer {...getRootProps({ isFocused, isDragAccept, isDragReject})}>
-                            <input {...getInputProps()} />
-                            <p>Arraste e solte a foto aqui ou clique para selecionar</p>
-                        </DropContainer>
-                        <aside>
-                            <h4>Arquivos</h4>
-                            <ul>{files}</ul>
-                        </aside>
+                        <InputData type="file" onChange={onFileChange} accept='image/*' />
+                        {selectedFile && (
+                            <img src={URL.createObjectURL(selectedFile)} alt="Preview" width="100" />
+                        )}
                     </>
                 )}
             </ModalTemplate>

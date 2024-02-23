@@ -54,7 +54,16 @@ const Perfil = () => {
                 <ContainerPerfil>
                     <ContainerPerfilHeader>
                         <ContainerInfoPerfil>
-                            <PerfilImg src={dataUsuario.foto_id != 0 ? `data:image/png;base64,${dataUsuario.foto_id}` : 'https://www.w3schools.com/howto/img_avatar.png'} alt="Perfil" />
+                            <PerfilImg 
+                                src={
+                                    dataUsuario && dataUsuario.foto_id && dataUsuario.foto_id.foto 
+                                        ? 
+                                            `${dataUsuario.foto_id.foto}` 
+                                        : 
+                                            'https://www.w3schools.com/howto/img_avatar.png'
+                                } 
+                                alt="Perfil" 
+                            />
                             <NomeUsuario>{dataUsuario.apelido == null ? '' : dataUsuario.apelido} {dataUsuario.nome_completo}</NomeUsuario>
                             <InfoUsuario>
                                 {
