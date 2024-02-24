@@ -17,7 +17,7 @@ const ModalRelatorio = ({titulo, closeModal }) => {
     const [usuarios, setUsuarios] = useState([]);
 
     // variáveis de carregamento
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [loadingTitle, setLoadingTitle] = useState('');
 
     const [alertIsOpen, setAlertIsOpen] = useState(false);
