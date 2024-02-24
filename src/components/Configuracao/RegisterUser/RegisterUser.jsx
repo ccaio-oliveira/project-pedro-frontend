@@ -77,8 +77,8 @@ const RegisterUser = () => {
                     </>
                 )}
 
-                {sessao.perfil_usuario == 1 && (
-                    <ConfigElementsGroup>
+                {/* {sessao.perfil_usuario == 1 && (
+                    <ConfigElementsGroup onClick={() => openModal('delete')}>
                         <ConfigElementsText>
                             <ConfigElementsP>Excluir usuário</ConfigElementsP>
                             <ConfigElementsSpan>Excluir no banco de dados</ConfigElementsSpan>
@@ -86,7 +86,7 @@ const RegisterUser = () => {
 
                         <ConfigElementsIcon icon={['fas', 'arrow-right-long']} />
                     </ConfigElementsGroup>
-                )}
+                )} */}
                 
             </ConfigElements>
 
