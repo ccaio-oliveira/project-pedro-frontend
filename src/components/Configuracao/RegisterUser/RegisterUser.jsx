@@ -5,6 +5,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { useState } from "react";
 import DoctorModal from "./DoctorModal/DoctorModal";
 import AdminModal from "./AdminModal/AdminModal";
+import SecretaryModal from "./SecretaryModal/SecretaryModal";
 
 library.add(faArrowRightLong);
 
@@ -23,9 +24,9 @@ const RegisterUser = () => {
             setContent(<AdminModal handleClose={handleClose} />);
         }
 
-        // if(content === 'secretary'){
-        //     setContent(<SecretaryModal handleClose={handleClose} />);
-        // }
+        if(content === 'secretary'){
+            setContent(<SecretaryModal handleClose={handleClose} />);
+        }
 
         // if(content === 'delete'){
         //     setContent(<DeleteModal handleClose={handleClose} />);
@@ -65,7 +66,7 @@ const RegisterUser = () => {
 
                 {sessao.perfil_usuario !== 1 && (
                     <>
-                        <ConfigElementsGroup>
+                        <ConfigElementsGroup onClick={() => openModal('secretary')}>
                             <ConfigElementsText>
                                 <ConfigElementsP>Secretária</ConfigElementsP>
                                 <ConfigElementsSpan>Cadastrar no banco de dados</ConfigElementsSpan>
