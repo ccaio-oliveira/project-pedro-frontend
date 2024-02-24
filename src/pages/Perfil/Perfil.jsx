@@ -4,6 +4,7 @@ import Carregando from "../../components/Carregando/Carregando";
 import PerfilUsuario from '../../components/Perfil/Perfil';
 import { Container, ContainerComponent } from "../../global.styles";
 import Navbar from "../../components/Navbar/Navbar";
+import Header from './../../components/Header/Header';
 
 const Perfil = () => {
     const { handleValidaSessao, sessao, handleSetHeaders } = useAuth();
@@ -24,12 +25,15 @@ const Perfil = () => {
     }, [sessao])
 
     return(
-        <Container>
-            <Navbar item={'perfil'} />
-            <ContainerComponent>
-                {componente}
-            </ContainerComponent>
-        </Container>
+        <>
+            <Header />
+            <Container>
+                <Navbar item={'perfil'} />
+                <ContainerComponent>
+                    {componente}
+                </ContainerComponent>
+            </Container>
+        </>
     )
 }
 

@@ -5,6 +5,7 @@ import Relatorios from '../../components/Relatorios/Relatorios';
 import Navbar from '../../components/Navbar/Navbar';
 import { ContainerDash } from './Dashboard.styles';
 import { ContainerComponent } from '../../global.styles';
+import Header from '../../components/Header/Header';
 
 const Dashboard = () => {
 
@@ -32,12 +33,15 @@ const Dashboard = () => {
     }, [sessao])
 
     return(
-        <ContainerDash>
-            <Navbar item={'relatorio'}/>
-            <ContainerComponent>
-                {componente}
-            </ContainerComponent>
-        </ContainerDash>
+        <>
+            <Header />
+            <ContainerDash>
+                <Navbar item={'relatorio'}/>
+                <ContainerComponent>
+                    {componente}
+                </ContainerComponent>
+            </ContainerDash>
+        </>
     )
 } 
 

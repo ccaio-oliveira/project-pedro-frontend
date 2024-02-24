@@ -5,6 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import { ContainerContato } from "./Contato.styles";
 import Carregando from "../../components/Carregando/Carregando";
 import { ContainerComponent } from "../../global.styles";
+import Header from "../../components/Header/Header";
 
 const Contato = () => {
 
@@ -25,12 +26,15 @@ const Contato = () => {
     }, [sessao]);
 
     return(
-        <ContainerContato>
-            <Navbar item={'contato'} />
-            <ContainerComponent>
-                {component}
-            </ContainerComponent>
-        </ContainerContato>
+        <>
+            <Header />
+            <ContainerContato>
+                <Navbar item={'contato'} />
+                <ContainerComponent>
+                    {component}
+                </ContainerComponent>
+            </ContainerContato>
+        </>
     )
 }
 

@@ -5,6 +5,7 @@ import { ContainerComponent } from "../../global.styles";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import Carregando from "../../components/Carregando/Carregando";
+import Header from "../../components/Header/Header";
 
 const Configuracoes = () => {
     const { handleValidaSessao, sessao, handleSetHeaders } = useAuth();
@@ -23,12 +24,15 @@ const Configuracoes = () => {
     }, [sessao])
 
     return(
-        <ContainerConfig>
-            <Navbar item={'configuracao'} />
-            <ContainerComponent>
-                {component}
-            </ContainerComponent>
-        </ContainerConfig>
+        <>  
+            <Header />
+            <ContainerConfig>
+                <Navbar item={'configuracao'} />
+                <ContainerComponent>
+                    {component}
+                </ContainerComponent>
+            </ContainerConfig>
+        </>
     )
 }
 
