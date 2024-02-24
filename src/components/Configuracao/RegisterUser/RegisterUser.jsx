@@ -4,6 +4,7 @@ import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../../context/AuthContext";
 import { useState } from "react";
 import DoctorModal from "./DoctorModal/DoctorModal";
+import AdminModal from "./AdminModal/AdminModal";
 
 library.add(faArrowRightLong);
 
@@ -18,9 +19,9 @@ const RegisterUser = () => {
             setContent(<DoctorModal handleClose={handleClose} />);
         }
 
-        // if(content === 'admin'){
-        //     setContent(<AdminModal handleClose={handleClose} />);
-        // }
+        if(content === 'admin'){
+            setContent(<AdminModal handleClose={handleClose} />);
+        }
 
         // if(content === 'secretary'){
         //     setContent(<SecretaryModal handleClose={handleClose} />);
@@ -51,7 +52,7 @@ const RegisterUser = () => {
                             <ConfigElementsIcon icon={['fas', 'arrow-right-long']} />
                         </ConfigElementsGroup>
 
-                        <ConfigElementsGroup>
+                        <ConfigElementsGroup onClick={() => openModal('admin')}>
                             <ConfigElementsText>
                                 <ConfigElementsP>Administrador</ConfigElementsP>
                                 <ConfigElementsSpan>Cadastrar no banco de dados</ConfigElementsSpan>
