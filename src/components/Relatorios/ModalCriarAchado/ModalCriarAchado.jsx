@@ -13,11 +13,11 @@ import { ErrorRelatorio } from '../Relatorios.styles';
 
 const ModalRelatorio = ({titulo, closeModal }) => {
     // variávies de carregamento de informações
-    const { sessao, headers, handleSetHeaders } = useAuth();
+    const { sessao, headers } = useAuth();
     const [usuarios, setUsuarios] = useState([]);
 
     // variáveis de carregamento
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [loadingTitle, setLoadingTitle] = useState('');
 
     const [alertIsOpen, setAlertIsOpen] = useState(false);
@@ -44,9 +44,13 @@ const ModalRelatorio = ({titulo, closeModal }) => {
     const handleUsuarios = async () => {
         setIsLoading(true);
         setLoadingTitle('Carregando usuários');
-        await axios.get('/api/usuarios', { headers })
-        .then((response) => {
+        await axios.get('/api/users/doctors', { 
+            headers 
+        }).then(response => {
             setUsuarios(response.data);
+            setIsLoading(false);
+        }).catch(() => {
+            setUsuarios([]);
             setIsLoading(false);
         });
     }
@@ -150,9 +154,8 @@ const ModalRelatorio = ({titulo, closeModal }) => {
     }
 
     useEffect(() => {
-        handleSetHeaders();
         handleUsuarios();
-    }, []);
+    }, [sessao]);
 
     return(
         <>
@@ -166,7 +169,7 @@ const ModalRelatorio = ({titulo, closeModal }) => {
                             <SelectInput name='selUsuario' onChange={e => handleUsuarioSelecionado(e.target.value)}>
                                 <OptionSelect value="0">Nome ou CRM</OptionSelect>
                                 {usuarios.map((usuario) => (
-                                    <OptionSelect key={usuario.id} value={usuario.id}>{usuario.nome} {usuario.sobrenome}</OptionSelect>
+                                    <OptionSelect key={usuario.id} value={usuario.id}>{usuario.nome_completo} - {usuario.crm}</OptionSelect>
                                 ))}
                             </SelectInput>
                             {erroUsuario && <ErrorRelatorio>Selecione um usuário</ErrorRelatorio>}
