@@ -72,12 +72,14 @@ const TabelaRelatorios = ({ page, relatorios }) => {
         const dataInicial = parametros.get('dataInicial');
         const dataFinal = parametros.get('dataFinal');
 
-        const params = { page: page, id_usuario: sessao.id, perfil_usuario: sessao.perfil_usuario };
+        const params = { id_usuario: sessao.id, perfil_usuario: sessao.perfil_usuario };
 
         // verifica se os filtros estão preenchidos na url 
         if (grau) params.grau = grau;
         if (dataInicial) params.dataInicial = dataInicial;
         if (dataFinal) params.dataFinal = dataFinal;
+        
+        if(page == 'perfil') params.page = 'perfil';
 
         // faz a requisição para buscar os relatórios
         if(page == 'perfil'){
