@@ -170,7 +170,7 @@ const AdminModal = ({ handleClose }) => {
                 onRequestClose={handleClose}
                 title='Cadastrar Administrador'
                 modalFooter
-                submitTitle={'Cadastrar Administrador'}
+                submitTitle={'Salvar'}
                 funcSubmit={handleSubmit}
             >
                 <RegisterUserContainer>
@@ -236,7 +236,7 @@ const AdminModal = ({ handleClose }) => {
             </ModalTemplate>
 
             {isLoading ? (
-                <Carregando title="Cadastrando médico" />
+                <Carregando title="Cadastrando administrador" />
             ) : (alertIsOpen && (
                 <AlertTemplate title={alertTitle}>
                     {alertType === 'success' ? (
