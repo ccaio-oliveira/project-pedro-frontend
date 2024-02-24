@@ -44,7 +44,7 @@ export const TextDescription = styled.p`
     margin-bottom: 10px;
 `;
 
-export const ItemDescriptionCopy = styled(ItemDescription)`
+export const ItemDescriptionCopy = styled(ItemContainer)`
     display: flex;
     align-items: center;
     justify-content: space-between;
