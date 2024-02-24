@@ -182,7 +182,7 @@ const TabelaRelatorios = ({ page, relatorios }) => {
                                             </TDChamado>
                                             {page != 'perfil' ? <TDData>{relatorio.data_criacao}</TDData> : ''}
                                             <TDStatus>
-                                                <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
+                                                <StatusRelatorio $status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
                                             </TDStatus>
                                         </TR>
                                     ))
