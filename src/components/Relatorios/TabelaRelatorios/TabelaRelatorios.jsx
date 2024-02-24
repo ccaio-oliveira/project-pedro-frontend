@@ -16,7 +16,7 @@ library.add([faCircleCheck, faSearch]);
 
 const TabelaRelatorios = ({ page, relatorios }) => {
     // variáveis de sessao e headers
-    const { sessao, handleSetHeaders, headers } = useAuth();
+    const { sessao, headers } = useAuth();
 
     const [searchRelatorio, setSearchRelatorio] = useState(''); // Add searchRelatorio state
     const [filteredRelatorios, setFilteredRelatorios] = useState([]); // Add filteredRelatorios state
@@ -37,8 +37,8 @@ const TabelaRelatorios = ({ page, relatorios }) => {
     const grau = parametros.get('grau');
 
     // variáveis para filtrar por data 
-    const [dataInicial, setDataInicial] = useState(parametros.get('dataInicial'));	
-    const [dataFinal, setDataFinal] = useState(parametros.get('dataFinal'));
+    const [dataInicial, setDataInicial] = useState(parametros.get('dataInicial') ?? '');	
+    const [dataFinal, setDataFinal] = useState(parametros.get('dataFinal') ?? '');
 
     const navigate = useNavigate();
 
@@ -127,7 +127,6 @@ const TabelaRelatorios = ({ page, relatorios }) => {
     }
 
     useEffect(() => {
-        handleSetHeaders();
         handleDataRelatorios();
         setIsLoading(true);
     }, [page, grau, dataInicial, dataFinal]);
@@ -141,8 +140,8 @@ const TabelaRelatorios = ({ page, relatorios }) => {
                     <InfoTabelaRelatorio>
                         {page != 'perfil' && (
                             <ContainerTextGrau>
-                                <SimbolGrau grautabela={grau} />
-                                <TextGrau grautabela={grau}>{grau === 'prioridade' ? 'Prioridade' : (grau === 'nao_urgente' ? 'Não Urgente' : 'Rotina')}</TextGrau>
+                                <SimbolGrau type={grau} />
+                                <TextGrau type={grau}>{grau === 'prioridade' ? 'Prioridade' : (grau === 'nao_urgente' ? 'Não Urgente' : 'Rotina')}</TextGrau>
                             </ContainerTextGrau>
                         )}
 

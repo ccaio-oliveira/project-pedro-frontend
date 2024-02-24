@@ -46,12 +46,12 @@ const Relatorios = () => {
     return(
         <ContainerRelatorios>
             <ContainerBotaoP>
-                <BotaoPrioridade prioridade="true" onClick={() => handleGrauPrioridade('prioridade')}>
+                <BotaoPrioridade type="prioridade" onClick={() => handleGrauPrioridade('prioridade')}>
                     <TextBotaoPrioridade>Prioridade</TextBotaoPrioridade>
                     <SecondTextBotaoPrioridade>Exibir relatórios prioritários</SecondTextBotaoPrioridade>
                 </BotaoPrioridade>
 
-                <BotaoPrioridade nao_urgente="true" onClick={() => handleGrauPrioridade('nao_urgente')}>
+                <BotaoPrioridade type="nao_urgente" onClick={() => handleGrauPrioridade('nao_urgente')}>
                     <TextBotaoPrioridade>Não urgentes</TextBotaoPrioridade>
                     <SecondTextBotaoPrioridade>Exibir relatórios não urgentes</SecondTextBotaoPrioridade>
                 </BotaoPrioridade>
@@ -66,7 +66,7 @@ const Relatorios = () => {
                 <TabelaRelatorios page="relatorios" />
             </ContainerTabelaRelatorios>
 
-            <ContainerNovoChamado chamado>
+            <ContainerNovoChamado>
                 {sessao.perfil_usuario === 1 && <BotaoExpRelatorios onClick={openModalExportar}>Exportar dados</BotaoExpRelatorios>}
                 <BotaoAcao onClick={openModalCriar}>Criar achado</BotaoAcao>
             </ContainerNovoChamado>

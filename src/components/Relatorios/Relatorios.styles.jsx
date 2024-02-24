@@ -16,7 +16,7 @@ export const ContainerBotaoP = styled.div`
 `;
 
 export const BotaoPrioridade = styled.div`
-    background: ${(props) => (props.prioridade ? '#DD0E0E' : (props.nao_urgente ? '#336B8A' : '#35393B'))};
+    background: ${(props) => (props.type == "prioridade" ? '#DD0E0E' : (props.type == "nao_urgente" ? '#336B8A' : '#35393B'))};
     width: 30%;
 
     padding: 12px;
