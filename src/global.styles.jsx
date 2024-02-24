@@ -6,8 +6,8 @@ export const Container = styled.div`
 `;
 
 export const ContainerComponent = styled.div`
-    width: 82%;
-    margin-left: 18%;
+    width: 100%;
+    padding-left: 17%;
 
     @media (max-width: 914px){
         width: 100%;
@@ -71,7 +71,7 @@ export const OptionSelect = styled.option`
 
 export const Tabela = styled.table`
     width: 100%;
-    height: 435px;
+    max-height: 435px;
 
     border-top: 3px solid #D9D5D5;
     margin: 20px 0px;
@@ -95,9 +95,11 @@ export const TH = styled.th`
 
 export const TBody = styled.tbody`
     width: 100%;
-    height: 200px;
+    max-height: 200px;
 
     overflow-x: auto;
+
+    border: 1px solid red;
 `;
 
 export const TR = styled.tr`
@@ -107,6 +109,7 @@ export const TR = styled.tr`
 
 export const TD = styled.td`
     width: 100%;
+    height: 50px;
     min-width: 147px;
     padding: 10px;
 
