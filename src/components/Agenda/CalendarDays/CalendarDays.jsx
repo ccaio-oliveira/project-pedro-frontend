@@ -63,7 +63,7 @@ const CalendarDays = ({ data, changeCurrentDay, relatorios }) => {
                                     })}
                                     {elements.map((element, index) => {
                                         return(
-                                            <CalendarDayGrau grautabela={element} key={index} />
+                                            <CalendarDayGrau $grautabela={element} key={index} />
                                         )
                                     })}
                                 </ContainerCalendarGrau>

@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import ModalTemplate from '../../Modal/Modal';
 import { TBody, TD, TH, THead, TR } from '../../../global.styles';
-import { TableRelatoriosAgenda } from './ModalRelatoriosData.styles';
+import { TDRelatoriosAgenda, TableRelatoriosAgenda } from './ModalRelatoriosData.styles';
 import { StatusRelatorio } from '../../Relatorios/TabelaRelatorios/TabelaRelatorios.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
@@ -39,13 +39,13 @@ const ModalRelatoriosData = ({ achado, onClose }) => {
                         {achado.map((relatorio) => {
                             return (
                                 <TR key={relatorio.id} onClick={() => openModalDetAchado(relatorio)}>
-                                    <TD>
+                                    <TDRelatoriosAgenda>
                                         Veja o achado do(a) paciente {relatorio.nome_paciente} comunicado por 
                                         <strong> {relatorio.aberto_por}</strong>
-                                    </TD>
-                                    <TD>
-                                        <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
-                                    </TD>
+                                    </TDRelatoriosAgenda>
+                                    <TDRelatoriosAgenda>
+                                        <StatusRelatorio $status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
+                                    </TDRelatoriosAgenda>
                                 </TR>
                             )
                         })}

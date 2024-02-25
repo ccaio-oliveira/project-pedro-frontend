@@ -37,18 +37,32 @@ export const InfoUsuario = styled.p`
 export const ContainerPerfilBody = styled.div`
     width: 98%;
     padding-left: 20px;
+    padding-bottom: 20px;
 
     display: flex;
     align-items: flex-start;
 `;
 
 export const ContainerTable = styled.div`
-    width: 50%;
+    width: 65%;
     max-height: 435px;
     overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #04293D;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
 `;
 
 export const ContainerAgenda = styled.div`
-    width: 50%;
+    width: 35%;
     padding-left: 20px;
 `;

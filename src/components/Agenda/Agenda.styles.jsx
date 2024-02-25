@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Calendar = styled.div`
-    width: 71%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 `;
 
 export const CalendarHeader = styled.div`
-    width: 93%;
+    width: 95%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -56,4 +56,5 @@ export const TableHeader = styled.div`
 export const WeekDay = styled.div`
     width: 100px;
     text-align: center;
+    font-size: 0.8rem;
 `;

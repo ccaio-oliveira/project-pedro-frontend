@@ -59,11 +59,27 @@ export const ModalCloseButton = styled.button`
 
 export const ModalBody = styled.div`
     width: 100%;
-
-    padding: 20px;
+    max-height: 450px;
     
     display: flex;
     justify-content: center;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #35393B;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #E5E5E5;
+        border-radius: 10px;
+    }
 `;
 
 export const ModalFooter = styled.div`

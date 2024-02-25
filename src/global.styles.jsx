@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const ContainerComponent = styled.div`
-    width: 100%;
+    width: 82%;
 
     @media (max-width: 914px){
         width: 100%;
@@ -104,6 +104,7 @@ export const TR = styled.tr`
 export const TD = styled.td`
     width: 100%;
     height: 50px;
+    min-width: 100px;
     padding: 10px;
 
     cursor: pointer;

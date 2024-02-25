@@ -10,11 +10,12 @@ export const TableContent = styled.div`
 
 export const CalendarDay = styled.div`
     width: 13%;
-    height: 57.56px;
+    height: 50px;
     position: relative;
     background: #F2F3F7;
     border: 0.9px solid #D5D4DF;
     cursor: pointer;
+    font-size: 0.8rem;
 
     display: flex;
     flex-direction: column;
@@ -43,5 +44,5 @@ export const ContainerCalendarGrau = styled.div`
 `;
 
 export const CalendarDayGrau = styled(SimbolGrau)`
-    
+    background: ${props => props.$grautabela === 'prioridade' ? '#DD0E0E' : props.$grautabela === 'nao_urgente' ? '#336B8A' : '#35393B'};
 `;
