@@ -43,7 +43,7 @@ export const ContainerPerfilBody = styled.div`
     align-items: flex-start;
 
     @media (max-width: 915px){
-        flex-direction: column;
+        flex-direction: column-reverse;
         padding-left: 0;
     }
 `;
@@ -69,8 +69,7 @@ export const ContainerTable = styled.div`
 
     @media (max-width: 915px){
         width: 100%;
-        padding-left: 10px;
-        padding-bottom: 20px;
+        padding: 20px 10px 20px 0;
     }
 `;
 
