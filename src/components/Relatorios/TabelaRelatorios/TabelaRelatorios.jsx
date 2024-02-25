@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { ContainerData, ContainerDataRel, ContainerSearch, ContainerTextGrau, IconSearch, InfoTabelaRelatorio, InputSearch, SimbolGrau, StatusRelatorio, TDChamado, TDData, TDStatus, TextData, TextGrau } from "./TabelaRelatorios.styles";
 import { InputData, TBody, TD, TH, THead, Tabela, TR } from "../../../global.styles";
 import Carregando from "../../Carregando/Carregando";
@@ -11,12 +11,15 @@ import { PropTypes } from 'prop-types';
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import ModalDetAchado from "../ModalDetAchado/ModalDetAchado";
+import Pagination from "../../Pagination/Pagination";
 
 library.add([faCircleCheck, faSearch]);
 
 const TabelaRelatorios = ({ page, relatorios }) => {
     // variáveis de sessao e headers
     const { sessao, headers } = useAuth();
+
+    const [currentPage, setCurrentPage] = useState(1);
 
     const [searchRelatorio, setSearchRelatorio] = useState(''); // Add searchRelatorio state
     const [filteredRelatorios, setFilteredRelatorios] = useState([]); // Add filteredRelatorios state
@@ -128,6 +131,12 @@ const TabelaRelatorios = ({ page, relatorios }) => {
         }));
     }
 
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * 6;
+        const lastPageIndex = firstPageIndex + 6;
+        return dataRelatorios.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage]);
+
     useEffect(() => {
         handleDataRelatorios();
         setIsLoading(true);
@@ -173,9 +182,9 @@ const TabelaRelatorios = ({ page, relatorios }) => {
                             </TR>
                         </THead>
                         <TBody>
-                            {dataRelatorios.length !== 0 ? (
+                            {currentTableData.length !== 0 ? (
                                 searchRelatorio === '' ? (
-                                    dataRelatorios.map((relatorio) => (
+                                    currentTableData.map((relatorio) => (
                                         <TR key={relatorio.id} onClick={() => openModalDetAchado(relatorio)}>
                                             <TDChamado>
                                                 <p>Veja o achado do(a) paciente <b>{relatorio.nome_paciente}</b> comunicado por <b>{relatorio.aberto_por}</b></p>
@@ -212,6 +221,12 @@ const TabelaRelatorios = ({ page, relatorios }) => {
                             )}
                         </TBody>
                     </Tabela>
+                    <Pagination
+                        currentPage={currentPage}
+                        totalCount={dataRelatorios.length}
+                        pageSize={6}
+                        onPageChange={page => setCurrentPage(page)}
+                    />
                 </>
             )}
 
