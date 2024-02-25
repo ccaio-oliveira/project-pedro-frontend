@@ -19,18 +19,18 @@ const Contatos = () => {
         <ContainerContatos>
             <ContainerBotaoC>
                 {sessao.perfil_usuario == 1 && (
-                    <BotaoUsuario admin="true" onClick={() => handleTipoUsuario(1)}>
+                    <BotaoUsuario $admin="true" onClick={() => handleTipoUsuario(1)}>
                         <TextBotaoContato>Administradores</TextBotaoContato>
                         <SecondTextBotaoContato>Exibir todos os administradores</SecondTextBotaoContato>
                     </BotaoUsuario>
                 )}
 
-                <BotaoUsuario medicos="true" onClick={() => handleTipoUsuario(2)}>
+                <BotaoUsuario $medicos="true" onClick={() => handleTipoUsuario(2)}>
                     <TextBotaoContato>Médicos</TextBotaoContato>
                     <SecondTextBotaoContato>Exibir contatos de médicos</SecondTextBotaoContato>
                 </BotaoUsuario>
 
-                <BotaoUsuario secretarias="true" onClick={() => handleTipoUsuario(3)}>
+                <BotaoUsuario $secretarias="true" onClick={() => handleTipoUsuario(3)}>
                     <TextBotaoContato>Secretárias</TextBotaoContato>
                     <SecondTextBotaoContato>Exibir contatos das secretárias</SecondTextBotaoContato>
                 </BotaoUsuario>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Carregando from '../../Carregando/Carregando';
 import { useAuth } from '../../../context/AuthContext';
 import { useLocation } from 'react-router-dom';
@@ -10,11 +10,14 @@ import { THead } from './../../../global.styles';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import Pagination from './../../Pagination/Pagination';
 
 library.add(faWhatsapp);
 
 const TabelaContatos = () => {
     const { sessao, headers, handleSetHeaders } = useAuth(); // Get the sessao object from useAuth context
+
+    const [currentPage, setCurrentPage] = useState(1); // Add currentPage state
     
     const [searchContato, setSearchContato] = useState(''); // Add searchContato state
     const [filteredContatos, setFilteredContatos] = useState([]); // Add filteredContatos state
@@ -67,6 +70,12 @@ const TabelaContatos = () => {
         }));
     }
 
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * 5;
+        const lastPageIndex = firstPageIndex + 5;
+        return dataContatos.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, dataContatos]);
+
     useEffect(() => {
         handleSetHeaders(); // Call the handleSetHeaders function
         handleDataContatos(); // Call the handleDataContatos function
@@ -103,15 +112,15 @@ const TabelaContatos = () => {
                             </TR>
                         </THead>
                         <TBody>
-                            {dataContatos.length !== 0 ? (
+                            {currentTableData.length !== 0 ? (
                                 searchContato === '' ? (
-                                    dataContatos.map((contato) => (
+                                    currentTableData.map((contato) => (
                                         <TR key={contato.id}>
                                             <TDContato>{contato.nome_completo}</TDContato>
                                             {tipoUsuario == 2 && <TDContato>{tipoUsuario == 2 ? contato.medico_crm : 'Outra coisa'}</TDContato>}
                                             <TDContato>{tipoUsuario == 1 ? 'Administrador' : (tipoUsuario == 2 ? contato.funcao : 'Secretária')}</TDContato>
                                             <TDContato>
-                                                <IconWhatsapp href={`https://wa.me/${contato.telefone_whats}`}>
+                                                <IconWhatsapp target='_blank' href={`https://wa.me/${contato.telefone_whats}`}>
                                                     <FontAwesomeIcon icon={['fab', 'whatsapp']} />
                                                 </IconWhatsapp>
                                             </TDContato>
@@ -124,7 +133,11 @@ const TabelaContatos = () => {
                                                 <TDContato>{contato.nome_completo}</TDContato>
                                                 {tipoUsuario == 2 && <TDContato>{tipoUsuario == 2 ? contato.medico_crm : 'Outra coisa'}</TDContato>}
                                                 <TDContato>{tipoUsuario == 1 ? 'Administrador' : (tipoUsuario == 2 ? contato.funcao : 'Secretária')}</TDContato>
-                                                <TDContato>{contato.telefone_whats}</TDContato>
+                                                <TDContato>
+                                                    <IconWhatsapp target='_blank' href={`https://wa.me/${contato.telefone_whats}`}>
+                                                        <FontAwesomeIcon icon={['fab', 'whatsapp']} />
+                                                    </IconWhatsapp>
+                                                </TDContato>
                                             </TR>
                                         ))
                                     ) : (
@@ -140,6 +153,12 @@ const TabelaContatos = () => {
                             )}
                         </TBody>
                     </Tabela>
+                    <Pagination
+                        currentPage={currentPage}
+                        totalCount={dataContatos.length}
+                        pageSize={5}
+                        onPageChange={page => setCurrentPage(page)}
+                    />
                 </>
             )}
         </>

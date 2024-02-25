@@ -3,8 +3,8 @@ import { BotaoPrioridade, ContainerBotaoP, ContainerTabelaRelatorios, TextBotaoP
 import { SecondTextBotaoPrioridade } from './../Relatorios/Relatorios.styles';
 
 export const ContainerContatos = styled.div`
-    /* display: flex; */
-    width: 100%;
+    width: 95%;
+    padding: 20px 20px 0;
 `;
 
 export const ContainerBotaoC = styled(ContainerBotaoP)`
@@ -12,7 +12,7 @@ export const ContainerBotaoC = styled(ContainerBotaoP)`
 `;
 
 export const BotaoUsuario = styled(BotaoPrioridade)`
-    background: ${props => props.admin ? '#04293D' : (props.medicos ? '#164863' : '#336B8A')};
+    background: ${props => props.$admin ? '#04293D' : (props.$medicos ? '#164863' : '#336B8A')};
 `;
 
 export const TextBotaoContato = styled(TextBotaoPrioridade)`

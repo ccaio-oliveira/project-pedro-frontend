@@ -59,7 +59,7 @@ export const ModalCloseButton = styled.button`
 
 export const ModalBody = styled.div`
     width: 100%;
-    max-height: 450px;
+    max-height: 350px;
     
     display: flex;
     justify-content: center;

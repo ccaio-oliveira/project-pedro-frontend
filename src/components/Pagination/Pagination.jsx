@@ -19,23 +19,12 @@ const Pagination = ({ onPageChange, totalCount, siblingCount = 1, currentPage, p
         return null;
     }
 
-    const onNext = () => {
-        onPageChange(currentPage + 1);
-    }
-
-    const onPrevious = () => {
-        onPageChange(currentPage - 1);
-    }
-
     const lastPage = paginationRange[paginationRange.length - 1];
     const disabledLeft = currentPage === 1 ? true : false;
     const disabledRight = currentPage === lastPage ? true : false;
 
     return (
         <PaginationContainer>
-            <PaginationItem onClick={onPrevious} disabled={disabledLeft}>
-                <FontAwesomeIcon icon={['fas', 'arrow-left']} />
-            </PaginationItem>
             {paginationRange.map((pageNumber, index) => {
                 if(pageNumber === "..."){
                     return <PaginationItem className="dots" key={index}>&#8230;</PaginationItem>;
@@ -47,9 +36,6 @@ const Pagination = ({ onPageChange, totalCount, siblingCount = 1, currentPage, p
                     </PaginationItem>
                 )
             })}
-            <PaginationItem onClick={onNext} disabled={disabledRight}>
-                <FontAwesomeIcon icon={['fas', 'arrow-right']} />
-            </PaginationItem>
         </PaginationContainer>
     )
 }
