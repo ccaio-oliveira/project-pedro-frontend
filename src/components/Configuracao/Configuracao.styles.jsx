@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const ConfigContainer = styled.div`
-    width: 100%;
+    padding: 20px;
 `;
 
 export const ConfigTop = styled.div`
@@ -10,6 +10,10 @@ export const ConfigTop = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+
+    @media (max-width: 552px){
+        flex-direction: column;
+    }
 `;
 
 export const ConfigTopLeft = styled.div`
@@ -17,6 +21,10 @@ export const ConfigTopLeft = styled.div`
     flex-direction: column;
 
     width: 50%;
+
+    @media (max-width: 552px){
+        width: 100%;
+    }
 `;
 
 export const ConfigTopRight = styled.div`
@@ -25,10 +33,14 @@ export const ConfigTopRight = styled.div`
     align-items: flex-end;
 
     width: 50%;
+
+    @media (max-width: 552px){
+        width: 100%;
+    }
 `;
 
 export const BtnConfigTop = styled.button`
-    width: 50%;
+    width: 95%;
 
     margin-bottom: 20px;
     padding: 6px 10px 10px 20px;
@@ -46,6 +58,10 @@ export const BtnConfigTop = styled.button`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 552px){
+        width: 100%;
+    }
 `;
 
 export const ConfigIconChevron = styled(FontAwesomeIcon)`
