@@ -3,16 +3,10 @@ import { styled } from 'styled-components';
 
 export const ContainerNav = styled.div`
     width: 15.5%;
-    height: 100vh;
     padding: 50px 20px;
 
     background: #164863;
     color: #fff;
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
 
     @media (max-width: 914px){
         display: none;

@@ -9,7 +9,7 @@ export const TableContent = styled.div`
 `;
 
 export const CalendarDay = styled.div`
-    width: 57.56px;
+    width: 13%;
     height: 57.56px;
     position: relative;
     background: #F2F3F7;
