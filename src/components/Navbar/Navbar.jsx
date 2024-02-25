@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { ButtonLogout, ContainerNav, ContentOptions, IconElement, IconElementInfo, NavLinkContainer, SpecImg, TextContainer, TextIcon } from "./Navbar.styles"
+import { ButtonCloseMenu, ButtonLogout, ContainerNav, ContainerNavBackground, ContainerNavHeader, ContentOptions, IconElement, IconElementInfo, NavLinkContainer, SpecImg, TextContainer, TextIcon } from "./Navbar.styles"
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUser, faRectangleList, faFolderOpen, faCommentDots } from '@fortawesome/free-regular-svg-icons';
-import { faGear, faArrowLeft, faInfo } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faArrowLeft, faInfo, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -10,9 +10,9 @@ import Cookies from 'js-cookie';
 import { PropTypes } from 'prop-types';
 import { useAuth } from "../../context/AuthContext";
 
-library.add([faUser, faRectangleList, faFolderOpen, faInfo, faGear, faArrowLeft, faCommentDots]);
+library.add([faUser, faRectangleList, faFolderOpen, faInfo, faGear, faArrowLeft, faCommentDots, faTimes]);
 
-const Navbar = ({ item }) => {
+const Navbar = ({ item, onCloseMenu, isOpen }) => {
     const { sessao, handleValidaSessao } = useAuth();
     const [perfilSelected, setPerfilSelected] = useState('');
     const [contatoSelected, setContatoSelected] = useState('');
@@ -51,68 +51,80 @@ const Navbar = ({ item }) => {
     }, [sessao])
 
     return(
-        <ContainerNav>
-            <SpecImg src="./images/spec24.png" alt="Spec24" />
+        <ContainerNavBackground $isOpen={isOpen} onClick={onCloseMenu}>
+            <ContainerNav $isOpen={isOpen}>
+                <ContainerNavHeader>
+                    <SpecImg src="./images/spec24.png" alt="Spec24" />
+                    {isOpen && (
+                        <ButtonCloseMenu onClick={onCloseMenu}>
+                            <FontAwesomeIcon icon={["fas", "times"]} />
+                        </ButtonCloseMenu>
+                    )}
+                    
+                </ContainerNavHeader>
 
-            <TextContainer>
-                <NavLinkContainer>
-                    <TextIcon to={'/perfil'} itemselected={perfilSelected}>
-                        <IconElement><FontAwesomeIcon icon={["far", "user"]} /></IconElement>
-                        Perfil
-                    </TextIcon>
-                </NavLinkContainer>
-
-                <NavLinkContainer>
-                    <TextIcon to={'/contato?tipoUsuario=2'} itemselected={contatoSelected}>
-                        <IconElement><FontAwesomeIcon icon={["far", "rectangle-list"]} /></IconElement>
-                        Contato
-                    </TextIcon>
-                </NavLinkContainer>
-
-                <NavLinkContainer>
-                    <TextIcon to={'/relatorio?grau=prioridade'} itemselected={relatorioSelected}>
-                        <IconElement><FontAwesomeIcon icon={["far", "folder-open"]} /></IconElement>
-                        {sessao.perfil_usuario == 1 || sessao.perfil_usuario == 3 ? 'Histórico' : 'Relatório'}
-                    </TextIcon>
-                </NavLinkContainer>
-
-                <ContentOptions>
+                <TextContainer>
                     <NavLinkContainer>
-                        <TextIcon to={'/configuracao'} itemselected={configSelected}>
-                            <IconElement><FontAwesomeIcon icon={["fas", "gear"]} /></IconElement>
-                            Configuração
+                        <TextIcon to={'/perfil'} itemselected={perfilSelected}>
+                            <IconElement><FontAwesomeIcon icon={["far", "user"]} /></IconElement>
+                            Perfil
                         </TextIcon>
                     </NavLinkContainer>
 
                     <NavLinkContainer>
-                        <TextIcon to={'/feedback'} itemselected={feedBackSelected}>
-                            <IconElementInfo><FontAwesomeIcon icon={["fas", "info"]} /></IconElementInfo>
-                            Feedback
+                        <TextIcon to={'/contato?tipoUsuario=2'} itemselected={contatoSelected}>
+                            <IconElement><FontAwesomeIcon icon={["far", "rectangle-list"]} /></IconElement>
+                            Contato
                         </TextIcon>
                     </NavLinkContainer>
 
                     <NavLinkContainer>
-                        <TextIcon to={'/ajuda'} itemselected={ajudaSelected}>
-                            <IconElement><FontAwesomeIcon icon={["far", "comment-dots"]} /></IconElement>
-                            Ajuda
+                        <TextIcon to={'/relatorio?grau=prioridade'} itemselected={relatorioSelected}>
+                            <IconElement><FontAwesomeIcon icon={["far", "folder-open"]} /></IconElement>
+                            {sessao.perfil_usuario == 1 || sessao.perfil_usuario == 3 ? 'Histórico' : 'Relatório'}
                         </TextIcon>
                     </NavLinkContainer>
 
-                    <NavLinkContainer>
-                        <ButtonLogout onClick={loggout}>
-                            <IconElement><FontAwesomeIcon icon={["fas", "arrow-left"]} /></IconElement>
-                            Sair
-                        </ButtonLogout>
-                    </NavLinkContainer>
-                </ContentOptions>
+                    <ContentOptions>
+                        <NavLinkContainer>
+                            <TextIcon to={'/configuracao'} itemselected={configSelected}>
+                                <IconElement><FontAwesomeIcon icon={["fas", "gear"]} /></IconElement>
+                                Configuração
+                            </TextIcon>
+                        </NavLinkContainer>
 
-            </TextContainer>
-        </ContainerNav>
+                        <NavLinkContainer>
+                            <TextIcon to={'/feedback'} itemselected={feedBackSelected}>
+                                <IconElementInfo><FontAwesomeIcon icon={["fas", "info"]} /></IconElementInfo>
+                                Feedback
+                            </TextIcon>
+                        </NavLinkContainer>
+
+                        <NavLinkContainer>
+                            <TextIcon to={'/ajuda'} itemselected={ajudaSelected}>
+                                <IconElement><FontAwesomeIcon icon={["far", "comment-dots"]} /></IconElement>
+                                Ajuda
+                            </TextIcon>
+                        </NavLinkContainer>
+
+                        <NavLinkContainer>
+                            <ButtonLogout onClick={loggout}>
+                                <IconElement><FontAwesomeIcon icon={["fas", "arrow-left"]} /></IconElement>
+                                Sair
+                            </ButtonLogout>
+                        </NavLinkContainer>
+                    </ContentOptions>
+
+                </TextContainer>
+            </ContainerNav>
+        </ContainerNavBackground>
     )
 }
 
 Navbar.propTypes = {
-    item: PropTypes.string.isRequired
+    item: PropTypes.string.isRequired,
+    onCloseMenu: PropTypes.func.isRequired,
+    isOpen: PropTypes.bool.isRequired
 };
 
 export default Navbar;

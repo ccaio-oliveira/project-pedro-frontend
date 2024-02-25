@@ -13,6 +13,16 @@ const Contato = () => {
 
     const [component, setComponent] = useState(<Carregando title={'Carregando contatos'} />);
 
+    const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+    const openMenu = () => {
+        setIsOpenMenu(true);
+    }
+
+    const closeMenu = () => {
+        setIsOpenMenu(false);
+    }
+
     useEffect(() => {
         handleValidaSessao();
 
@@ -27,9 +37,9 @@ const Contato = () => {
 
     return(
         <>
-            <Header />
+            <Header openMenu={openMenu} />
             <ContainerContato>
-                <Navbar item={'contato'} />
+                <Navbar isOpen={isOpenMenu} onCloseMenu={closeMenu} item={'contato'} />
                 <ContainerComponent>
                     {component}
                 </ContainerComponent>

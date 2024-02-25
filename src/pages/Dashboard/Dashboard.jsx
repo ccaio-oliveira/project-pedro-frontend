@@ -13,6 +13,16 @@ const Dashboard = () => {
 
     const [componente, setComponente] = useState(<Carregando title={'Carregando relatórios'} />);
 
+    const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+    const openMenu = () => {
+        setIsOpenMenu(true);
+    }
+
+    const closeMenu = () => {
+        setIsOpenMenu(false);
+    }
+
     useEffect(() => {
         handleValidaSessao();
 
@@ -34,9 +44,9 @@ const Dashboard = () => {
 
     return(
         <>
-            <Header />
+            <Header openMenu={openMenu} />
             <ContainerDash>
-                <Navbar item={'relatorio'}/>
+                <Navbar isOpen={isOpenMenu} onCloseMenu={closeMenu} item={'relatorio'}/>
                 <ContainerComponent>
                     {componente}
                 </ContainerComponent>

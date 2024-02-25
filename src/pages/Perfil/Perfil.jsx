@@ -11,6 +11,16 @@ const Perfil = () => {
 
     const [componente, setComponente] = useState(<Carregando title={'Carregando perfil'} />);
 
+    const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+    const openMenu = () => {
+        setIsOpenMenu(true);
+    }
+
+    const closeMenu = () => {
+        setIsOpenMenu(false);
+    }
+
     useEffect(() => {
         handleValidaSessao();
 
@@ -26,9 +36,9 @@ const Perfil = () => {
 
     return(
         <>
-            <Header />
+            <Header openMenu={openMenu} />
             <Container>
-                <Navbar item={'perfil'} />
+                <Navbar isOpen={isOpenMenu} onCloseMenu={closeMenu} item={'perfil'} />
                 <ContainerComponent>
                     {componente}
                 </ContainerComponent>

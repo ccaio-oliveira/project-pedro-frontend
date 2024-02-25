@@ -1,22 +1,80 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-export const ContainerNav = styled.div`
+export const ContainerNavBackground = styled.div`
+
     width: 18%;
+    margin-right: 30px;
+    transition: all 0.1s ease-in-out;
+
+    @media (max-width: 914px){
+        display: ${(props) => props.$isOpen ? 'block' : 'none'};
+        justify-content: space-between;
+        align-items: center;
+
+        width: 100%;
+        height: 100%;
+
+        background: rgba(0, 0, 0, 0.5);
+
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        z-index: 1000;
+    }
+`;
+
+export const ContainerNav = styled.div`
+    width: 100%;
     padding: 50px 20px;
 
     background: #164863;
     color: #fff;
 
+    transition: all 0.1s ease-in-out;
+
     @media (max-width: 914px){
-        display: none;
+        display: ${(props) => props.$isOpen ? 'block' : 'none'};
+        position: fixed;
+        width: 30%;
     }
+
+    @media (max-width: 536px){
+        width: 50%;
+    }
+`;
+
+export const ContainerNavHeader = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 50px;
 `;
 
 export const SpecImg = styled.img`
     width: 8rem;
 
     margin-bottom: 50px;
+
+    @media (max-width: 914px){
+        margin: 0;
+    }
+`;
+
+export const ButtonCloseMenu = styled.button`
+    border: none;
+    background: none;
+
+    font-size: 1.5rem;
+    color: #FFF;
+
+    cursor: pointer;
+
+    &:hover {
+        color: #70A7C4;
+    }
 `;
 
 export const TextContainer = styled.div`

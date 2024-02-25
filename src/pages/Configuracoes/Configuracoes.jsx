@@ -11,6 +11,16 @@ const Configuracoes = () => {
     const { handleValidaSessao, sessao, handleSetHeaders } = useAuth();
     const [component, setComponent] = useState(<Carregando title="Carregando configurações" />)
 
+    const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+    const openMenu = () => {
+        setIsOpenMenu(true);
+    }
+
+    const closeMenu = () => {
+        setIsOpenMenu(false);
+    }
+
     useEffect(() => {
         handleValidaSessao();
 
@@ -25,9 +35,9 @@ const Configuracoes = () => {
 
     return(
         <>  
-            <Header />
+            <Header openMenu={openMenu} />
             <ContainerConfig>
-                <Navbar item={'configuracao'} />
+                <Navbar isOpen={isOpenMenu} onCloseMenu={closeMenu} item={'configuracao'} />
                 <ContainerComponent>
                     {component}
                 </ContainerComponent>
