@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 export const ContainerNav = styled.div`
-    width: 15.5%;
+    width: 18%;
     padding: 50px 20px;
 
     background: #164863;
@@ -14,7 +14,7 @@ export const ContainerNav = styled.div`
 `;
 
 export const SpecImg = styled.img`
-    width: 60%;
+    width: 8rem;
 
     margin-bottom: 50px;
 `;
@@ -23,7 +23,6 @@ export const TextContainer = styled.div`
     display: flex;
     flex-direction: column;
 
-    height: 30%;
     width: 80%;
 
     @media (max-width: 1245px){
@@ -35,7 +34,7 @@ export const NavLinkContainer = styled.div`
     display: flex;
     align-items: center;
 
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 
     margin-top: 30px;
 
@@ -78,7 +77,7 @@ export const ButtonLogout = styled.button`
     border: none;
     background: none;
 
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: #fff;
 
     cursor: pointer;

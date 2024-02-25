@@ -4,10 +4,11 @@ import { ErrorP } from '../../pages/Login/Login.styles';
 
 export const ContainerRelatorios = styled.div`
     padding: 20px;
+    height: 93.6%;
 `;
 
 export const ContainerBotaoP = styled.div`
-    width: 99%;
+    width: 100%;
     margin-bottom: 30px;
 
     display: flex;
@@ -37,6 +38,7 @@ export const BotaoPrioridade = styled.div`
 export const TextBotaoPrioridade = styled.p`
     color: #FFF;
     font-weight: 600;
+    font-size: 0.9rem;
 
     margin: 0;
 `;
@@ -44,13 +46,14 @@ export const TextBotaoPrioridade = styled.p`
 export const SecondTextBotaoPrioridade = styled.p`
     color: #FFF;
     font-weight: 600;
+    font-size: 0.9rem;
     opacity: 0.5;
 
     margin: 0;
 `;
 
 export const ContainerTabelaRelatorios = styled.div`
-    width: 99%;
+    width: 100%;
 `;
 
 export const ContainerNovoChamado = styled.div`

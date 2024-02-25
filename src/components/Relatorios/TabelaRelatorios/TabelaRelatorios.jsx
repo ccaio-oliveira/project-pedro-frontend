@@ -132,10 +132,10 @@ const TabelaRelatorios = ({ page, relatorios }) => {
     }
 
     const currentTableData = useMemo(() => {
-        const firstPageIndex = (currentPage - 1) * 6;
-        const lastPageIndex = firstPageIndex + 6;
+        const firstPageIndex = (currentPage - 1) * 5;
+        const lastPageIndex = firstPageIndex + 5;
         return dataRelatorios.slice(firstPageIndex, lastPageIndex);
-    }, [currentPage]);
+    }, [currentPage, dataRelatorios]);
 
     useEffect(() => {
         handleDataRelatorios();
@@ -224,7 +224,7 @@ const TabelaRelatorios = ({ page, relatorios }) => {
                     <Pagination
                         currentPage={currentPage}
                         totalCount={dataRelatorios.length}
-                        pageSize={6}
+                        pageSize={5}
                         onPageChange={page => setCurrentPage(page)}
                     />
                 </>

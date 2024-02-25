@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 export const CarregarContainer = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 100%;
 
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     padding: 2rem;

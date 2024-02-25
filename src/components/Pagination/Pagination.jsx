@@ -31,8 +31,6 @@ const Pagination = ({ onPageChange, totalCount, siblingCount = 1, currentPage, p
     const disabledLeft = currentPage === 1 ? true : false;
     const disabledRight = currentPage === lastPage ? true : false;
 
-    console.log(disabledLeft, disabledRight, paginationRange, currentPage, lastPage)
-
     return (
         <PaginationContainer>
             <PaginationItem onClick={onPrevious} disabled={disabledLeft}>

@@ -44,8 +44,8 @@ export const ContainerPerfilBody = styled.div`
 
 export const ContainerTable = styled.div`
     width: 50%;
-
-    height: 435px;
+    max-height: 435px;
+    overflow: auto;
 `;
 
 export const ContainerAgenda = styled.div`

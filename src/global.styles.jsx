@@ -93,8 +93,7 @@ export const TH = styled.th`
 
 export const TBody = styled.tbody`
     width: 100%;
-
-    overflow-x: auto;
+    max-height: 463px;
 `;
 
 export const TR = styled.tr`
