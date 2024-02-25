@@ -41,6 +41,7 @@ export const FormLabel = styled.label`
 
 export const InputData = styled.input`
     width: 96%;
+    min-width: 137px;
     border: 2px solid #35393B;
     border-radius: 17px;
 
@@ -67,6 +68,13 @@ export const OptionSelect = styled.option`
     font-family: 'Roboto';
     font-weight: 500;
     color: #35393B;
+`;
+
+export const ContainerTable = styled.div`
+    width: 100%;
+    max-width: 100%;
+
+    overflow: auto;
 `;
 
 export const Tabela = styled.table`
@@ -104,7 +112,7 @@ export const TR = styled.tr`
 export const TD = styled.td`
     width: 100%;
     height: 50px;
-    min-width: 100px;
+    min-width: 140px;
     padding: 10px;
 
     cursor: pointer;

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { ContainerData, ContainerDataRel, ContainerSearch, ContainerTextGrau, IconSearch, InfoTabelaRelatorio, InputSearch, SimbolGrau, StatusRelatorio, TDChamado, TDData, TDStatus, TextData, TextGrau } from "./TabelaRelatorios.styles";
-import { InputData, TBody, TD, TH, THead, Tabela, TR } from "../../../global.styles";
+import { InputData, TBody, TD, TH, THead, Tabela, TR, ContainerTable } from "../../../global.styles";
 import Carregando from "../../Carregando/Carregando";
 import axios from 'axios';
 import { useAuth } from "../../../context/AuthContext";
@@ -173,54 +173,57 @@ const TabelaRelatorios = ({ page, relatorios }) => {
                             </ContainerData>
                         </ContainerDataRel>
                     </InfoTabelaRelatorio>
-                    <Tabela>
-                        <THead>
-                            <TR>
-                                <TH>Chamado</TH>
-                                {page != 'perfil' ? <TH>Data</TH> : ''}
-                                <TH>Status</TH>
-                            </TR>
-                        </THead>
-                        <TBody>
-                            {currentTableData.length !== 0 ? (
-                                searchRelatorio === '' ? (
-                                    currentTableData.map((relatorio) => (
-                                        <TR key={relatorio.id} onClick={() => openModalDetAchado(relatorio)}>
-                                            <TDChamado>
-                                                <p>Veja o achado do(a) paciente <b>{relatorio.nome_paciente}</b> comunicado por <b>{relatorio.aberto_por}</b></p>
-                                            </TDChamado>
-                                            {page != 'perfil' ? <TDData>{relatorio.data_criacao}</TDData> : ''}
-                                            <TDStatus>
-                                                <StatusRelatorio $status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
-                                            </TDStatus>
-                                        </TR>
-                                    ))
-                                ) : (
-                                    filteredRelatorios.length !== 0 ? (
-                                        filteredRelatorios.map((relatorio) => (
+                    <ContainerTable>
+                        <Tabela>
+                            <THead>
+                                <TR>
+                                    <TH>Chamado</TH>
+                                    {page != 'perfil' ? <TH>Data</TH> : ''}
+                                    <TH>Status</TH>
+                                </TR>
+                            </THead>
+                            <TBody>
+                                {currentTableData.length !== 0 ? (
+                                    searchRelatorio === '' ? (
+                                        currentTableData.map((relatorio) => (
                                             <TR key={relatorio.id} onClick={() => openModalDetAchado(relatorio)}>
                                                 <TDChamado>
                                                     <p>Veja o achado do(a) paciente <b>{relatorio.nome_paciente}</b> comunicado por <b>{relatorio.aberto_por}</b></p>
                                                 </TDChamado>
                                                 {page != 'perfil' ? <TDData>{relatorio.data_criacao}</TDData> : ''}
                                                 <TDStatus>
-                                                    <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
+                                                    <StatusRelatorio $status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
                                                 </TDStatus>
                                             </TR>
                                         ))
                                     ) : (
-                                        <TR style={{ textAlign: "center" }}>
-                                            <TD colSpan="5">Nenhum relatório encontrado</TD>
-                                        </TR>
+                                        filteredRelatorios.length !== 0 ? (
+                                            filteredRelatorios.map((relatorio) => (
+                                                <TR key={relatorio.id} onClick={() => openModalDetAchado(relatorio)}>
+                                                    <TDChamado>
+                                                        <p>Veja o achado do(a) paciente <b>{relatorio.nome_paciente}</b> comunicado por <b>{relatorio.aberto_por}</b></p>
+                                                    </TDChamado>
+                                                    {page != 'perfil' ? <TDData>{relatorio.data_criacao}</TDData> : ''}
+                                                    <TDStatus>
+                                                        <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
+                                                    </TDStatus>
+                                                </TR>
+                                            ))
+                                        ) : (
+                                            <TR style={{ textAlign: "center" }}>
+                                                <TD colSpan="5">Nenhum relatório encontrado</TD>
+                                            </TR>
+                                        )
                                     )
-                                )
-                            ) : (
-                                <TR style={{ textAlign: "center" }}>
-                                    <TD colSpan="5">Nenhum relatório encontrado</TD>
-                                </TR>
-                            )}
-                        </TBody>
-                    </Tabela>
+                                ) : (
+                                    <TR style={{ textAlign: "center" }}>
+                                        <TD colSpan="5">Nenhum relatório encontrado</TD>
+                                    </TR>
+                                )}
+                            </TBody>
+                        </Tabela>
+                    </ContainerTable>
+
                     <Pagination
                         currentPage={currentPage}
                         totalCount={dataRelatorios.length}

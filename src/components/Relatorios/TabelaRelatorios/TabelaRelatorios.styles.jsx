@@ -8,7 +8,7 @@ export const InfoTabelaRelatorio = styled.div`
     display: flex;
     justify-content: space-between;
 
-    @media (max-width: 747px){
+    @media (max-width: 776px){
         flex-wrap: wrap;
     }
 `;
@@ -23,7 +23,7 @@ export const ContainerTextGrau = styled.div`
         margin-right: 20px;
     }
 
-    @media (max-width: 747px){
+    @media (max-width: 776px){
         margin-bottom: 20px;
     }
 `;
@@ -50,7 +50,7 @@ export const ContainerSearch = styled.div`
         width: 40%;
     }
 
-    @media (max-width: 607px){
+    @media (max-width: 654px){
         width: 100%;
         margin-top: 20px;
     }
@@ -66,11 +66,11 @@ export const InputSearch = styled(InputData)`
 export const IconSearch = styled(FontAwesomeIcon)`
     position: relative;
 
-    @media (min-width: 607px){
+    @media (min-width: 654px){
         left: -2rem;
     }
 
-    @media (max-width: 607px){
+    @media (max-width: 654px){
         position: absolute;
         right: 2.5rem;
         /* left: 0; */
@@ -81,11 +81,11 @@ export const ContainerDataRel = styled.div`
     display: flex;
     align-items: center;
 
-    @media (max-width: 747px){
+    @media (max-width: 776px){
         width: 100%;
     }
 
-    @media (max-width: 607px){
+    @media (max-width: 654px){
         flex-wrap: wrap;
         flex-direction: column-reverse;
         align-items: flex-start;
@@ -96,7 +96,7 @@ export const ContainerData = styled.div`
     display: flex;
     align-items: center;
 
-    @media (max-width: 607px){
+    @media (max-width: 654px){
         width: 100%;
         margin-top: 10px;
         flex-direction: column;

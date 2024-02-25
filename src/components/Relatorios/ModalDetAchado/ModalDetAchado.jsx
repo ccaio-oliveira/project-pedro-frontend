@@ -50,22 +50,6 @@ const ModalDetAchado = ({ achado, onClose }) => {
         }, 2000);
     }
 
-    const formatarData = (date) => {
-        const data = new Date(date);
-
-        const dia = String(data.getDate()).padStart(2, '0');
-        const mes = String(data.getMonth() + 1).padStart(2, '0');
-        const ano = data.getFullYear();
-
-        const horas = String(data.getHours()).padStart(2, '0');
-        const minutos = String(data.getMinutes()).padStart(2, '0');
-        const segundos = String(data.getSeconds()).padStart(2, '0');
-
-        const dataFormatada = `${dia}/${mes}/${ano} ${horas}:${minutos}:${segundos}`;
-
-        return dataFormatada;
-    }
-
     useEffect(() => {
         if(achado.atrelado_a == sessao.nome_completo){
             handleVisualizacao();
@@ -100,7 +84,7 @@ const ModalDetAchado = ({ achado, onClose }) => {
 
                     <ItemContainer>
                         <ItemTitle>Data de nascimento:</ItemTitle>
-                        <ItemDescription>{formatarData(achado.data_nascimento_paciente)}</ItemDescription>
+                        <ItemDescription>{achado.data_nascimento_paciente}</ItemDescription>
                     </ItemContainer>
 
                     <ItemContainer>

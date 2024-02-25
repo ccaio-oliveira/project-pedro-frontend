@@ -41,6 +41,10 @@ export const NavLinkContainer = styled.div`
     @media (max-width: 996px){
         font-size: 1.1rem;
     }
+
+    @media (max-width: 932px){
+        font-size: 1rem;
+    }
 `;
 
 export const IconElement = styled.i`
