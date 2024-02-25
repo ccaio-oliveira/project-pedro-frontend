@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { ContainerDataCont, ContainerTextTipo, IconWhatsapp, InfoTabelaContatos, SimbolTipo, TDContato, TextTipo } from './TabelaContatos.styles';
 import { ContainerSearch, IconSearch, InputSearch } from '../../Relatorios/TabelaRelatorios/TabelaRelatorios.styles';
-import { TBody, TH, TR, Tabela } from '../../../global.styles';
+import { ContainerTable, TBody, TH, TR, Tabela } from '../../../global.styles';
 import { THead } from './../../../global.styles';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -101,34 +101,20 @@ const TabelaContatos = () => {
                             </ContainerSearch>
                         </ContainerDataCont>
                     </InfoTabelaContatos>
-
-                    <Tabela>
-                        <THead>
-                            <TR>
-                                <TH>Nome</TH>
-                                {tipoUsuario == 2 && <TH>CRM</TH>}
-                                <TH>Função</TH>
-                                <TH>Conectar</TH>
-                            </TR>
-                        </THead>
-                        <TBody>
-                            {currentTableData.length !== 0 ? (
-                                searchContato === '' ? (
-                                    currentTableData.map((contato) => (
-                                        <TR key={contato.id}>
-                                            <TDContato>{contato.nome_completo}</TDContato>
-                                            {tipoUsuario == 2 && <TDContato>{tipoUsuario == 2 ? contato.medico_crm : 'Outra coisa'}</TDContato>}
-                                            <TDContato>{tipoUsuario == 1 ? 'Administrador' : (tipoUsuario == 2 ? contato.funcao : 'Secretária')}</TDContato>
-                                            <TDContato>
-                                                <IconWhatsapp target='_blank' href={`https://wa.me/${contato.telefone_whats}`}>
-                                                    <FontAwesomeIcon icon={['fab', 'whatsapp']} />
-                                                </IconWhatsapp>
-                                            </TDContato>
-                                        </TR>
-                                    ))
-                                ) : (
-                                    filteredContatos.length !== 0 ? (
-                                        filteredContatos.map(contato => (
+                    <ContainerTable>
+                        <Tabela>
+                            <THead>
+                                <TR>
+                                    <TH>Nome</TH>
+                                    {tipoUsuario == 2 && <TH>CRM</TH>}
+                                    <TH>Função</TH>
+                                    <TH>Conectar</TH>
+                                </TR>
+                            </THead>
+                            <TBody>
+                                {currentTableData.length !== 0 ? (
+                                    searchContato === '' ? (
+                                        currentTableData.map((contato) => (
                                             <TR key={contato.id}>
                                                 <TDContato>{contato.nome_completo}</TDContato>
                                                 {tipoUsuario == 2 && <TDContato>{tipoUsuario == 2 ? contato.medico_crm : 'Outra coisa'}</TDContato>}
@@ -141,18 +127,33 @@ const TabelaContatos = () => {
                                             </TR>
                                         ))
                                     ) : (
-                                        <TR>
-                                            <TH colSpan="4">Nenhum registro encontrado</TH>
-                                        </TR>
+                                        filteredContatos.length !== 0 ? (
+                                            filteredContatos.map(contato => (
+                                                <TR key={contato.id}>
+                                                    <TDContato>{contato.nome_completo}</TDContato>
+                                                    {tipoUsuario == 2 && <TDContato>{tipoUsuario == 2 ? contato.medico_crm : 'Outra coisa'}</TDContato>}
+                                                    <TDContato>{tipoUsuario == 1 ? 'Administrador' : (tipoUsuario == 2 ? contato.funcao : 'Secretária')}</TDContato>
+                                                    <TDContato>
+                                                        <IconWhatsapp target='_blank' href={`https://wa.me/${contato.telefone_whats}`}>
+                                                            <FontAwesomeIcon icon={['fab', 'whatsapp']} />
+                                                        </IconWhatsapp>
+                                                    </TDContato>
+                                                </TR>
+                                            ))
+                                        ) : (
+                                            <TR>
+                                                <TH colSpan="4">Nenhum registro encontrado</TH>
+                                            </TR>
+                                        )
                                     )
-                                )
-                            ) : (
-                                <TR>
-                                    <TH colSpan="4">{errorMessage}</TH>
-                                </TR>
-                            )}
-                        </TBody>
-                    </Tabela>
+                                ) : (
+                                    <TR>
+                                        <TH colSpan="4">{errorMessage}</TH>
+                                    </TR>
+                                )}
+                            </TBody>
+                        </Tabela>
+                    </ContainerTable>
                     <Pagination
                         currentPage={currentPage}
                         totalCount={dataContatos.length}
