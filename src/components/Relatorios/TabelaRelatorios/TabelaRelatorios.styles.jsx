@@ -66,14 +66,12 @@ export const InputSearch = styled(InputData)`
 export const IconSearch = styled(FontAwesomeIcon)`
     position: relative;
 
-    @media (min-width: 654px){
+    @media (min-width: 655px){
         left: -2rem;
     }
 
     @media (max-width: 654px){
-        position: absolute;
         right: 2.5rem;
-        /* left: 0; */
     }
 `;
 

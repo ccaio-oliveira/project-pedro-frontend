@@ -41,6 +41,11 @@ export const ContainerPerfilBody = styled.div`
 
     display: flex;
     align-items: flex-start;
+
+    @media (max-width: 915px){
+        flex-direction: column;
+        padding-left: 0;
+    }
 `;
 
 export const ContainerTable = styled.div`
@@ -61,9 +66,20 @@ export const ContainerTable = styled.div`
     &::-webkit-scrollbar-track {
         background: #f1f1f1;
     }
+
+    @media (max-width: 915px){
+        width: 100%;
+        padding-left: 10px;
+        padding-bottom: 20px;
+    }
 `;
 
 export const ContainerAgenda = styled.div`
     width: 35%;
     padding-left: 20px;
+
+    @media (max-width: 600px){
+        width: 100%;
+        padding-left: 10px;
+    }
 `;

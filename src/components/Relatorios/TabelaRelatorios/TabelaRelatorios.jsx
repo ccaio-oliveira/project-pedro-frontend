@@ -132,8 +132,8 @@ const TabelaRelatorios = ({ page, relatorios }) => {
     }
 
     const currentTableData = useMemo(() => {
-        const firstPageIndex = (currentPage - 1) * 5;
-        const lastPageIndex = firstPageIndex + 5;
+        const firstPageIndex = (currentPage - 1) * (page == 'perfil' ? 2 : 5);
+        const lastPageIndex = firstPageIndex + (page == 'perfil' ? 2 : 5);
         return dataRelatorios.slice(firstPageIndex, lastPageIndex);
     }, [currentPage, dataRelatorios]);
 
@@ -205,7 +205,7 @@ const TabelaRelatorios = ({ page, relatorios }) => {
                                                     </TDChamado>
                                                     {page != 'perfil' ? <TDData>{relatorio.data_criacao}</TDData> : ''}
                                                     <TDStatus>
-                                                        <StatusRelatorio status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
+                                                        <StatusRelatorio $status={relatorio.status}><FontAwesomeIcon icon={['fas', 'circle-check']} />{relatorio.status}</StatusRelatorio>
                                                     </TDStatus>
                                                 </TR>
                                             ))
@@ -227,7 +227,7 @@ const TabelaRelatorios = ({ page, relatorios }) => {
                     <Pagination
                         currentPage={currentPage}
                         totalCount={dataRelatorios.length}
-                        pageSize={5}
+                        pageSize={page == 'perfil' ? 2 : 5}
                         onPageChange={page => setCurrentPage(page)}
                     />
                 </>

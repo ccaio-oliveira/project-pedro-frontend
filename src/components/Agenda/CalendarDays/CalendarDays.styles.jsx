@@ -36,6 +36,10 @@ export const CalendarDay = styled.div`
         background: #04293D;
         color: #FFF;
     }
+
+    @media (max-width: 951px){
+        height: 40px;
+    }
 `;
 
 export const ContainerCalendarGrau = styled.div`
