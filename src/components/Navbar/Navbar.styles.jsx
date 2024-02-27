@@ -27,12 +27,16 @@ export const ContainerNavBackground = styled.div`
 
 export const ContainerNav = styled.div`
     width: 100%;
+    height: 100%; 
     padding: 50px 20px;
 
     background: #164863;
     color: #fff;
 
     transition: all 0.1s ease-in-out;
+
+    position: relative;
+    z-index: 10;
 
     @media (max-width: 914px){
         display: ${(props) => props.$isOpen ? 'block' : 'none'};

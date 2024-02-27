@@ -16,3 +16,11 @@ export const ContainerHeader = styled.header`
 export const ContainerBars = styled.div`
     cursor: pointer;
 `;
+
+export const ContainerInfos = styled.div`
+
+`;
+
+export const ContainerIconBell = styled.div`
+    
+`;
