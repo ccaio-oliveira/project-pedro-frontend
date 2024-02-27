@@ -3,7 +3,10 @@ import { FormGroup, FormLabel, InputData, SelectInput } from '../../../global.st
 import { ErrorP } from '../../../pages/Login/Login.styles';
 
 export const RegisterUserContainer = styled.div`
-    
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 export const RegisterUserFormGroup = styled(FormGroup)`

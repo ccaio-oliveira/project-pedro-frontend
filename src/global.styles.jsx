@@ -28,7 +28,7 @@ export const BotaoAcao = styled.button`
 `;
 
 export const FormGroup = styled.div`
-    width: 100%;
+    width: 90%;
     margin-bottom: 10px;
 `;
 
@@ -40,7 +40,7 @@ export const FormLabel = styled.label`
 `;
 
 export const InputData = styled.input`
-    width: 96%;
+    width: 94%;
     min-width: 137px;
     border: 2px solid #35393B;
     border-radius: 17px;

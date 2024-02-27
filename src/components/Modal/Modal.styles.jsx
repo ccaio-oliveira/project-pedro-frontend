@@ -26,6 +26,16 @@ export const ModalContainer = styled.div`
     width: 50%;
 
     border-radius: 17px;
+
+    @media (max-width: 670px){
+        width: 80%;
+    }
+
+    @media (max-width: 410px){
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
 `;
 
 export const ModalHeader = styled.div`
@@ -79,6 +89,10 @@ export const ModalBody = styled.div`
     &::-webkit-scrollbar-track {
         background: #E5E5E5;
         border-radius: 10px;
+    }
+
+    @media (max-width: 410px){
+        padding: 20px;
     }
 `;
 

@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import { InputData } from '../../../../global.styles';
 
 export const ModalSenhaContainer = styled.div`
-
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 export const InputPassword = styled(InputData)`

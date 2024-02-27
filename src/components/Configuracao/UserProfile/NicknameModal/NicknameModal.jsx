@@ -8,6 +8,7 @@ import Carregando from '../../../Carregando/Carregando';
 import AlertTemplate from '../../../AlertComponents/AlertTemplate';
 import SuccessAlert from '../../../AlertComponents/SuccessAlert/SuccessAlert';
 import ErrorAlert from '../../../AlertComponents/ErrorAlert/ErrorAlert';
+import { ModalFormConfig } from '../../Configuracao.styles';
 
 const NicknameModal = ({ handleClose }) => {
     const { headers, sessao, handleSetSessao } = useAuth();
@@ -51,13 +52,15 @@ const NicknameModal = ({ handleClose }) => {
                 submitTitle="Alterar"
                 funcSubmit={handleSubmit}
             >
-                <SelectInput name="nickname" id="nickname" required onChange={(e) => setNickname(e.target.value)}>
-                    <OptionSelect value="nenhum">Nenhum</OptionSelect>
-                    <OptionSelect value="Sr.">Sr.</OptionSelect>
-                    <OptionSelect value="Sra.">Sra.</OptionSelect>
-                    <OptionSelect value="Dr.">Dr.</OptionSelect>
-                    <OptionSelect value="Dra.">Dra.</OptionSelect>
-                </SelectInput>
+                <ModalFormConfig>
+                    <SelectInput name="nickname" id="nickname" required onChange={(e) => setNickname(e.target.value)}>
+                        <OptionSelect value="nenhum">Nenhum</OptionSelect>
+                        <OptionSelect value="Sr.">Sr.</OptionSelect>
+                        <OptionSelect value="Sra.">Sra.</OptionSelect>
+                        <OptionSelect value="Dr.">Dr.</OptionSelect>
+                        <OptionSelect value="Dra.">Dra.</OptionSelect>
+                    </SelectInput>
+                </ModalFormConfig>
             </ModalTemplate>
 
             {isLoading ? (

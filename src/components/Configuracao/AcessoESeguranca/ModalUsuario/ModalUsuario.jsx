@@ -8,6 +8,7 @@ import Carregando from '../../../Carregando/Carregando';
 import AlertTemplate from '../../../AlertComponents/AlertTemplate';
 import SuccessAlert from '../../../AlertComponents/SuccessAlert/SuccessAlert';
 import ErrorAlert from '../../../AlertComponents/ErrorAlert/ErrorAlert';
+import { ModalFormConfig } from '../../Configuracao.styles';
 
 const ModalUsuario = ({ handleClose, usuario }) => {
     const { sessao, headers, handleSetSessao } = useAuth();
@@ -58,12 +59,14 @@ const ModalUsuario = ({ handleClose, usuario }) => {
                 title='Editar nome de usuário' 
                 submitTitle="Alterar" modalFooter
             >
-                <InputData 
-                    type="text" 
-                    placeholder="Nome de usuário" 
-                    value={user} 
-                    onChange={(e) => setUser(e.target.value)} 
-                />
+                <ModalFormConfig>
+                    <InputData 
+                        type="text" 
+                        placeholder="Nome de usuário" 
+                        value={user} 
+                        onChange={(e) => setUser(e.target.value)} 
+                    />
+                </ModalFormConfig>
             </ModalTemplate>
 
             {isLoading ? (

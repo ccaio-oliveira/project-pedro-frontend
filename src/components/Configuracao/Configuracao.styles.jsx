@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ModalForm } from './../Relatorios/ModalCriarAchado/ModalCriarAchado.styles';
 
 export const ConfigContainer = styled.div`
     padding: 20px;
@@ -119,4 +120,8 @@ export const ConfigElementsSpan = styled.span`
 export const ConfigElementsIcon = styled(FontAwesomeIcon)`
     font-size: 1.5rem;
     color: #000;
+`;
+
+export const ModalFormConfig = styled(ModalForm)`
+    width: 80%;
 `;

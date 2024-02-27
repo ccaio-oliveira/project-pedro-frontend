@@ -8,6 +8,7 @@ import AlertTemplate from '../../../AlertComponents/AlertTemplate';
 import SuccessAlert from '../../../AlertComponents/SuccessAlert/SuccessAlert';
 import ErrorAlert from '../../../AlertComponents/ErrorAlert/ErrorAlert';
 import { PropTypes } from 'prop-types';
+import { ModalFormConfig } from '../../Configuracao.styles';
 
 const ModalEmail = ({ handleClose, email }) => {
     const { headers, sessao, handleSetSessao } = useAuth();
@@ -62,7 +63,9 @@ const ModalEmail = ({ handleClose, email }) => {
     return (
         <>
             <ModalTemplate funcSubmit={handleEmail} onRequestClose={handleClose} title='E-mail registrado' modalFooter submitTitle="Alterar">
-                <InputData type="email" value={valueEmail} onChange={e => setValueEmail(e.target.value)} />
+                <ModalFormConfig>
+                    <InputData type="email" value={valueEmail} onChange={e => setValueEmail(e.target.value)} />
+                </ModalFormConfig>
             </ModalTemplate>
 
             {isLoading ? (
