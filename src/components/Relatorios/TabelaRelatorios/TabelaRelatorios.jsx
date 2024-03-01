@@ -81,8 +81,6 @@ const TabelaRelatorios = ({ page, relatorios }) => {
         if (grau) params.grau = grau;
         if (dataInicial) params.dataInicial = dataInicial;
         if (dataFinal) params.dataFinal = dataFinal;
-        
-        if(page == 'perfil') params.page = 'perfil';
 
         // faz a requisição para buscar os relatórios
         if(page == 'perfil'){
@@ -95,7 +93,7 @@ const TabelaRelatorios = ({ page, relatorios }) => {
                 setIsLoading(false);
             })
         } else {
-            await axios.get(`/api/relatorios/`, { 
+            await axios.get(`/api/relatorios`, { 
                 params, 
                 headers 
             })
