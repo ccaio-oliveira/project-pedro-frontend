@@ -36,7 +36,7 @@ const TabelaContatos = () => {
 
         if(tipoUsuario) params.tipoUsuario = tipoUsuario;
 
-        await axios.get('/api/contatos/', {
+        await axios.get('/api/contatos', {
             params,
             headers
         }).then(response => {
