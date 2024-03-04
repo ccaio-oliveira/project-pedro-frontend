@@ -1,13 +1,10 @@
-import { AlertBackground, AlertBody, AlertContainer, AlertHeader } from "./AlertTemplate.styles"
+import { AlertBackground, AlertBody, AlertContainer } from "./AlertTemplate.styles"
 import { PropTypes } from 'prop-types';
 
-const AlertTemplate = ({ children, title }) => {
+const AlertTemplate = ({ children }) => {
     return (
         <AlertBackground>
             <AlertContainer>
-                <AlertHeader>
-                    <h3>{title}</h3>
-                </AlertHeader>
                 <AlertBody>
                     {children}
                 </AlertBody>

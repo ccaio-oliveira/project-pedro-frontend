@@ -16,17 +16,12 @@ export const AlertBackground = styled.div`
 `;
 
 export const AlertContainer = styled.div`
-    background: #f2f2f2;
+    background: #FFF;
+
+    width: 30%;
 
     border-radius: 17px;
-`;
-
-export const AlertHeader = styled.div`
-    color: #000;
-
-    padding: 10px;
-
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 `;
 
 export const AlertBody = styled.div`
@@ -39,20 +34,26 @@ export const AlertBody = styled.div`
 `;
 
 export const IconAlert = styled(FontAwesomeIcon)`
-    color: ${(props) => (props.success ? '#00FF00' : '#FF0000')};
+    color: #FFF;
+    background: ${(props) => (props.$success ? '#00FF00' : '#FF0000')};
 
-    padding: 3px;
-    border: 3px solid ${(props) => (props.success ? '#00FF00' : '#FF0000')};
+    padding: 10px;
+    /* border: 3px solid #FFF; */
     border-radius: 50%;
+
+    position: relative;
+    top: -30px;
 `;
 
 export const Message = styled.p`
     color: #000;
     margin-top: 20px;
+
+    text-align: center;
 `;
 
 export const BtnCloseAlert = styled.button`
-    background: ${(props) => (props.success ? '#00FF00' : '#FF0000')};
+    background: ${(props) => (props.$success ? '#00FF00' : '#FF0000')};
 
     color: #FFF;
     font-weight: bold;
@@ -62,4 +63,9 @@ export const BtnCloseAlert = styled.button`
     border: none;
     border-radius: 10px;
     cursor: pointer;
+`;
+
+export const MainText = styled.h3`
+    color: ${(props) => (props.$success ? '#00FF00' : '#FF0000')};
+    margin-top: 20px;
 `;
