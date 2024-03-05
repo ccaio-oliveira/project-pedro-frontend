@@ -24,14 +24,14 @@ const ModalDetAchado = ({ achado, onClose }) => {
     const handleDownloadArquivo = async (id_arquivo, nomeArquivo) => {
         await axios.get(`/api/relatorios/download/${id_arquivo}`, { headers, responseType: 'blob'})
         .then((res) => {
-            const url = window.URL.createObjectURL(new Blob([res.data]));
 
+            const url = window.URL.createObjectURL(new Blob([res.data]));
             const link = document.createElement('a');
             link.href = url;
             link.setAttribute('download', nomeArquivo);
             document.body.appendChild(link);
             link.click();
-            document.body.removeChild(link);
+            link.remove();
         });
     }
 

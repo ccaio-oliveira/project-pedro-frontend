@@ -136,8 +136,7 @@ const ModalRelatorio = ({titulo, closeModal }) => {
         })
         .then(() => {
             setIsLoading(false);
-            closeModal();
-
+            
             setAlertIsOpen(true);
             setAlertTitle('Sucesso');
             setAlertMessage('Relatório enviado com sucesso');
@@ -216,7 +215,7 @@ const ModalRelatorio = ({titulo, closeModal }) => {
                 <AlertTemplate title={alertTitle}>
                     {alertType === 'success' 
                         ? (
-                            <SuccessAlert message={alertMessage} close={() => setAlertIsOpen(false)} />
+                            <SuccessAlert message={alertMessage} close={() => {setAlertIsOpen(false); closeModal();}} />
                         ) : (
                             <ErrorAlert message={alertMessage} close={() => setAlertIsOpen(false)} />
                         )}
