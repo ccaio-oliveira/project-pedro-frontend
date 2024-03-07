@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 export const ContainerNavBackground = styled.div`
 
     width: 18%;
-    margin-right: 30px;
+    margin-right: 40px;
     transition: all 0.1s ease-in-out;
 
     @media (max-width: 914px){
