@@ -35,9 +35,6 @@ export const ContainerNav = styled.div`
 
     transition: all 0.1s ease-in-out;
 
-    position: relative;
-    z-index: 10;
-
     @media (max-width: 914px){
         display: ${(props) => props.$isOpen ? 'block' : 'none'};
         position: fixed;
@@ -119,7 +116,7 @@ export const IconElementInfo = styled(IconElement)`
 
     padding: 2px 7px;
 
-    border: 2px solid #FFF;
+    border: 2px solid ${(props) => (props.$itemselected ? '#70A7C4' : '#FFF')};
     border-radius: 50%;
 `;
 

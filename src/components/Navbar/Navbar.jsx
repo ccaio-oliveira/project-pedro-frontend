@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ButtonCloseMenu, ButtonLogout, ContainerNav, ContainerNavBackground, ContainerNavHeader, ContentOptions, IconElement, IconElementInfo, NavLinkContainer, SpecImg, TextContainer, TextIcon } from "./Navbar.styles"
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUser, faRectangleList, faFolderOpen, faCommentDots } from '@fortawesome/free-regular-svg-icons';
-import { faGear, faArrowLeft, faInfo, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faArrowLeft, faInfo, faTimes, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -10,12 +10,13 @@ import Cookies from 'js-cookie';
 import { PropTypes } from 'prop-types';
 import { useAuth } from "../../context/AuthContext";
 
-library.add([faUser, faRectangleList, faFolderOpen, faInfo, faGear, faArrowLeft, faCommentDots, faTimes]);
+library.add([faUser, faRectangleList, faFolderOpen, faInfo, faGear, faArrowLeft, faCommentDots, faTimes, faUsers]);
 
 const Navbar = ({ item, onCloseMenu, isOpen }) => {
     const { sessao, handleValidaSessao } = useAuth();
     const [perfilSelected, setPerfilSelected] = useState('');
     const [contatoSelected, setContatoSelected] = useState('');
+    const [usuariosSelected, setUsuariosSelected] = useState('');
     const [relatorioSelected, setRelatorioSelected] = useState('');
     const [configSelected, setConfigSelected] = useState('');
     const [feedBackSelected, setFeedBackSelected] = useState('');
@@ -29,6 +30,8 @@ const Navbar = ({ item, onCloseMenu, isOpen }) => {
         if(item === 'relatorio') setRelatorioSelected('selected');
 
         if(item === 'contato') setContatoSelected('selected');
+
+        if(item === 'usuarios') setUsuariosSelected('selected');
 
         if(item === 'configuracao') setConfigSelected('selected');
 
@@ -78,6 +81,15 @@ const Navbar = ({ item, onCloseMenu, isOpen }) => {
                         </TextIcon>
                     </NavLinkContainer>
 
+                    {sessao.perfil_usuario == 1 && (
+                        <NavLinkContainer>
+                            <TextIcon to={'/usuarios'} itemselected={usuariosSelected}>
+                                <IconElement><FontAwesomeIcon icon={["fas", "users"]} /></IconElement>
+                                Usuários
+                            </TextIcon>
+                        </NavLinkContainer>
+                    )}
+
                     <NavLinkContainer>
                         <TextIcon to={'/relatorio?grau=prioridade'} itemselected={relatorioSelected}>
                             <IconElement><FontAwesomeIcon icon={["far", "folder-open"]} /></IconElement>
@@ -94,14 +106,14 @@ const Navbar = ({ item, onCloseMenu, isOpen }) => {
                         </NavLinkContainer>
 
                         <NavLinkContainer>
-                            <TextIcon to={'/feedback'} itemselected={feedBackSelected}>
-                                <IconElementInfo><FontAwesomeIcon icon={["fas", "info"]} /></IconElementInfo>
+                            <TextIcon to={'/configuracao'} itemselected={feedBackSelected}>
+                                <IconElementInfo $itemselected={feedBackSelected}><FontAwesomeIcon icon={["fas", "info"]} /></IconElementInfo>
                                 Feedback
                             </TextIcon>
                         </NavLinkContainer>
 
                         <NavLinkContainer>
-                            <TextIcon to={'/ajuda'} itemselected={ajudaSelected}>
+                            <TextIcon to={'/configuracao'} itemselected={ajudaSelected}>
                                 <IconElement><FontAwesomeIcon icon={["far", "comment-dots"]} /></IconElement>
                                 Ajuda
                             </TextIcon>

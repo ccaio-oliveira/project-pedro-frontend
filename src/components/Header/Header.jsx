@@ -14,11 +14,11 @@ const Header = ({ openMenu }) => {
                 <FontAwesomeIcon icon={['fas', 'bars']} size="1x" />
             </ContainerBars>
 
-            <ContainerInfos>
+            {/* <ContainerInfos>
                 <ContainerIconBell>
                     <FontAwesomeIcon icon={['far', 'bell']} size="1x" />
                 </ContainerIconBell>
-            </ContainerInfos>
+            </ContainerInfos> */}
         </ContainerHeader>
     )
 }
