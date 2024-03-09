@@ -37,7 +37,7 @@ const Navbar = ({ item, onCloseMenu, isOpen }) => {
 
         if(item === 'feedBack') setFeedBackSelected('selected');
 
-        if(item === 'ajuda') setAjudaSelected('selected');
+        if(item === 'help') setAjudaSelected('selected');
     }
 
     const loggout = async () => {
@@ -105,15 +105,15 @@ const Navbar = ({ item, onCloseMenu, isOpen }) => {
                             </TextIcon>
                         </NavLinkContainer>
 
-                        <NavLinkContainer>
+                        {/* <NavLinkContainer>
                             <TextIcon to={'/configuracao'} itemselected={feedBackSelected}>
                                 <IconElementInfo $itemselected={feedBackSelected}><FontAwesomeIcon icon={["fas", "info"]} /></IconElementInfo>
                                 Feedback
                             </TextIcon>
-                        </NavLinkContainer>
+                        </NavLinkContainer> */}
 
                         <NavLinkContainer>
-                            <TextIcon to={'/configuracao'} itemselected={ajudaSelected}>
+                            <TextIcon to={'/ajuda'} itemselected={ajudaSelected}>
                                 <IconElement><FontAwesomeIcon icon={["far", "comment-dots"]} /></IconElement>
                                 Ajuda
                             </TextIcon>
