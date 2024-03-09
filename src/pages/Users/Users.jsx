@@ -3,9 +3,8 @@ import { useAuth } from "../../context/AuthContext";
 import Carregando from "../../components/Carregando/Carregando";
 import UsersComponent from "../../components/Users/Users";
 import Header from './../../components/Header/Header';
-import { ContainerContato } from './../Contato/Contato.styles';
 import Navbar from './../../components/Navbar/Navbar';
-import { ContainerComponent } from '../../global.styles';
+import { Container, ContainerComponent } from '../../global.styles';
 
 
 const Users = () => {
@@ -39,12 +38,12 @@ const Users = () => {
     return (
         <>
             <Header openMenu={openMenu} />
-            <ContainerContato>
+            <Container>
                 <Navbar isOpen={isOpenMenu} onCloseMenu={closeMenu} item={'usuarios'} />	
                 <ContainerComponent>
                     {component}
                 </ContainerComponent>
-            </ContainerContato>
+            </Container>
         </>
     );
 }

@@ -4,10 +4,15 @@ export const Container = styled.div`
     display: flex;    
     width: 100%;
     height: 100%;
+    max-height: 100%;
 `;
 
 export const ContainerComponent = styled.div`
     width: 82%;
+    max-height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+    padding-bottom: 20px;
 
     @media (max-width: 914px){
         width: 100%;

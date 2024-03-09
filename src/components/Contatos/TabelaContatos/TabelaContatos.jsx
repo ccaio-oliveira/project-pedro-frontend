@@ -90,8 +90,8 @@ const TabelaContatos = () => {
                 <>
                     <InfoTabelaContatos>
                         <ContainerTextTipo>
-                            <SimbolTipo tipo={tipoUsuario} />
-                            <TextTipo tipo={tipoUsuario}>{tipoUsuario == 1 ? 'Administrador' : (tipoUsuario == 2 ? 'Médico' : 'Secretária')}</TextTipo>
+                            <SimbolTipo $tipo={tipoUsuario} />
+                            <TextTipo $tipo={tipoUsuario}>{tipoUsuario == 1 ? 'Administrador' : (tipoUsuario == 2 ? 'Médico' : 'Secretária')}</TextTipo>
                         </ContainerTextTipo>
 
                         <ContainerDataCont>

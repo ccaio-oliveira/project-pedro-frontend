@@ -28,6 +28,7 @@ const Relatorios = () => {
 
     const closeModalCriar = () => {
         setModalCriarIsOpen(false);
+        window.location.reload();
     }
 
     // funções para abrir e fechar modal de exportação de relatórios

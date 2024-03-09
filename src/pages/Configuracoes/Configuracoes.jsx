@@ -1,7 +1,6 @@
-import { ContainerConfig } from "./Configuracoes.styles"
 import Navbar from './../../components/Navbar/Navbar';
 import Configuracao from "../../components/Configuracao/Configuracao";
-import { ContainerComponent } from "../../global.styles";
+import { Container, ContainerComponent } from "../../global.styles";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import Carregando from "../../components/Carregando/Carregando";
@@ -36,12 +35,12 @@ const Configuracoes = () => {
     return(
         <>  
             <Header openMenu={openMenu} />
-            <ContainerConfig>
+            <Container>
                 <Navbar isOpen={isOpenMenu} onCloseMenu={closeMenu} item={'configuracao'} />
                 <ContainerComponent>
                     {component}
                 </ContainerComponent>
-            </ContainerConfig>
+            </Container>
         </>
     )
 }

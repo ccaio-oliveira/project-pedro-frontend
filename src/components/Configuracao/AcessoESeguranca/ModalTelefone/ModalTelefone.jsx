@@ -3,12 +3,12 @@ import ModalTemplate from '../../../Modal/Modal';
 import { useState } from 'react';
 import axios from 'axios';  
 import { FormGroup, FormLabel, InputData } from '../../../../global.styles';
-import { ContainerModalTelefone } from './ModalTelefone.styles';
 import { useAuth } from '../../../../context/AuthContext';
 import Carregando from '../../../Carregando/Carregando';
 import AlertTemplate from '../../../AlertComponents/AlertTemplate';
 import SuccessAlert from '../../../AlertComponents/SuccessAlert/SuccessAlert';
 import ErrorAlert from '../../../AlertComponents/ErrorAlert/ErrorAlert';
+import { ModalFormConfig } from '../../Configuracao.styles';
 
 const ModalTelefone = ({ handleClose, telefone, tipo }) => {
     const { sessao, headers } = useAuth();
@@ -55,7 +55,7 @@ const ModalTelefone = ({ handleClose, telefone, tipo }) => {
     return (
         <>
             <ModalTemplate funcSubmit={handlePhoneNumber} onRequestClose={handleClose} title={title} modalFooter submitTitle="Alterar">
-                <ContainerModalTelefone>
+                <ModalFormConfig>
                     <FormGroup>
                         <FormLabel>DDI</FormLabel>
                         <InputData type="text" value={ddi} onChange={(e) => setDdi(e.target.value)} placeholder="Digite o DDI" />
@@ -68,7 +68,7 @@ const ModalTelefone = ({ handleClose, telefone, tipo }) => {
                         <FormLabel>Número</FormLabel>
                         <InputData type="text" value={numero} onChange={(e) => setNumero(e.target.value)} placeholder="Digite o número de telefone" />
                     </FormGroup>
-                </ContainerModalTelefone>
+                </ModalFormConfig>
             </ModalTemplate>
 
             {

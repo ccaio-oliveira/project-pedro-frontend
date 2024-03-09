@@ -11,11 +11,11 @@ export const ContainerTextTipo = styled(ContainerTextGrau)`
 `;
 
 export const SimbolTipo = styled(SimbolGrau)`
-    background: ${props => props.tipo == 1 ? '#04293D' : (props.tipo == 2 ? '#164863' : '#336B8A')};
+    background: ${props => props.$tipo == 1 ? '#04293D' : (props.$tipo == 2 ? '#164863' : '#336B8A')};
 `;
 
 export const TextTipo = styled(TextGrau)`
-    color: ${props => props.tipo == 1 ? '#04293D' : (props.tipo == 2 ? '#164863' : '#336B8A')};
+    color: ${props => props.$tipo == 1 ? '#04293D' : (props.$tipo == 2 ? '#164863' : '#336B8A')};
 `;
 
 export const ContainerDataCont = styled(ContainerDataRel)`

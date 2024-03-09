@@ -4,7 +4,6 @@ import { ErrorP } from '../../pages/Login/Login.styles';
 
 export const ContainerRelatorios = styled.div`
     padding: 20px;
-    height: 93.6%;
 `;
 
 export const ContainerBotaoP = styled.div`
@@ -61,6 +60,7 @@ export const ContainerNovoChamado = styled.div`
 
     display: flex;
     justify-content: end;
+    padding-bottom: 50px;
 `;
 
 export const BotaoExpRelatorios = styled(BotaoAcao)`

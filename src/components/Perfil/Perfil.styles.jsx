@@ -17,7 +17,7 @@ export const ContainerPerfilHeader = styled.div`
 export const ContainerInfoPerfil = styled.div`
     position: relative;
     top: 5rem;
-    left: 2rem;
+    left: 1rem;
 `;
 
 export const PerfilImg = styled.img`

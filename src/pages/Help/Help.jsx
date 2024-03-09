@@ -4,8 +4,7 @@ import Carregando from "../../components/Carregando/Carregando";
 import Header from './../../components/Header/Header';
 import Navbar from './../../components/Navbar/Navbar';
 import HelpComponent from '../../components/Help/Help';
-import { ContainerContato } from './../Contato/Contato.styles';
-import { ContainerComponent } from '../../global.styles';
+import { Container, ContainerComponent } from '../../global.styles';
 
 
 const Help = () => {
@@ -41,12 +40,12 @@ const Help = () => {
     return (
         <>
             <Header openMenu={openMenu} />
-            <ContainerContato>
+            <Container>
                 <Navbar isOpen={isOpenMenu} onCloseMenu={closeMenu} item="help" />
                 <ContainerComponent>
                     {component}
                 </ContainerComponent>
-            </ContainerContato>
+            </Container>
         </>
     )
 }

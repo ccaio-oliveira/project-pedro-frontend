@@ -8,7 +8,6 @@ export const ConfigContainer = styled.div`
 
 export const ConfigTop = styled.div`
     display: flex;
-    align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
 
@@ -124,4 +123,5 @@ export const ConfigElementsIcon = styled(FontAwesomeIcon)`
 
 export const ModalFormConfig = styled(ModalForm)`
     width: 80%;
+    margin-top: 20px;
 `;

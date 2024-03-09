@@ -57,8 +57,6 @@ export const ContainerNavHeader = styled.div`
 export const SpecImg = styled.img`
     width: 8rem;
 
-    margin-bottom: 50px;
-
     @media (max-width: 914px){
         margin: 0;
     }

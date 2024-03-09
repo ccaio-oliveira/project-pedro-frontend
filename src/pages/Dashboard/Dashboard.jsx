@@ -3,8 +3,7 @@ import { useAuth } from './../../context/AuthContext';
 import Carregando from '../../components/Carregando/Carregando';
 import Relatorios from '../../components/Relatorios/Relatorios';
 import Navbar from '../../components/Navbar/Navbar';
-import { ContainerDash } from './Dashboard.styles';
-import { ContainerComponent } from '../../global.styles';
+import { Container, ContainerComponent } from '../../global.styles';
 import Header from '../../components/Header/Header';
 
 const Dashboard = () => {
@@ -45,12 +44,12 @@ const Dashboard = () => {
     return(
         <>
             <Header openMenu={openMenu} />
-            <ContainerDash>
+            <Container>
                 <Navbar isOpen={isOpenMenu} onCloseMenu={closeMenu} item={'relatorio'}/>
                 <ContainerComponent>
                     {componente}
                 </ContainerComponent>
-            </ContainerDash>
+            </Container>
         </>
     )
 } 

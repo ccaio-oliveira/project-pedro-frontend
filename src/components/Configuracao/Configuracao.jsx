@@ -137,9 +137,9 @@ const Configuracao = () => {
                     <BtnConfigTop onClick={() => handleComponent(1)} selected={btnAcessoSelected}>
                         Acesso e segurança <ConfigIconChevron icon={iconBtnAcesso} />
                     </BtnConfigTop>
-                    <BtnConfigTop onClick={() => handleComponent(2)} selected={btnAdminSelected}>
+                    {/* <BtnConfigTop onClick={() => handleComponent(2)} selected={btnAdminSelected}>
                         Principais Administradores <ConfigIconChevron icon={iconBtnAdmin} />
-                    </BtnConfigTop>
+                    </BtnConfigTop> */}
                 </ConfigTopLeft>
 
                 <ConfigTopRight>

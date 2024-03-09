@@ -22,6 +22,7 @@ export const HelpBody = styled.div`
     display: flex;
     flex-wrap: wrap;
     margin-top: 30px;
+    padding-bottom: 100px;
 
     @media (max-width: 1016px){
         justify-content: space-between;

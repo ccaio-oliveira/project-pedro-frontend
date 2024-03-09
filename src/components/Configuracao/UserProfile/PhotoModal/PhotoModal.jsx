@@ -9,6 +9,7 @@ import Carregando from '../../../Carregando/Carregando';
 import AlertTemplate from '../../../AlertComponents/AlertTemplate';
 import SuccessAlert from '../../../AlertComponents/SuccessAlert/SuccessAlert';
 import ErrorAlert from '../../../AlertComponents/ErrorAlert/ErrorAlert';
+import { ModalFormConfig } from '../../Configuracao.styles';
 
 const PhotoModal = ({ handleClose }) => {
     const { sessao, headers } = useAuth();
@@ -16,6 +17,7 @@ const PhotoModal = ({ handleClose }) => {
     const [modalFooter, setModalFooter] = useState(false);
 
     const [selectedFile, setSelectedFile] = useState();
+    const [isFileUploaded, setIsFileUploaded] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -26,6 +28,7 @@ const PhotoModal = ({ handleClose }) => {
 
     const onFileChange = event => {
         setSelectedFile(event.target.files[0]);
+        setIsFileUploaded(true);
     }
 
     const handleBtnSelected = (btn) => {
@@ -33,9 +36,6 @@ const PhotoModal = ({ handleClose }) => {
             setBtnSelected('upload');
             setModalFooter(true);
             console.log('upload');
-        } else {
-            setBtnSelected('remove');
-            console.log('remove');
         }
     }
 
@@ -91,21 +91,23 @@ const PhotoModal = ({ handleClose }) => {
                 modalFooter={modalFooter}
                 submitTitle="Salvar"
             >
-                {btnSelected === '' && (
-                    <>
-                        <BtnPhoto onClick={() => handleBtnSelected('upload')}>Carregar</BtnPhoto>
-                        <BtnPhoto onClick={() => handleBtnSelected('remove')}>Excluir</BtnPhoto>
-                    </>
-                )}
+                <ModalFormConfig>
+                    {btnSelected === '' && (
+                        <>
+                            <BtnPhoto onClick={() => handleBtnSelected('upload')}>Carregar foto</BtnPhoto>
+                        </>
+                    )}
 
-                {btnSelected === 'upload' && (
-                    <>
-                        <InputData type="file" onChange={onFileChange} accept='image/*' />
-                        {selectedFile && (
-                            <img src={URL.createObjectURL(selectedFile)} alt="Preview" width="100" />
-                        )}
-                    </>
-                )}
+                    {btnSelected === 'upload' && (
+                        <>
+                            {!isFileUploaded ? (
+                                <InputData type="file" onChange={onFileChange} accept='image/*' />
+                            ) : (
+                                <img src={URL.createObjectURL(selectedFile)} alt="Preview" width="100" />
+                            )}
+                        </>
+                    )}
+                </ModalFormConfig>
             </ModalTemplate>
 
             {isLoading ? (
