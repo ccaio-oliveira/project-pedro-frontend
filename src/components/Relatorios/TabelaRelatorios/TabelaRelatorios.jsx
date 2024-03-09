@@ -51,7 +51,7 @@ const TabelaRelatorios = ({ page, relatorios }) => {
         setDataInicial(newDataInicial);
 
         if(page == 'perfil'){
-            navigate(`/perfil?dataInicial=${newDataInicial}${dataFinal != null ? `&dataFinal=${dataFinal}` : ''}`);
+            navigate(`/perfil?dataInicial=${newDataInicial == "" ? null : newDataInicial}${dataFinal != null ? `&dataFinal=${dataFinal}` : ''}`);
         } else {
             navigate(`/relatorio?grau=${grau}&dataInicial=${newDataInicial}${dataFinal != null ? `&dataFinal=${dataFinal}` : ''}`);
         }
