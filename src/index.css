@@ -11,3 +11,9 @@ html, body, #root {
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+@media (max-width: 914px){
+  html, body, #root {
+    overflow: auto;
+  }
+}
