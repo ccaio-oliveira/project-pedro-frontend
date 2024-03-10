@@ -38,7 +38,7 @@ const ModalDetAchado = ({ achado, onClose }) => {
     const montarTexto = () => {
         setTextoCopy(`Olá ${achado.atrelado_a}, o paciente ${achado.nome_paciente} 
         possui um achado de ${achado.grau === 1 ? 'prioridade ' : (achado.grau === 2 ? 'não urgente ' : 'rotina ')} 
-        enviado pelo ${achado.aberto_por} com o assunto ${achado.assunto}.`);
+        enviado pelo ${achado.aberto_por} com o achado de ${achado.assunto}.`);
     }
 
     const copyToClipboard = () => {
@@ -63,7 +63,7 @@ const ModalDetAchado = ({ achado, onClose }) => {
             <ModalTemplate title="Chamado detalhado" onRequestClose={onClose}>
                 <ModalDetAchadoContainer>
                     <ItemContainerAssunto>
-                        <ItemTitleAssunto>Assunto:</ItemTitleAssunto>
+                        <ItemTitleAssunto>Achado:</ItemTitleAssunto>
                         <ItemDescriptionAssunto>{achado.assunto}</ItemDescriptionAssunto>
                     </ItemContainerAssunto>
 

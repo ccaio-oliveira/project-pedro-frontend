@@ -138,7 +138,7 @@ const TabelaRelatorios = ({ page, relatorios }) => {
     useEffect(() => {
         handleDataRelatorios();
         setIsLoading(true);
-    }, [page, grau, dataInicial, dataFinal]);
+    }, [page, grau, dataInicial, dataFinal, modalDetIsOpen]);
 
     return (
         <>
