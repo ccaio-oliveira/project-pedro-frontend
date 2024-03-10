@@ -4,5 +4,27 @@
     "startUrl" : "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#ffffff"
+    "theme_color": "#ffffff",
+    "shortcuts": [
+        {
+            "name": "Relatorio",
+            "url": "/relatorio"
+        },
+        {
+            "name": "Perfil",
+            "url": "/perfil"
+        },
+        {
+            "name": "Contato",
+            "url": "/contato"
+        },
+        {
+            "name": "Configuracao",
+            "url": "/configuracao"
+        },
+        {
+            "name": "Ajuda",
+            "url": "/ajuda"
+        }
+    ]
 }
