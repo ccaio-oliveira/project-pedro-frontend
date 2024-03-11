@@ -30,7 +30,7 @@ export const ContainerNav = styled.div`
     height: 100%; 
     padding: 50px 20px;
 
-    background: #164863;
+    background: #165067;
     color: #fff;
 
     transition: all 0.1s ease-in-out;
@@ -55,7 +55,7 @@ export const ContainerNavHeader = styled.div`
 `;
 
 export const SpecImg = styled.img`
-    width: 8rem;
+    width: 9rem;
 
     @media (max-width: 914px){
         margin: 0;

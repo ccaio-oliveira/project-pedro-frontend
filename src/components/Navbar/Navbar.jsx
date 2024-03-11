@@ -57,7 +57,7 @@ const Navbar = ({ item, onCloseMenu, isOpen }) => {
         <ContainerNavBackground $isOpen={isOpen} onClick={onCloseMenu}>
             <ContainerNav $isOpen={isOpen}>
                 <ContainerNavHeader>
-                    <SpecImg src="./images/spec24.png" alt="Spec24" />
+                    <SpecImg src="./images/logo.png" alt="Logo" />
                     {isOpen && (
                         <ButtonCloseMenu onClick={onCloseMenu}>
                             <FontAwesomeIcon icon={["fas", "times"]} />
