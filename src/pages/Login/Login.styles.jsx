@@ -3,12 +3,13 @@ import styled from 'styled-components';
 
 export const LoginElement = styled.div`
     display: flex;
-    flex-wrap: wrap;
 
     @media (max-width: 686px){
         width: 100%;
+        max-height: 100%;
         flex-direction: column;
 
+        overflow: auto;
         margin-top: 30px;
     }
 `;
