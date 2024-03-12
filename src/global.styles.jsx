@@ -85,7 +85,7 @@ export const ContainerTable = styled.div`
 export const Tabela = styled.table`
     width: 100%;
 
-    border-top: 3px solid #D9D5D5;
+    border-top: 1px solid #D9D5D5;
     margin: 20px 0px;
     padding-top: 20px;
 
@@ -122,5 +122,5 @@ export const TD = styled.td`
 
     cursor: pointer;
 
-    border-bottom: 3px solid #D9D5D5;
+    border-bottom: 1px solid #D9D5D5;
 `;

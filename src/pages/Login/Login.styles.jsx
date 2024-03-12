@@ -125,7 +125,7 @@ export const FormElement = styled.form`
 
     margin-top: 20px;
     width: 80%;
-    max-width: 500px
+    max-width: 500px;
 `;
 
 export const FormGroupLogin = styled.div`
